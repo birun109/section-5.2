@@ -477,8 +477,13 @@
 
         function toggleDetails(button) {
             const details = button.nextElementSibling;
-            const isVisible = details.style.display = 'block';
-            details.style.display = isVisible ? 'none' : 'block';
+            // CHECK the current state using comparison (==) instead of assignment (=)
+            const isVisible = details.style.display === 'block'; 
+            
+            // Toggle the display state
+            details.style.display = isVisible ? 'none' : 'block'; 
+            
+            // Toggle the button text
             button.textContent = isVisible ? 'Show Details and Examples' : 'Hide Details and Examples';
         }
         
