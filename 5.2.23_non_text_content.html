@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.23: Character Key Shortcuts (WCAG 2.1.4)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #FF4500; /* Unique color for 2.1.4 */
+            border-bottom: 3px solid #FF4500;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .analysis-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        /* Demo Styles */
+        .demo-control {
+            border: 2px solid #FF4500;
+            padding: 15px;
+            background-color: #fff8f5;
+            margin-bottom: 20px;
+        }
+        .demo-control button {
+            padding: 8px 15px;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            font-weight: bold;
+            min-width: 150px;
+        }
+        #current-shortcut {
+            font-size: 1.1em;
+            color: #00008B;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.22.html"><strong><< Previous</strong> (5.2.22)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.24.html"><strong>Next >></strong> (5.2.24)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.23: Character Key Shortcuts (WCAG 2.1.4)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 2.1.4 Character Key Shortcuts**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #FF4500; font-weight: bold;">Single-Key Shortcuts Must Be Controllable</span></td></tr>
+            <tr><td>**Requirement**</td><td>Global shortcuts using *only* single keys (e.g., 'C' or '1') without a modifier must offer a way to **Turn Off**, **Remap** to include a modifier key, OR the shortcut must be **Active only when the component has focus**.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Interactive Demo Controls (Global 'M' Shortcut)</h2>
+        <div class="demo-control">
+            <p style="margin-top: 0;">Use these buttons to demonstrate the failure and success methods. The global shortcut is initially the **'M'** key.</p>
+            
+            <button id="enable-btn" onclick="setShortcutState(true, 'M', false);" style="background-color: #007bff; color: white;">
+                Enable Shortcut
+            </button>
+            <button id="turn-off-btn" onclick="setShortcutState(false, 'M', false);" style="background-color: #28a745; color: white;" disabled>
+                Turn Off (SUCCESS 1)
+            </button>
+            <button id="remap-btn" onclick="setShortcutState(true, 'Ctrl+M', true);" style="background-color: #FF8C00; color: white;" disabled>
+                Remap to Ctrl+M (SUCCESS 2)
+            </button>
+            
+            <p style="border: 1px solid #ddd; padding: 10px; background: white;">
+                **Current Global Shortcut:** <span id="current-shortcut" style="font-weight: bold;">[Inactive]</span>
+                <br>
+                **Status:** <span id="shortcut-status" style="font-weight: bold;">Click Enable to start the test.</span>
+            </p>
+        </div>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success 1: Turn Off / Success 2: Remap</h3>
+            <p><strong>Scenario:</strong> The user needs to disable or change the default single-key global shortcut to avoid accidental triggers.</p>
+            
+            <p>Test the **Turn Off** and **Remap to Ctrl+M** buttons in the control panel above. Once remap is active, only pressing **Ctrl+M** will trigger the action, not the single 'M' key.</p>
+
+            <p class="note">**Compliance Justification:** The system provides both a **Turn Off** mechanism (SC 2.1.4 option 1) and a **Remap** mechanism (SC 2.1.4 option 2) by changing the binding to include a non-printable key (`Ctrl`). Both methods allow the user to continue typing or using speech input without interference, fixing the accessibility barrier.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success 3: Active Only On Focus (The WCAG Exception)</h3>
+            <p><strong>Scenario:</strong> A shortcut key ('S') is only active when a specific component has keyboard focus.</p>
+
+            <p>Tab or click into the input field below and press **'S'**. The status should only update when the input is focused. Pressing 'S' outside the field does nothing.</p>
+
+            <div style="border: 2px solid #28a745; padding: 15px;">
+                <p style="margin: 0;">**Status:** <span id="focus-status" style="font-weight: bold; color: green;">Click/Focus the input below, then press 'S'...</span></p>
+                <input type="text" id="focus-field" placeholder="Focus here and press 'S'" tabindex="0">
+            </div>
+            
+            <p class="note">**Compliance Justification:** The shortcut is **Active only when the component has focus**. This is an **exception** to the rule and is the ideal way to implement single-key shortcuts without interference.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure 1: Global Single-Key Shortcut with NO Override</h3>
+            <p><strong>Scenario:</strong> The system defaults to a global single-key shortcut ('M') and provides **no** control options to the user.</p>
+            
+            <p>Click the **Enable Shortcut** button above to simulate this default state. Then, try typing the letter **'M'** into this text box:</p>
+            <input type="text" placeholder="Type the letter 'M' here..." tabindex="0">
+            
+            <p class="note">**Compliance Justification:** When the global single-key shortcut is active and non-dismissible, typing 'M' triggers a disruptive action (simulated by the alert) and prevents the character from being entered into the text field. The **loss of functionality** and inability to complete the form is a direct failure of **SC 2.1.4**.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="analysis-table">
+            <tr>
+                <td>**SC 2.1.4 Character Key Shortcuts** (Level A)</td>
+                <td>Globally active, single-character shortcuts must include one of three options: **1) Turn Off**, **2) Remap** (user can add a modifier like Ctrl/Alt), or **3) Restrict Scope** (Active only when the associated component has focus).</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        // --- JAVASCRIPT TO MAKE THE DEMO INTERACTIVE AND WORKING ---
+        let isShortcutEnabled = false;
+        let activeShortcutKey = 'M';
+        let requiresModifier = false;
+
+        const statusElement = document.getElementById('shortcut-status');
+        const currentShortcutElement = document.getElementById('current-shortcut');
+        const enableBtn = document.getElementById('enable-btn');
+        const turnOffBtn = document.getElementById('turn-off-btn');
+        const remapBtn = document.getElementById('remap-btn');
+
+        // Function to update the state of the shortcut based on button clicks
+        function setShortcutState(enable, key, modifier) {
+            isShortcutEnabled = enable;
+            activeShortcutKey = key;
+            requiresModifier = modifier;
+
+            if (enable) {
+                statusElement.textContent = `FAILURE: Global ${key} shortcut is ACTIVE! Try typing ${key} in the text box below.`;
+                statusElement.style.color = '#dc3545';
+                enableBtn.disabled = true;
+                turnOffBtn.disabled = false;
+                remapBtn.disabled = false;
+                currentShortcutElement.textContent = `[${key}]`;
+            } else if (key === 'M') {
+                statusElement.textContent = 'SUCCESS: Shortcut is DISABLED (Turn Off mechanism used).';
+                statusElement.style.color = '#28a745';
+                enableBtn.disabled = false;
+                turnOffBtn.disabled = true;
+                remapBtn.disabled = true;
+                currentShortcutElement.textContent = '[Inactive]';
+            } else if (key === 'Ctrl+M') {
+                statusElement.textContent = 'SUCCESS: Shortcut REMAPPED (Now requires Ctrl+M). Single M key works normally.';
+                statusElement.style.color = '#FF8C00';
+                enableBtn.disabled = true; // Stay in a compliant state
+                turnOffBtn.disabled = true;
+                remapBtn.disabled = true;
+                currentShortcutElement.textContent = `[${key}]`;
+            }
+        }
+
+        // Global keydown listener to manage the *active* global shortcut
+        function handleGlobalShortcut(event) {
+            const key = event.key.toUpperCase();
+            
+            if (!isShortcutEnabled) {
+                return;
+            }
+
+            // Check for the single, unmodified key shortcut ('M')
+            if (activeShortcutKey === 'M' && key === 'M' && !event.ctrlKey && !event.altKey && !event.shiftKey) {
+                event.preventDefault(); 
+                statusElement.textContent = "FAILURE: Global 'M' shortcut triggered (Action fired and text input stopped)!";
+                alert("WCAG 2.1.4 FAILURE: Global action triggered by single key 'M'!");
+            }
+
+            // Check for the remapped, modified key shortcut ('Ctrl+M')
+            if (activeShortcutKey === 'Ctrl+M' && key === 'M' && event.ctrlKey && !event.altKey && !event.shiftKey) {
+                event.preventDefault(); 
+                statusElement.textContent = "SUCCESS: Remapped 'Ctrl+M' shortcut triggered (Action fired)!";
+                alert("WCAG 2.1.4 SUCCESS: Action triggered by modified key 'Ctrl+M'!");
+            }
+        }
+
+        // Handle the 'Active Only on Focus' shortcut ('S')
+        document.getElementById('focus-field').addEventListener('keydown', function(event) {
+            // Check if the key is 'S' and no modifiers are pressed
+            if (event.key.toUpperCase() === 'S' && !event.ctrlKey && !event.altKey && !event.shiftKey) {
+                // Prevent default behavior if needed for the action, but allow the key to be logged for demo
+                
+                document.getElementById('focus-status').textContent = "SUCCESS: 'S' key pressed. Action would be taken ONLY while IN the input field.";
+            } else {
+                 // Clear status if other key is pressed
+                document.getElementById('focus-status').textContent = "Awaiting keypress...";
+            }
+        });
+
+        // Add the global listener
+        document.addEventListener('keydown', handleGlobalShortcut);
+
+        // Initial setup for the control buttons
+        setShortcutState(false, 'M', false); 
+    </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.28: Page Titled (WCAG 2.4.2)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #6A5ACD; /* Unique color for 2.4.2 */
+            border-bottom: 3px solid #6A5ACD;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.27.html"><strong><< Previous</strong> (5.2.27)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.29.html"><strong>Next >></strong> (5.2.29)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.28: Page Titled (WCAG 2.4.2)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 2.4.2 Page Titled**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #6A5ACD; font-weight: bold;">Pages Must Have Descriptive Titles</span></td></tr>
+            <tr><td>**Goal**</td><td>Ensure all users, especially those using screen readers or browsing with multiple tabs, can quickly understand the purpose of a web page.</td></tr>
+            <tr><td>**GIGW Requirement**</td><td>Title must be descriptive. For top-level pages (Homepage), include the **full governmental entity name** and **geographic reference** (e.g., "Government of India").</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Compliant Homepage Title (GIGW Format)</h3>
+            <p><strong>Scenario:</strong> The title for the main entrance page of a ministry.</p>
+            
+            <p><strong>HTML Title Tag:</strong> <code>&lt;title&gt;Ministry of Health & Family Welfare, Government of India&lt;/title&gt;</code></p>
+            
+            <p class="note">**Compliance Justification:** The title is **descriptive** ("Ministry of Health & Family Welfare") and includes the **geographic/jurisdictional reference** ("Government of India") as specifically required by the GIGW standard for top-level pages. This is the ideal format for government entities.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Compliant Interior Page Title (Descriptive)</h3>
+            <p><strong>Scenario:</strong> The title for a specific form page on a state government website.</p>
+            
+            <p><strong>HTML Title Tag:</strong> <code>&lt;title&gt;Apply for Property Tax Exemption - Dept. of Revenue, Govt. of Karnataka&lt;/title&gt;</code></p>
+
+            <p class="note">**Compliance Justification:** The title clearly states the **purpose/topic** of the page ("Apply for Property Tax Exemption") and includes the necessary **website context** ("Dept. of Revenue, Govt. of Karnataka"). This is highly useful for navigation and bookmarks.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Generic or Default Title</h3>
+            <p><strong>Scenario:</strong> A new page created from a template that hasn't been updated.</p>
+            
+            <p><strong>HTML Title Tag:</strong> <code>&lt;title&gt;Untitled Document&lt;/title&gt;</code> OR <code>&lt;title&gt;Page 1 of 5&lt;/title&gt;</code></p>
+            
+            <p class="note">**Compliance Justification:** The title does **not describe the topic or purpose** of the page. This is confusing for screen reader users and users with multiple tabs open, as all pages might have the same meaningless title, failing SC 2.4.2.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Vague or Insufficient Title (GIGW Specific)</h3>
+            <p><strong>Scenario:</strong> A homepage title that omits necessary GIGW details.</p>
+
+            <p><strong>HTML Title Tag:</strong> <code>&lt;title&gt;Health Ministry Homepage&lt;/title&gt;</code></p>
+
+            <p class="note">**Compliance Justification:** While technically describing the topic, the title is **too vague** and fails the GIGW standard for government entities. It omits the **full name** and **jurisdictional reference** ("Government of India"), making the source of the information unclear to the user and in search results.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 2.4.2 Page Titled</td>
+                    <td>A</td>
+                    <td>Every HTML document must contain a unique and descriptive text within the **`<title>` tag** that clearly identifies its content or purpose. For government websites, the title must be complete, including the main topic and the **full name of the government body and location**.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

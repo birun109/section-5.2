@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.18: Non-Text Contrast (WCAG 1.4.11)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #FF8C00; /* Unique color for 1.4.11 */
+            border-bottom: 3px solid #FF8C00;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table th, .analysis-table td, .summary-table th, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Success Styles (Meets 3:1) */
+        .success-button {
+            /* Text color: #FFFFFF on background: #007bff (Blue) -> 4.5:1 (meets 3:1) */
+            /* Border color: #007bff on background: #f4f4f9 -> approx 4.5:1 (meets 3:1) */
+            background-color: #007bff; 
+            color: white; 
+            padding: 10px 15px;
+            border: 2px solid #007bff; 
+        }
+        .success-focus:focus {
+            /* Focus ring: #000000 on background: #d4edda -> 8.9:1 (meets 3:1) */
+            outline: 3px solid black; 
+        }
+        .success-chart {
+            background-color: #eee; 
+            padding: 10px; 
+            border: 1px solid #ccc;
+            /* Key graphic element: #0056b3 (Darker Blue) on background #eee -> 4.8:1 (meets 3:1) */
+        }
+
+        /* Failure Styles (Fails 3:1) */
+        .failure-button {
+            /* Text color: #AAAAAA on background: #F0F0F0 -> 1.6:1 (FAIL) */
+            /* Visual indicator (Border) color: #AAAAAA on background: #F0F0F0 -> 1.6:1 (FAIL) */
+            background-color: #F0F0F0;
+            color: #AAAAAA;
+            padding: 10px 15px;
+            border: 1px solid #AAAAAA; 
+        }
+        .failure-focus:focus {
+             /* Focus ring color: #EEEEEE on adjacent background: #FFFFFF -> 1.05:1 (FAIL) */
+            outline: 3px solid #EEEEEE; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.17.html"><strong><< Previous</strong> (5.2.17)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.19.html"><strong>Next >></strong> (5.2.19)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.18: Non-Text Contrast (WCAG 1.4.11)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**GIGW Statement**</td><td>The visual presentation of... User Interface Components and Graphical Objects has a contrast ratio of at least 3:1 against adjacent colour(s).</td></tr>
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 1.4.11 Non-Text Contrast**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level AA**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #FF8C00; font-weight: bold;">UI Controls & Graphics Must Meet 3:1 Contrast</span></td></tr>
+            <tr><td>**Goal**</td><td>To help users with low vision perceive active interface elements and essential parts of graphics.</td></tr>
+            <tr><td>**Requirement**</td><td>The visual information needed to identify controls (borders, fill) and essential parts of graphics must have a minimum contrast of **3:1**.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Button Borders and Focus State (3:1)</h3>
+            <p><strong>Scenario:</strong> A submit button's visual boundary and its focus indicator.</p>
+            
+            <button class="success-button success-focus" tabindex="0">
+                Submit Form
+            </button>
+            
+            <p class="note">**Compliance Justification:**
+                <ul>
+                    <li>**Button Boundary:** The contrast between the button's background (`#007bff`) and the page background (`#f4f4f9`) is well over 3:1, making the button shape perceivable.</li>
+                    <li>**Focus Indicator:** When the button is focused (tabbed to), the black outline has a contrast of approximately **8.9:1** against the background, easily meeting the **3:1** requirement.</li>
+                </ul>
+            </p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Essential Graphical Object Contrast</h3>
+            <p><strong>Scenario:</strong> A bar chart where the bars convey essential data.</p>
+            
+            <div class="success-chart">
+                
+                <div style="width: 80%; height: 20px; background-color: #0056b3; margin-bottom: 5px;"></div>
+                <div style="width: 60%; height: 20px; background-color: #0056b3;"></div>
+                <p style="font-size: 0.9em;">(The bars are the graphical object required for understanding.)</p>
+            </div>
+
+            <p class="note">**Compliance Justification:** The dark blue bars (`#0056b3`) have a contrast ratio of approximately **4.8:1** against the light gray chart background (`#eee`). Since these bars are **required to understand the content** (the relative size of the data), they must meet the 3:1 ratio.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Low-Contrast Input Field Border</h3>
+            <p><strong>Scenario:</strong> A user input field whose visual boundary is too faint to meet 3:1 contrast.</p>
+            
+            <label for="input-fail">Enter Data:</label><br>
+            <input type="text" id="input-fail" class="failure-button" value="Fails 3:1 contrast" style="border: 1px solid #AAAAAA; background-color: white;">
+
+            <p class="note">**Compliance Justification:** The border color of the input field (`#AAAAAA`) on the white background (`#FFFFFF`) has a contrast ratio of only **1.6:1**. Users with low vision may not be able to identify the shape and extent of the input field, meaning the visual information required to identify the component fails the **3:1** requirement.</p>
+        </section>
+
+        <section class="failure">
+            <h3>Failure Example 2: Low-Contrast Focus Indicator</h3>
+            <p><strong>Scenario:</strong> The author changes the browser's default focus ring to a color that is almost white.</p>
+            
+            <button class="success-button failure-focus" tabindex="0">
+                Focus Indicator Fails
+            </button>
+            
+            <p class="note">**Compliance Justification:** The focus indicator is an **essential state indicator** and must meet 3:1 contrast against the adjacent color (the page background). If the focus ring color is very light (e.g., `#EEEEEE`) on a white page, the resulting contrast is approximately **1.05:1**, failing the 3:1 minimum for UI components.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 1.4.11 Non-Text Contrast</td>
+                    <td>AA</td>
+                    <td>Ensure the visual information (borders, fill, shadow, color difference) required to identify **active controls** (buttons, inputs, links, focus rings) and **essential graphics** (bars, lines, key icons) has a minimum contrast ratio of **3:1** against the adjacent background or element. Check your custom focus rings!</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

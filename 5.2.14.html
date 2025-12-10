@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.14: Contrast Minimum (WCAG 1.4.3)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #8B0000; /* Unique color for 1.4.3 */
+            border-bottom: 3px solid #8B0000;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table th, .analysis-table td, .summary-table th, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        /* Color combinations for examples */
+        .high-contrast-small {
+            background-color: #FFFFFF; /* White */
+            color: #1A1A1A; /* Dark Grey */
+            padding: 5px;
+            font-size: 12pt;
+            /* Contrast ratio approx 15:1 */
+        }
+        .high-contrast-large {
+            background-color: #0000FF; /* Blue */
+            color: #A9A9A9; /* Dark Gray */
+            padding: 5px;
+            font-size: 20pt; /* Large Text */
+            font-weight: bold;
+             /* Contrast ratio approx 3.1:1 */
+        }
+        .low-contrast-fail {
+            background-color: #F0F0F0; /* Light Gray Background */
+            color: #AAAAAA; /* Gray Text */
+            padding: 5px;
+            font-size: 12pt;
+            /* Contrast ratio approx 1.6:1 (FAIL) */
+        }
+        .large-low-contrast-fail {
+            background-color: #E6E6FA; /* Lavender */
+            color: #808080; /* Gray Text */
+            padding: 5px;
+            font-size: 20pt; /* Large Text */
+            /* Contrast ratio approx 1.6:1 (FAIL) */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.13.html"><strong><< Previous</strong> (5.2.13)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.15.html"><strong>Next >></strong> (5.2.15)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.14: Contrast Minimum (WCAG 1.4.3)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**GIGW Statement**</td><td>The visual presentation of text and images of text has a contrast ratio of at least 4.5:1...</td></tr>
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 1.4.3 Contrast (Minimum)**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level AA**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #8B0000; font-weight: bold;">Text Contrast Must Be 4.5:1 Minimum</span></td></tr>
+            <tr><td>**Goal**</td><td>To improve readability and accessibility for users with visual impairments or color deficiencies.</td></tr>
+            <tr><td>**Requirement**</td><td>Standard text: **4.5:1**. Large text (18pt reg. or 14pt bold): **3:1**. Exemptions: Logos, incidental text, inactive components.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Suitable Success Examples ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Standard Text Contrast (4.5:1 required)</h3>
+            <p><strong>Scenario:</strong> Main body text on a white background.</p>
+            
+            <div class="high-contrast-small">
+                This text meets the required 4.5:1 ratio (approx. 15:1). This ensures that standard body text is highly legible for most users, including those with moderate low vision.
+            </div>
+
+            <p class="note">**Compliance Justification:** The text color (`#1A1A1A`) on the background (`#FFFFFF`) easily exceeds the 4.5:1 minimum ratio for standard-sized text, fulfilling the primary requirement of SC 1.4.3.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Large Text Contrast (3:1 required)</h3>
+            <p><strong>Scenario:</strong> A section header that is large and bold.</p>
+            
+            <div class="high-contrast-large">
+                This Large Text Meets the 3:1 Ratio!
+            </div>
+
+            <p class="note">**Compliance Justification:** Since the text is **large (20pt bold)**, it only requires a **3:1 minimum ratio**. The text color (`#A9A9A9`) on the background (`#0000FF`) achieves a ratio of approximately 3.1:1, meeting the less stringent requirement for large-scale text.</p>
+        </section>
+
+        <hr>
+
+        <h2>Suitable Failure Examples ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Standard Text Below 4.5:1</h3>
+            <p><strong>Scenario:</strong> Small legal disclaimer text using a light gray color on a light gray background.</p>
+            
+            <div class="low-contrast-fail">
+                This text has a contrast ratio of only 1.6:1 (FAIL). This text size requires 4.5:1.
+            </div>
+
+            <p class="note">**Compliance Justification:** The text is standard size and requires a 4.5:1 ratio. Since the ratio is only 1.6:1, it fails the criterion. Text with such low contrast is virtually unreadable for users with low vision or older users.</p>
+        </section>
+
+        <section class="failure">
+            <h3>Failure Example 2: Large Text Below 3:1</h3>
+            <p><strong>Scenario:</strong> A large, non-bold heading that should meet the 3:1 minimum.</p>
+            
+            <div class="large-low-contrast-fail" style="font-weight: normal;">
+                Large Heading with Poor Contrast
+            </div>
+
+            <p class="note">**Compliance Justification:** Even though the text is large, its ratio is approximately 1.6:1. Since large text requires a minimum ratio of 3:1, this color combination fails the criterion. The visual prominence of the size is insufficient to overcome the poor contrast.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 1.4.3 Contrast (Minimum)</td>
+                    <td>AA</td>
+                    <td>Use a **contrast checking tool** to verify all text (and images of text) colors against their background. Ensure **standard text meets 4.5:1** and **large text (18pt reg. or 14pt bold) meets 3:1**. Do not use low-contrast text unless it falls under an exemption (logo, incidental, decorative).</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

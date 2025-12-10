@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.3.1: Use of Color (WCAG 1.4.1)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #FF0000; /* Unique color for 1.4.1 */
+            border-bottom: 3px solid #FF0000;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table th, .analysis-table td, .summary-table th, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        /* Specific Styles for Examples */
+        .required-red {
+            color: red;
+            font-weight: bold;
+        }
+        .success-bg {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border: 1px solid #c3e6cb;
+        }
+        .failure-bg {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border: 1px solid #f5c6cb;
+        }
+        .graph-legend {
+            list-style: none;
+            padding: 0;
+        }
+        .legend-item {
+            margin-bottom: 5px;
+        }
+         .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="nav-links">
+            <a href="5.2.11.html"><strong><< Previous</strong> (5.2.11)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.13.html"><strong>Next >></strong> (5.2.13)</a>
+        </div>
+        <h1>GIGW 3.0 Statement 5.3.1: Use of Color (WCAG 1.4.1)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**GIGW Statement**</td><td>Colour is not used as the only visual means of conveying information...</td></tr>
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 1.4.1 Use of Color**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #FF0000; font-weight: bold;">Do Not Use Color as the Only Visual Cue</span></td></tr>
+            <tr><td>**Goal**</td><td>To ensure information is accessible to users who have difficulty perceiving color.</td></tr>
+            <tr><td>**Requirement**</td><td>When color conveys information or status, provide a **supplementary visual cue** (text, icon, underline, etc.).</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Suitable Success Examples ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Required Form Fields</h3>
+            <p><strong>Scenario:</strong> Indicating a mandatory field in a user form.</p>
+            
+            <p>Fields marked with a red asterisk (<span class="required-red">*</span>) are required.</p>
+            <label for="fname">Full Name <span class="required-red">*</span></label>
+            <input type="text" id="fname" required>
+
+            <p class="note">**Compliance Justification:** The requirement status is conveyed by **three cues**: the **red color**, the **asterisk symbol (\*)**, and the programmatic **`required` attribute**. Color is not the sole indicator.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Conveying Status in Graphs/Data</h3>
+            <p><strong>Scenario:</strong> A legend for a pie chart showing budget allocation status.</p>
+            
+            <ul class="graph-legend">
+                <li class="legend-item" style="color: green;">&#x25CF; **Completed** (95% Allocated)</li>
+                <li class="legend-item" style="color: orange;">&#x25CF; **Pending Action** (4% Allocated)</li>
+                <li class="legend-item" style="color: red;">&#x25CF; **On Hold** (1% Allocated)</li>
+            </ul>
+
+            <p class="note">**Compliance Justification:** Each status is identified by the **color**, but the **textual label** (**"Completed"**, **"Pending Action"**) and the **percentage value** are explicitly provided. If a user cannot distinguish red and green, the text conveys the meaning.</p>
+        </section>
+
+        <hr>
+
+        <h2>Suitable Failure Examples ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Status Messaging Relies on Color Alone</h3>
+            <p><strong>Scenario:</strong> An error message where only the background color changes.</p>
+            
+            <div class="success-bg" style="background-color: lightgreen;">
+                Message: Data saved successfully.
+            </div>
+            <div class="failure-bg" style="background-color: red; color: white;">
+                Message: Error while submitting data.
+            </div>
+
+            <p style="margin-top: 15px;">**Instruction:** Click the button; if the background is **green**, proceed. If it is **red**, try again.</p>
+
+            <p class="note">**Compliance Justification:** The instruction relies entirely on **color**. A user with protanopia (red/green blindness) may not be able to distinguish the green box from the red box, losing the critical information about whether their action succeeded or failed. The textual message is insufficient as the *instruction* relies on color.</p>
+        </section>
+
+        <section class="failure">
+            <h3>Failure Example 2: Hyperlinks without Redundant Cues</h3>
+            <p><strong>Scenario:</strong> Links are distinguished from surrounding text by color only, without an underline or other indicator.</p>
+            
+            <p>Please read the terms and conditions for this application (
+            <a href="#terms" style="color: blue; text-decoration: none;">access terms here</a>
+            ) before proceeding to the payment gateway.</p>
+            
+            <p class="note">**Compliance Justification:** The link is visually distinct only by its **blue color**. If a user's vision impairment or browser settings make the blue indistinguishable from the black surrounding text, they cannot identify the link or its area of activation. **Links must also be underlined** or have another non-color cue.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 1.4.1 Use of Color</td>
+                    <td>A</td>
+                    <td>**Never use color as the sole means** of conveying critical information, status, or meaning. Always provide a **redundant visual cue** (text label, icon, underline, or symbol) in addition to color to ensure access for all users.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

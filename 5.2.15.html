@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.15: Resize Text (WCAG 1.4.4)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #6495ED; /* Unique color for 1.4.4 */
+            border-bottom: 3px solid #6495ED;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table th, .analysis-table td, .summary-table th, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Success Example CSS - Uses relative units */
+        .success-box {
+            font-size: 1.2rem; /* Relative text size */
+            padding: 1em; /* Relative padding */
+            border: 1px solid #28a745;
+            width: 60%; /* Relative width */
+        }
+
+        /* Failure Example CSS - Uses fixed pixel units */
+        .failure-box {
+            font-size: 16px;
+            padding: 10px;
+            border: 1px solid #dc3545;
+            height: 50px; /* FIXED HEIGHT */
+            overflow: hidden; /* Text clips when it grows */
+            width: 150px; /* FIXED WIDTH */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.14.html"><strong><< Previous</strong> (5.2.14)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.16.html"><strong>Next >></strong> (5.2.16)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.15: Resize Text (WCAG 1.4.4)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**GIGW Statement**</td><td>Text can be resized without assistive technology up to 200 percent without loss of content or functionality.</td></tr>
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 1.4.4 Resize Text**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level AA**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #6495ED; font-weight: bold;">Text Must Resize to 200% Without Loss</span></td></tr>
+            <tr><td>**Goal**</td><td>To improve the ability of people with low vision to read web content by increasing text size to a readable level.</td></tr>
+            <tr><td>**Requirement**</td><td>When text is scaled up to **200%**, content must not overlap, disappear, or become unusable.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Use of Relative Units (`em`/`rem`)</h3>
+            <p><strong>Scenario:</strong> A notice box built using relative font sizes and flexible dimensions.</p>
+            
+            <div class="success-box">
+                <p>This paragraph uses `rem` for font sizing and `em` for padding. If you resize the text using your browser controls (e.g., Ctrl + Plus), the box will naturally expand to accommodate the larger text, preventing clipping or overlap.</p>
+            </div>
+
+            <p class="note">**Compliance Justification:** By using **relative units** (like `rem`, `em`, and percentages) for dimensions and font sizes, the page layout scales harmoniously with the text. The content container (`.success-box`) adapts its height and width as the text grows, ensuring **no loss of content** up to 200% text size.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Fixed Container Height and Width</h3>
+            <p><strong>Scenario:</strong> A small informational alert box with fixed pixel dimensions.</p>
+            
+            <p>The container below has a **fixed height of 50px** and a **fixed width of 150px**.</p>
+            <div class="failure-box">
+                This is important information that will be clipped.
+            </div>
+
+            <p class="note">**Compliance Justification:** When a user increases the text size to 200%, the text within the `.failure-box` will grow larger than the fixed 50px height. This will cause the text to **clip, overlap, or disappear**, leading to a **loss of content**. Relying on **fixed pixel units (`px`)** for containers is the primary cause of this failure.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 1.4.4 Resize Text</td>
+                    <td>AA</td>
+                    <td>**AVOID** using fixed pixel units (`px`) for font sizes, container widths, and container heights. Instead, use **relative units** (`rem`, `em`, `%`, `vh`, `vw`) to allow elements to grow and reflow when text is resized up to 200% via the browser settings.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

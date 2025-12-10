@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.42: Consistent Navigation (WCAG 3.2.3)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #696969; /* Unique color for 3.2.3 (Dim Gray/Consistency) */
+            border-bottom: 3px solid #696969;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Demo Styles */
+        .nav-demo {
+            border: 1px solid #696969;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .nav-list {
+            list-style: none;
+            padding: 0;
+        }
+        .nav-list li {
+            display: inline;
+            margin-right: 15px;
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.41.html"><strong><< Previous</strong> (5.2.41)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.43.html"><strong>Next >></strong> (5.2.43)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.42: Consistent Navigation (WCAG 3.2.3)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 3.2.3 Consistent Navigation**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**AA**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #696969; font-weight: bold;">Same Order for Repeated Elements</span></td></tr>
+            <tr><td>**Goal**</td><td>To provide a stable and predictable layout for navigating large websites, which is vital for users using screen readers or magnifiers.</td></tr>
+            <tr><td>**Requirement**</td><td>Any component or group of components (e.g., links in a main menu, a set of icons in a footer) that appears on multiple pages must maintain the same relative order (source code order) wherever it appears.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Consistent Header Navigation</h3>
+            <p><strong>Scenario:</strong> The main navigation bar links are repeated across Page A and Page B.</p>
+
+            <h4>Page A Navigation (Source Code Order)</h4>
+            <div class="nav-demo" style="border-color: #28a745;">
+                <ul class="nav-list">
+                    <li>(1) Home</li>
+                    <li>(2) About Us</li>
+                    <li>(3) Schemes</li>
+                    <li>(4) Contact</li>
+                </ul>
+            </div>
+            
+            <h4>Page B Navigation (Source Code Order)</h4>
+            <div class="nav-demo" style="border-color: #28a745;">
+                <ul class="nav-list">
+                    <li>(1) Home</li>
+                    <li>(2) About Us</li>
+                    <li>(3) Schemes</li>
+                    <li>(4) Contact</li>
+                </ul>
+            </div>
+
+            <p class="note">**Compliance Justification:** The order of links (Home > About Us > Schemes > Contact) remains identical on both pages. A keyboard user or screen magnifier user who relies on link location or reading order will find the navigation predictable. This is compliant with SC 3.2.3.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Adding a Link While Maintaining Relative Order</h3>
+            <p><strong>Scenario:</strong> A new link is added to the navigation, but the relative order of the original links is preserved.</p>
+
+            <h4>Page C Navigation (Source Code Order)</h4>
+            <div class="nav-demo" style="border-color: #28a745;">
+                <ul class="nav-list">
+                    <li>(1) Home</li>
+                    <li>(2) About Us</li>
+                    <li>(NEW) Annual Report</li>
+                    <li>(3) Schemes</li>
+                    <li>(4) Contact</li>
+                </ul>
+            </div>
+
+            <p class="note">**Compliance Justification:** Although a new link ("Annual Report") was inserted, the original links still follow the same sequence: Home is still before About Us, and Schemes is still before Contact. **Insertion of new components is allowed, provided the relative order of the repeated components is unchanged.** This is compliant.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Swapping Link Order</h3>
+            <p><strong>Scenario:</strong> The main navigation links are swapped between Page D and Page E.</p>
+
+            <h4>Page D Navigation (Source Code Order)</h4>
+            <div class="nav-demo" style="border-color: #dc3545;">
+                <ul class="nav-list">
+                    <li>(1) Home</li>
+                    <li style="color: red;">(2) Services</li>
+                    <li style="color: red;">(3) Gallery</li>
+                </ul>
+            </div>
+            
+            <h4>Page E Navigation (Source Code Order)</h4>
+            <div class="nav-demo" style="border-color: #dc3545;">
+                <ul class="nav-list">
+                    <li>(1) Home</li>
+                    <li style="color: red;">(2) Gallery</li>
+                    <li style="color: red;">(3) Services</li>
+                </ul>
+            </div>
+
+            <p class="note">**Compliance Justification:** On Page E, the link order has changed (Gallery now comes before Services). A screen reader user, after hearing "Home," will expect "Services," but instead hears "Gallery." This unexpected shift in the repeated navigational structure causes disorientation and fails SC 3.2.3.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Swapping Global Elements</h3>
+            <p><strong>Scenario:</strong> The order of the Global Search Bar and the Language Selector is swapped between the header on Page F and Page G.</p>
+
+            <p><strong>Page F Header Order:</strong> Logo -> Global Search -> Language Selector</p>
+            <p><strong>Page G Header Order:</strong> Logo -> Language Selector -> Global Search</p>
+
+            <p class="note">**Compliance Justification:** Since the Search Bar and Language Selector are repeated navigational mechanisms, their relative source code order must remain the same across the site. Swapping their position means a user tabbing through the header or relying on spatial location (e.g., using a screen magnifier) will be confused, thus failing SC 3.2.3.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 3.2.3 Consistent Navigation</td>
+                    <td>AA</td>
+                    <td>Ensure that any element or group of links that is repeated on multiple pages (e.g., primary navigation, footer links, site header components) maintains the **same relative order** in the source code on every page.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

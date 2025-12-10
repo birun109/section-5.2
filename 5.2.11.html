@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.11: Identify Input Purpose (WCAG 1.3.5)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #FF7F50; /* Unique color for 1.3.5 */
+            border-bottom: 3px solid #FF7F50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table th, .analysis-table td, .summary-table th, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        input {
+            margin-bottom: 8px;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+         .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="nav-links">
+            <a href="5.2.10.html"><strong><< Previous</strong> (5.2.10)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.12.html"><strong>Next >></strong> (5.2.12)</a>
+        </div>
+        <h1>GIGW 3.0 Statement 5.2.11: Identify Input Purpose (WCAG 1.3.5)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**GIGW Statement**</td><td>The purpose of each input field collecting information about the user can be programmatically determined...</td></tr>
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 1.3.5 Identify Input Purpose**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level AA**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #FF7F50; font-weight: bold;">Programmatically Identify Input Purpose (Autofill)</span></td></tr>
+            <tr><td>**Goal**</td><td>To enable user agents (browsers, assistive technologies) to automatically fill in user data and customize the interface.</td></tr>
+            <tr><td>**Requirement**</td><td>Input fields that collect standard user information must use the **`autocomplete` attribute** with the correct taxonomic value.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Success Example ✅</h2>
+        <h3>Success Example 1: Using Correct `autocomplete` Values</h3>
+        <p><strong>Scenario:</strong> A standard user registration form collecting name, email, and address.</p>
+        
+        <form>
+            <label for="fname">Full Name</label><br>
+            <input type="text" id="fname" name="fname" **autocomplete="name"**><br>
+
+            <label for="email">Email Address</label><br>
+            <input type="email" id="email" name="email" **autocomplete="email"**><br>
+            
+            <label for="street">Street Address</label><br>
+            <input type="text" id="street" name="street" **autocomplete="address-line1"**><br>
+
+            <label for="postcode">Postal Code</label><br>
+            <input type="text" id="postcode" name="postcode" **autocomplete="postal-code"**><br>
+        </form>
+        
+        <p class="note">**Compliance Justification:** Each field uses the specific, defined **`autocomplete` attribute** value (e.g., `name`, `email`, `address-line1`). This allows browsers to reliably offer **autofill** and permits assistive technologies to clearly communicate the field's purpose.</p>
+        
+        <hr>
+
+        <h2>Failure Example ❌</h2>
+        <h3>Failure Example 1: Relying Only on `name` or `id` Attributes</h3>
+        <p><strong>Scenario:</strong> A form collecting the same information but using descriptive IDs instead of the required `autocomplete` attribute.</p>
+        
+        <form>
+            <label for="user_email">Email for Contact</label><br>
+            <input type="email" id="user_email" name="user_email"><br>
+
+            <label for="user_address">Residence Address</label><br>
+            <input type="text" id="user_address" name="user_address"><br>
+        </form>
+
+        <p class="note">**Compliance Justification:** Although the labels are clear and the `id` and `name` attributes are descriptive, they are **not programmatically standardized** for autofill or purpose interpretation. A browser cannot reliably determine if `user_email` corresponds to the required WCAG value of `email`. **The `autocomplete` attribute is missing**, causing a Level AA failure.</p>
+
+        <h3>Non-Applicable Example (Exemption)</h3>
+        <p><strong>Scenario:</strong> Input fields that do **not** collect information about the user (e.g., search terms, captchas, custom settings, new passwords).</p>
+        <p><strong>Example:</strong>
+            <code>&lt;input type="text" label="Search Query"&gt;</code><br>
+            <code>&lt;input type="text" label="Captcha Code"&gt;</code>
+        </p>
+        <p class="note">**Justification:** These fields are **exempt** from this requirement because their purpose is functional (searching, security) and they do not collect personal data from the standard user taxonomy. Therefore, they do not need the `autocomplete` attribute to comply with 1.3.5.</p>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 1.3.5 Identify Input Purpose</td>
+                    <td>AA</td>
+                    <td>For any form field collecting standard user data (name, address, phone, credit card info, etc.), developers **must include the `autocomplete` attribute** with the corresponding value from the WCAG Input Purposes list to enable programmatic interpretation and autofill.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.37: Motion Actuation (WCAG 2.5.4)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #6A0DAD; /* Unique color for 2.5.4 (Purple/Motion) */
+            border-bottom: 3px solid #6A0DAD;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Demo Styles */
+        .setting-switch {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border: 1px dashed #6A0DAD;
+            margin-top: 10px;
+        }
+        .control-button {
+            padding: 8px 15px;
+            background-color: #e6e0ff;
+            border: 1px solid #6A0DAD;
+            cursor: pointer;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 24px;
+        }
+        .switch input {opacity: 0; width: 0; height: 0;}
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {background-color: #2196F3;}
+        input:focus + .slider {box-shadow: 0 0 1px #2196F3;}
+        input:checked + .slider:before {transform: translateX(16px);}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.36.html"><strong><< Previous</strong> (5.2.36)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.38.html"><strong>Next >></strong> (5.2.38)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.37: Motion Actuation (WCAG 2.5.4)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 2.5.4 Motion Actuation**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**AA**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #6A0DAD; font-weight: bold;">Provide UI for Motion & Disable Motion</span></td></tr>
+            <tr><td>**Goal**</td><td>To provide flexibility for users who cannot perform or accidentally perform device movements (e.g., due to physical disability or using a mounted device).</td></tr>
+            <tr><td>**Requirement**</td><td>Any action triggered by device motion (shaking, tilting) must have an **equivalent UI control** AND a way for the user to **disable the motion control**.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Shake-to-Undo with Equivalent UI and Disable Option</h3>
+            <p><strong>Scenario:</strong> A mobile app allows a user to shake the phone to activate the "Undo" function.</p>
+            
+            <p><strong>Requirement 1: Equivalent UI Control</strong></p>
+            <button class="control-button">Undo Last Action</button>
+
+            <p><strong>Requirement 2: Disable Motion Setting</strong></p>
+            <div class="setting-switch">
+                <span>Disable "Shake-to-Undo" Feature</span>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <p class="note">**Compliance Justification:** The functionality ("Undo Last Action") is accessible through both the **device motion** (shaking) and an **equivalent UI control** (the "Undo Last Action" button). Additionally, a user is given the option to **disable the motion response** via a toggle switch. This satisfies both components of SC 2.5.4.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Tilt-to-Scroll Functionality</h3>
+            <p><strong>Scenario:</strong> An image viewer allows tilting the device to scroll horizontally through photos.</p>
+            
+            <p><strong>Requirement 1: Equivalent UI Control</strong></p>
+            <button class="control-button">&lt; Previous Photo</button>
+            <button class="control-button">Next Photo &gt;</button>
+
+            <p><strong>Requirement 2: Disable Motion Setting</strong></p>
+            <p>The application settings contain a toggle labelled **"Disable Tilt-to-Scroll"**.</p>
+
+            <p class="note">**Compliance Justification:** The scrolling function, actuated by motion (tilting), is also available via **tap controls** ("Previous/Next Photo" buttons). The presence of the disable setting ensures compliance with SC 2.5.4.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Motion Required, No UI Alternative</h3>
+            <p><strong>Scenario:</strong> A security authentication screen requires the user to flip the phone 180 degrees to confirm their identity.</p>
+            
+            <div style="border: 2px solid #dc3545; padding: 15px; text-align: center;">
+                <h4>Security Confirmation</h4>
+                <p style="font-weight: bold; color: #dc3545;">Action Required: Please flip your device to confirm.</p>
+            </div>
+
+            <p>No button or link is provided to confirm the action manually.</p>
+            
+            <p class="note">**Compliance Justification:** Flipping the device is a device motion that triggers a function (confirmation). Since no alternative UI component (like a "Confirm" button) is provided, users who have their phone mounted or cannot perform the movement are excluded. This fails SC 2.5.4.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: UI Alternative Provided, but Motion Cannot be Disabled</h3>
+            <p><strong>Scenario:</strong> A mapping app allows users to rotate the map by shaking the device, and a button is provided for rotation, but there is no setting to disable the shaking input.</p>
+
+            <p><strong>Equivalent UI Control:</strong> <button class="control-button">Rotate Map</button> **(Satisfied)**</p>
+            <p><strong>Disable Setting:</strong> **(Missing)**</p>
+
+            <p class="note">**Compliance Justification:** While the **Equivalent UI control** is present, the functionality fails because a user with a tremor who accidentally shakes their device will constantly and unwillingly trigger the map rotation. The lack of a mechanism to **disable the motion response** fails the second part of SC 2.5.4.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 2.5.4 Motion Actuation</td>
+                    <td>AA</td>
+                    <td>If your application uses **device motion** (e.g., shake, tilt) to trigger an action, you must provide **two things**: 1) An **equivalent user interface component** (a button or link) to perform the action, AND 2) A **mechanism (setting/toggle)** that allows the user to **disable** the motion input response.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

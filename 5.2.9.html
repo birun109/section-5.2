@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.9: Sensory Characteristics (WCAG 1.3.3)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #FF00FF; /* Unique color for 1.3.3 */
+            border-bottom: 3px solid #FF00FF;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table th, .analysis-table td, .summary-table th, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .round-button {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            float: left; /* Used for location-based failure example */
+            margin-right: 20px;
+            text-align: center;
+            line-height: 80px;
+        }
+        .square-button {
+            width: 80px;
+            height: 80px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            line-height: 80px;
+        }
+         .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="nav-links">
+            <a href="5.2.8.html"><strong><< Previous</strong> (5.2.8)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.10.html"><strong>Next >></strong> (5.2.10)</a>
+        </div>
+        <h1>GIGW 3.0 Statement 5.2.9: Sensory Characteristics (WCAG 1.3.3)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**GIGW Statement**</td><td>Instructions provided for understanding and operating content do not rely solely on sensory characteristics of components such as shape, colour, size, visual location, orientation, or sound.</td></tr>
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 1.3.3 Sensory Characteristics**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #FF00FF; font-weight: bold;">Instructions Must Not Rely on Sensory Cues Alone</span></td></tr>
+            <tr><td>**Goal**</td><td>To ensure content is accessible to users who cannot perceive shape, size, location, or orientation, such as the visually challenged.</td></tr>
+            <tr><td>**Requirement**</td><td>Content and instructions that rely on sensory characteristics must **also** provide textual identification or programmatic information.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Success Examples ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Relying on Shape and Textual Label</h3>
+            <p><strong>Scenario:</strong> Instructions tell the user to click a specific button based on its shape and text.</p>
+            
+            <button class="round-button">GO</button>
+            <p style="clear: both;">To proceed to the next step, click the **round button labelled "GO"**.</p>
+            
+            <p class="note">**Compliance Justification:** The instruction does not rely solely on the sensory characteristic (shape, "round"). It provides the necessary **textual identifier ("GO")**, making the instruction accessible to a screen reader user who can't see the shape.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Relying on Location and Textual Identification</h3>
+            <p><strong>Scenario:</strong> Instructions guide the user to a button based on its general position and a clear label.</p>
+            
+            <button class="square-button" style="float: right;">SUBMIT</button>
+            <p style="clear: both;">To finalize your application, click the button labelled **"SUBMIT"** in the lower right corner.</p>
+            
+            <p class="note">**Compliance Justification:** Although it mentions location ("lower right corner"), the primary means of identifying the target is the clear and unique **textual label ("SUBMIT FINAL")**. The location information is supplementary.</p>
+        </section>
+
+        <hr>
+
+        <h2>Failure Examples ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Relying on Shape and Color Alone</h3>
+            <p><strong>Scenario:</strong> Instructions guide the user based on shape, with no textual label.</p>
+            
+            <button class="round-button" style="background-color: blue;">!</button>
+            <button class="square-button" style="background-color: red;">?</button>
+            <p style="clear: both;">Click the **round blue button** for immediate assistance and the **square red button** for general queries.</p>
+            
+            <p class="note">**Compliance Justification:** The screen reader would only announce "button" for both. The user cannot distinguish between the **"round blue"** and **"square red"** options, as the instructions rely solely on shape and color to convey the functional difference.</p>
+        </section>
+
+        <section class="failure">
+            <h3>Failure Example 2: Relying on Auditory Cues Alone</h3>
+            <p><strong>Scenario:</strong> Instructions prompt the user based on a specific sound.</p>
+            
+            <p>The system is ready to accept your voice command when you hear the **high-pitched chime**.</p>
+            
+            <p class="note">**Compliance Justification:** This fails for users who are **deaf or hard of hearing** as they cannot perceive the **high-pitched chime** sound cue. There is no alternative textual or visual indication that the system is ready (e.g., "Ready" text on screen).</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 1.3.3 Sensory Characteristics</td>
+                    <td>A</td>
+                    <td>Ensure all instructions and content identification provide a **textual or programmatic alternative** to sensory cues (shape, size, color, location, sound). Use labels, text, and icons in addition to visual or auditory design.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

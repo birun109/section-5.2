@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.45: Labels or Instructions (WCAG 3.3.2)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #0000CD; /* Unique color for 3.3.2 (Medium Blue/Labeling) */
+            border-bottom: 3px solid #0000CD;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Demo Styles */
+        .demo-form {
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px dashed #0000CD;
+        }
+        .instruction-text {
+            display: block;
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.44.html"><strong><< Previous</strong> (5.2.44)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.46.html"><strong>Next >></strong> (5.2.46)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.45: Labels or Instructions (WCAG 3.3.2)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 3.3.2 Labels or Instructions**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #0000CD; font-weight: bold;">Provide Labels for All Inputs</span></td></tr>
+            <tr><td>**Goal**</td><td>To ensure all users can identify what data is expected in a form control, especially if specific formatting is required.</td></tr>
+            <tr><td>**Requirement**</td><td>Every user input control must have an associated text label that is **programmatically linked** to the control (e.g., using `<label for="...">`). Instructions for data format should also be provided when needed.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+        
+
+        <section class="success">
+            <h3>Success Example 1: Text Field with Format Instruction</h3>
+            <p><strong>Scenario:</strong> A field requires a date in a specific format.</p>
+            
+            <form class="demo-form">
+                <div class="form-group" style="border-color: #28a745;">
+                    <label for="date-success">Date of Registration</label>
+                    <span class="instruction-text">(Required format: DD/MM/YYYY)</span>
+                    <input type="text" id="date-success">
+                </div>
+            </form>
+
+            <pre style="background: #e6ffe6; padding: 10px; border: 1px solid #28a745;">
+                &lt;label <span style="color: blue; font-weight: bold;">for="date-success"</span>&gt;Date of Registration&lt;/label&gt;
+                &lt;span&gt;(Required format: DD/MM/YYYY)&lt;/span&gt;
+                &lt;input type="text" <span style="color: blue; font-weight: bold;">id="date-success"</span>&gt;
+            </pre>
+
+            <p class="note">**Compliance Justification:** The `<label>` is correctly associated with the `<input>` using `for` and `id`, ensuring screen readers announce the label correctly. Visible format instructions are also provided. This is compliant with SC 3.3.2.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Radio Buttons and Checkboxes</h3>
+            <p><strong>Scenario:</strong> A selection list where each option must be clearly labeled.</p>
+            
+            <form class="demo-form">
+                <div class="form-group" style="border-color: #28a745;">
+                    <span class="instruction-text" style="color: #333;">**Select Filing Type:**</span>
+                    <input type="radio" id="type1" name="filetype">
+                    <label for="type1">E-File</label>
+                    
+                    <input type="radio" id="type2" name="filetype">
+                    <label for="type2">Physical Submission</label>
+                </div>
+            </form>
+
+            <p class="note">**Compliance Justification:** Each radio button option has its own programmatically linked `<label>`. This ensures that screen readers and voice input users can select options accurately, meeting SC 3.3.2.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Input Field Missing Programmatic Label</h3>
+            <p><strong>Scenario:</strong> The input field has a placeholder but no visible or programmatic label.</p>
+            
+            <form class="demo-form" style="border-color: #dc3545;">
+                <div class="form-group" style="border-color: #dc3545;">
+                    <input type="text" placeholder="Enter Registration ID">
+                    </div>
+            </form>
+
+            <p class="note">**Compliance Justification:** While the placeholder provides a visual cue, it is **not a sufficient programmatic label**. A screen reader will only announce the input as "edit text" or similar, leaving the user unsure of its purpose. The `for`/`id` association or a proper ARIA label is missing. This fails SC 3.3.2.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Visually Adjacent Label Not Programmatically Linked</h3>
+            <p><strong>Scenario:</strong> The label text is visually next to the input, but the HTML `<label>` element is not used or linked.</p>
+
+            <form class="demo-form" style="border-color: #dc3545;">
+                <div class="form-group" style="border-color: #dc3545;">
+                    <span style="font-weight: bold;">Name of Applicant:</span> 
+                    <input type="text" id="applicant-name">
+                    </div>
+            </form>
+
+            <p class="note">**Compliance Justification:** The text "Name of Applicant:" is visually present, but it is contained within a `<span>` element, not a `<label>` element with a `for` attribute. A screen reader user cannot click the label to activate the field, nor will the screen reader announce the label and the input as a single control. This fails SC 3.3.2.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 3.3.2 Labels or Instructions</td>
+                    <td>A</td>
+                    <td>**Rule:** Every form control (input, select, textarea, checkbox, radio button) that requires user input **must** have an associated label. Use the `<label>` element and correctly link it to the input using the **`for` and `id`** attributes. Provide visible instructions when a specific data format is required.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

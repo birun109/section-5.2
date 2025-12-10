@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Audio Description Showcase (5.2.6)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #17a2b8; /* Unique color for AD */
+            border-bottom: 3px solid #17a2b8;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        video {
+            display: block;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+        }
+        .note {
+            font-style: italic;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        .desc-example {
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            white-space: pre-wrap;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+         .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="nav-links">
+            <a href="5.2.5.html"><strong><< Previous</strong> (5.2.5)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.7.html"><strong>Next >></strong> (5.2.7)</a>
+        </div>
+        <h1>GIGW 3.0 Statement 5.2.6: Audio Description (WCAG 1.2.5)</h1>
+        
+        <h2>Clause: Pre-recorded Video Content in Synchronised Media</h2>
+        <p><strong>Goal:</strong> Provide users who are blind or visually impaired access to the **visual information** conveyed by the video.</p>
+        <p><strong>Requirement:</strong> An **Audio Description (AD)** track must be provided for the video.</p>
+
+        <hr>
+
+        <section class="success">
+            <h3>✅ Success Example: Video with Separate Audio Description Track</h3>
+            <p><strong>Media:</strong> A public health announcement video featuring statistics on-screen.</p>
+            
+            <video controls src="health-report.mp4" width="500" height="300">
+                <track kind="descriptions" src="health-ad.vtt" srclang="en" label="Audio Description">
+            </video>
+            
+            <p class="note"><strong>Main Audio Dialogue:</strong> "The data clearly shows improvement in three key areas." (The speaker does not read the data.)</p>
+            
+            <h4>Simulated Audio Description Content (The AD Track)</h4>
+            <div class="desc-example">
+                00:00:08.000 --&gt; 00:00:12.000
+                (AD: A bar chart appears, titled 'Public Health Metrics.' **Cases dropped from 150 to 50** in three months.)
+            </div>
+            <p class="note">This is compliant because the AD track is provided to fill the informational gap. Users can select this track to hear the description of the visual data.</p>
+        </section>
+
+        <hr>
+        
+        <section class="success">
+            <h3>✅ Success Example (Exception): Audio Content Already Equivalent</h3>
+            <p><strong>Media:</strong> A video of a speaker presenting, where the speaker verbally describes everything on their slides.</p>
+            
+            <video controls src="fully-described-talk.mp4" width="500" height="300"></video>
+            
+            <p class="note"><strong>Main Audio Dialogue:</strong> "This slide, which shows our budget breakdown, clearly indicates 40% goes to training, 30% to R&D, and the remaining 30% to operations."</p>
+            <p class="note">**Compliance Justification:** No separate AD is necessary because the **main audio track already provides all equivalent visual information** (the exact breakdown numbers) to the user. This meets the criteria for the exception.</p>
+        </section>
+
+
+        <hr>
+
+        <section class="failure">
+            <h3 class="failure">❌ Failure Example: Video Missing Visual Context</h3>
+            <p><strong>Media:</strong> A ceremonial video showing the signing of a major agreement.</p>
+            
+            <video controls src="signing-ceremony-fail.mp4" width="500" height="300"></video>
+            
+            <p class="note"><strong>Main Audio Dialogue:</strong> "We welcome the delegates from the Ministry of Finance." (Silence follows.)</p>
+            <p class="note">**Visual-Only Event:** During the silence, the video shows the two Ministers shaking hands, sitting down, and **signing the document with a close-up of the names**. Without an Audio Description track (**AD: The Minister and Deputy Minister sign the documents; their names are visible on the contract.**), the visual action and the crucial written text are inaccessible to blind users, resulting in a Level AA failure.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>GIGW Statement</th>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Required Action (Govt. & Dev.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5.2.6 (Audio Description)</td>
+                    <td>SC 1.2.5</td>
+                    <td>AA</td>
+                    <td>Provide a separate **Audio Description (AD) track** for all pre-recorded videos where visual information is not already present in the main audio.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.47: Error Prevention (WCAG 3.3.4)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #800080; /* Unique color for 3.3.4 (Purple/Prevention) */
+            border-bottom: 3px solid #800080;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .high-risk {
+            font-weight: bold;
+            color: #800080;
+        }
+        .list-options li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.46.html"><strong><< Previous</strong> (5.2.46)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.48.html"><strong>Next >></strong> (5.2.48)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.47: Error Prevention (WCAG 3.3.4)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 3.3.4 Error Prevention (Legal, Financial, Data)**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**AA**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #800080; font-weight: bold;">Safeguards for High-Risk Actions</span></td></tr>
+            <tr><td>**High-Risk Actions**</td><td>Legal commitments, financial transactions, modifying/deleting user data, or submitting user test responses.</td></tr>
+            <tr><td>**Requirement**</td><td>For high-risk actions, **at least one** of the following must be provided:
+                <ul class="list-options">
+                    <li>Submissions are **reversible** (e.g., an undo or cancellation option).</li>
+                    <li>Data is **checked** for input errors, and correction opportunity is provided.</li>
+                    <li>A **review/confirmation** step is available before finalization.</li>
+                </ul>
+            </td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+        
+
+        <section class="success">
+            <h3>Success Example 1: Financial Transaction with Review (Method 3)</h3>
+            <p><strong>Scenario:</strong> User is completing an online payment for service renewal.</p>
+            
+            <p>The payment process follows three steps:</p>
+            <ol>
+                <li>Enter Details.</li>
+                <li>**Review and Confirm Order** (User is shown all details, fees, and final amount on a summary page with an "Edit" option).</li>
+                <li>Final Payment Submission.</li>
+            </ol>
+
+            <p class="note">**Compliance Justification:** The transaction is a high-risk financial commitment. The implementation of a mandatory **Review and Confirmation** step (Method 3) ensures the user can check and correct the information before the final action. This is compliant with SC 3.3.4.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Deleting User Data with Reversibility (Method 1)</h3>
+            <p><strong>Scenario:</strong> User deletes a saved document or file from a cloud storage service.</p>
+            
+            <p>When the user clicks "Delete," the file is moved to a **"Trash" or "Recycle Bin"** folder for 30 days and the user sees a notification stating, "File moved to Trash. You have 30 days to restore it."</p>
+
+            <p class="note">**Compliance Justification:** The action involves deleting user-controllable data (high-risk). By placing the deleted data in a recoverable "Trash" folder, the action is **reversible** (Method 1). This is compliant with SC 3.3.4.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 3: Test Submission with Input Checking (Method 2)</h3>
+            <p><strong>Scenario:</strong> A user submits a government entrance exam online.</p>
+            
+            <p>Before the final "Submit Exam" button can be clicked, the system runs an automated check, providing a summary:</p>
+            <p style="border: 1px dashed #28a745; padding: 10px;">**Check Result:** You have 3 unanswered questions. Please review them before submitting. (Links provided to jump to unanswered questions.)</p>
+
+            <p class="note">**Compliance Justification:** The test submission is a high-risk action (submitting user test responses). The system performs **Input Checking** (for completeness) and provides the user with an opportunity to **correct** the missing data (Method 2). This is compliant.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Irreversible Data Deletion</h3>
+            <p><strong>Scenario:</strong> A user clicks a link to delete their entire account without any confirmation or way to undo.</p>
+            
+            <p class="high-risk">When the user clicks the "Delete Account" button, a single, non-keyboard-focusable alert box appears asking, "Are you sure?" Clicking "OK" immediately executes the deletion without a review step or possibility of restoration.</p>
+
+            <p class="note">**Compliance Justification:** Deleting an account is irreversible modification/deletion of user data. The single alert box is generally considered insufficient as it is too easily dismissed, and no formal review, input checking, or reversibility mechanism is provided. This fails SC 3.3.4.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Financial Transaction Without Review or Reversibility</h3>
+            <p><strong>Scenario:</strong> A government portal form for paying property tax automatically charges the entered amount upon clicking the final "Pay" button without displaying a summary page first.</p>
+
+            <p class="high-risk">The user enters their details and the amount on a single page. Clicking the **"Pay Now"** button immediately charges the user's saved card without showing a summary of the details or amount. The payment is instantly settled and non-refundable.</p>
+
+            <p class="note">**Compliance Justification:** This is a high-risk financial transaction. Since there is no **Review/Confirmation** step (Method 3) and no **Reversibility** (Method 1, non-refundable), the system relies solely on input checking which may not catch all user mistakes (e.g., entering the wrong amount). This fails SC 3.3.4.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 3.3.4 Error Prevention (Legal, Financial, Data)</td>
+                    <td>AA</td>
+                    <td>**Crucial Rule for High-Risk Forms:** When an action involves a legal commitment, money, permanent data change, or test submission, provide **at least one** of these three safeguards: **Reversibility**, **Comprehensive Input Checking**, or a **Review/Confirmation Step**.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.3.2: Audio Control (WCAG 1.4.2)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #008080; /* Unique color for 1.4.2 */
+            border-bottom: 3px solid #008080;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table th, .analysis-table td, .summary-table th, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.12.html"><strong><< Previous</strong> (5.1.12)</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="5.2.14.html"><strong>Next >></strong> (5.1.14)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.3.2: Audio Control (WCAG 1.4.2)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**GIGW Statement**</td><td>If any audio on a Web page plays automatically for more than 3 seconds, either a mechanism is available to pause or stop the audio, or a mechanism is available to control audio volume independently...</td></tr>
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 1.4.2 Audio Control**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #008080; font-weight: bold;">Stop Auto-Playing Audio Over 3 Seconds</span></td></tr>
+            <tr><td>**Goal**</td><td>To ensure screen reader speech output can be heard clearly without interference, and to prevent auditory distraction.</td></tr>
+            <tr><td>**Requirement**</td><td>Auto-playing audio lasting > 3 seconds must have an immediate mechanism to **Pause/Stop** or control the **Volume** independently.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2> Success Examples ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Immediate and Accessible Stop Button</h3>
+            <p><strong>Scenario:</strong> A government portal homepage loads with a 15-second background ambient music loop.</p>
+            
+            <button **aria-label="Stop background music"** style="padding: 10px; background-color: #008080; color: white; border: none; font-weight: bold;">
+                🔊 STOP AUDIO
+            </button>
+            
+            <p class="note">**Compliance Justification:** An easily locatable and accessible **Stop button** is prominently displayed and activated immediately upon page load. The button is correctly labeled using `aria-label` for screen reader users, providing an immediate mechanism to stop the audio, fulfilling the requirement.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Short Auto-Playing Audio</h3>
+            <p><strong>Scenario:</strong> A simple, two-second "welcome chime" plays when the user logs in.</p>
+            
+            <p>The **audio clip is exactly 2.5 seconds** long and does not loop.</p>
+            
+            <p class="note">**Compliance Justification:** The audio stops playing on its own **within 3 seconds**. Since the duration constraint is met, no explicit Stop/Pause/Volume control is required for the audio element itself.</p>
+        </section>
+
+        <hr>
+
+        <h2> Failure Examples ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Missing or Hidden Control</h3>
+            <p><strong>Scenario:</strong> A 20-second informational video plays automatically upon entering the page, but the controls are hidden or delayed.</p>
+            
+            <p>The video is auto-played, but the controls only appear when the user hovers their mouse over the video player (or are visually obscured behind a carousel element).</p>
+            
+            <p class="note">**Compliance Justification:** The video plays for **more than 3 seconds**, and keyboard users or screen reader users may not be able to immediately stop the audio since the controls are **not immediately visible or programmatically available** at the beginning of the page flow. This interference blocks access to screen reader output.</p>
+        </section>
+
+        <section class="failure">
+            <h3>Failure Example 2: Volume Control Only Affects System Volume</h3>
+            <p><strong>Scenario:</strong> Background sound (10 seconds long) starts playing, and the only way to silence it is using the computer's system volume control.</p>
+            
+            <p>The page offers no on-screen control to turn off the audio or adjust its volume independently.</p>
+            
+            <p class="note">**Compliance Justification:** The control must be available to **control audio volume independently from the overall system volume**. Forcing the user to mute their entire computer just to read the webpage fails this requirement, as it silences their screen reader or other necessary applications.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 1.4.2 Audio Control</td>
+                    <td>A</td>
+                    <td>If any audio plays automatically, it **must be less than 3 seconds long**. If it is longer, an **immediate, clearly accessible (visible and keyboard-operable) mechanism** to **Pause/Stop** the audio or control its **volume independently** of the system volume must be provided.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.31: Multiple Ways (WCAG 2.4.5)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #6B8E23; /* Unique color for 2.4.5 */
+            border-bottom: 3px solid #6B8E23;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Demo Styles */
+        .header-search {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 15px;
+        }
+        .global-nav {
+            background: #e9f5e9;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #28a745;
+        }
+        .global-nav a {
+            margin-right: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.30.html"><strong><< Previous</strong> (5.2.30)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.32.html"><strong>Next >></strong> (5.2.32)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.31: Multiple Ways (WCAG 2.4.5)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 2.4.5 Multiple Ways**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**AA**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #6B8E23; font-weight: bold;">Provide Multiple Navigation Paths</span></td></tr>
+            <tr><td>**Goal**</td><td>To ensure users can find all content using at least two different navigation strategies, aiding users with different cognitive needs or preferences.</td></tr>
+            <tr><td>**Requirement**</td><td>For any non-sequential/non-process page, there must be at least two ways to find content. Common combinations are: Global Navigation + Search, or Global Navigation + Site Map.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Global Menu + Search (Most Common)</h3>
+            <p><strong>Scenario:</strong> A user needs to find the "Disability Certificate Application" form.</p>
+            
+            <div class="header-search">
+                <form role="search">
+                    <label for="search-box">Search:</label>
+                    <input type="search" id="search-box" placeholder="Search the site">
+                    <button type="submit">🔍</button>
+                </form>
+            </div>
+            
+            <div class="global-nav">
+                <p><strong>Method 1 (Navigation):</strong> <a href="#">Home</a> | <a href="#">About</a> | <a href="#">Services</a> | <a href="#">Documents</a></p>
+            </div>
+            
+            <p><strong>Method 2 (Search):</strong> The user can type "Disability Certificate" into the Search box above.</p>
+
+            <p class="note">**Compliance Justification:** The page offers two distinct, consistent mechanisms for navigation: **Persistent Navigation** (the Global Menu) and a **Search function**. This meets the requirement of providing "more than one way" to locate content.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Global Menu + Site Map Link</h3>
+            <p><strong>Scenario:</strong> A complex website with hundreds of pages where search results can be overwhelming.</p>
+            
+            <div class="global-nav">
+                <p><strong>Method 1 (Navigation):</strong> <a href="#">Home</a> | <a href="#">Departments</a> | <a href="#">News</a> | <a href="#">**Site Map**</a></p>
+            </div>
+            <p><strong>Method 2 (Site Map):</strong> The user can click the "Site Map" link, which provides a hierarchical listing of all content on the website.</p>
+
+            <p class="note">**Compliance Justification:** The page provides **Persistent Navigation** (Global Menu) and a **Site Map** link. A Site Map is an explicitly listed acceptable mechanism under WCAG to provide an alternative method for locating content.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Only Sequential Navigation Provided</h3>
+            <p><strong>Scenario:</strong> A website is built with a complex, deep, hierarchical menu, but no other way to navigate.</p>
+            
+            <div class="global-nav" style="border-color: #dc3545; background-color: #fcebeb;">
+                <p><strong>Only Navigation:</strong> <a href="#">Home</a> | <a href="#">Category A (12 sub-links)</a> | <a href="#">Category B (20 sub-links)</a> | <a href="#">Contact</a></p>
+            </div>
+            <p>The **Search box is missing**, and there is no link to a Site Map or Index.</p>
+
+            <p class="note">**Compliance Justification:** While the global navigation is a valid method, it is only **one** method. A user with low vision or certain cognitive impairments may struggle to drill down through a deep hierarchy or use a screen reader to navigate dozens of menu items. **The absence of a second method (like Search or Site Map) fails SC 2.4.5.**</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Exclusion Exception Misapplied</h3>
+            <p><strong>Scenario:</strong> A two-step application process has a "Review & Submit" page that features only "Previous" and "Next" buttons, but the developer incorrectly omits the global navigation and search bar.</p>
+
+            <p>If the **Review & Submit** page is only the final step of a **process**, omitting global navigation and search is *acceptable* (Real-time Exception). However, if the page also contains general information (like a FAQ or link to help documentation), then search/global navigation should remain to help the user locate *that* related information.</p>
+
+            <p class="note">**Compliance Justification:** Developers must be careful to apply the **"result of, or a step in, a process"** exception narrowly. If a page serves any general informational purpose outside the process flow, it must still provide multiple ways to navigate the rest of the site.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 2.4.5 Multiple Ways</td>
+                    <td>AA</td>
+                    <td>Ensure that every page (except those strictly part of a transactional process) offers **at least two independent ways** for users to find other content. The most common and effective combination is **Persistent Global Navigation** (menus) **PLUS** a **Search function**.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

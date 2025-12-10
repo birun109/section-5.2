@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.32: Headings and Labels (WCAG 2.4.6)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #FF7F50; /* Unique color for 2.4.6 */
+            border-bottom: 3px solid #FF7F50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Demo Styles */
+        .form-field {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+        .form-field input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            width: 90%;
+        }
+        .form-field input[type="radio"] {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.31.html"><strong><< Previous</strong> (5.2.31)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.33.html"><strong>Next >></strong> (5.2.33)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.32: Headings and Labels (WCAG 2.4.6)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 2.4.6 Headings and Labels**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**AA**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #FF7F50; font-weight: bold;">Descriptive Headings and Labels</span></td></tr>
+            <tr><td>**Goal**</td><td>To help users quickly orient themselves within the page content and understand the purpose of every form control.</td></tr>
+            <tr><td>**Requirement**</td><td>Headings must clearly state the topic of the section below them. Labels must clearly state the purpose of the input field they are associated with.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Descriptive Headings (Topic)</h3>
+            <p><strong>Scenario:</strong> A page with sections detailing different licensing requirements.</p>
+            
+            <h2>Section: Vehicle Licensing Requirements</h2>
+            <p>This section outlines the documents needed for different vehicles.</p>
+            
+            <h3>Sub-section: Light Motor Vehicles (LMV)</h3>
+            <p>Details on LMV registration and inspection...</p>
+            
+            <h3>Sub-section: Heavy Transport Vehicles (HTV)</h3>
+            <p>Details on HTV weight restrictions and permits...</p>
+
+            <p class="note">**Compliance Justification:** The headings clearly and concisely describe the **topic** of the content that follows. A screen reader user can navigate directly to the "Heavy Transport Vehicles (HTV)" section knowing exactly what information it contains. This meets the SC 2.4.6 requirement.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Descriptive Labels (Purpose)</h3>
+            <p><strong>Scenario:</strong> A standard government online application form.</p>
+            
+            <form style="border: 2px solid #28a745; padding: 15px;">
+                <div class="form-field">
+                    <label for="s-fname">Full Legal Name</label>
+                    <input type="text" id="s-fname" placeholder="Enter name as per Aadhaar">
+                </div>
+                <div class="form-field">
+                    <label>Gender Identification</label>
+                    <div>
+                        <input type="radio" id="s-male" name="gender" value="male">
+                        <label for="s-male">Male</label>
+                        <input type="radio" id="s-female" name="gender" value="female">
+                        <label for="s-female">Female</label>
+                        <input type="radio" id="s-other" name="gender" value="other">
+                        <label for="s-other">Other</label>
+                    </div>
+                </div>
+            </form>
+
+            <p class="note">**Compliance Justification:** The labels **"Full Legal Name"** and **"Gender Identification"** clearly describe the **purpose** of the respective fields. All inputs, including radio buttons, are correctly associated with explicit, descriptive labels, ensuring screen reader users and those with cognitive disabilities can confidently enter the required data.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Generic or Redundant Headings</h3>
+            <p><strong>Scenario:</strong> A page uses the same heading for multiple distinct articles.</p>
+            
+            <h2>News Article</h2>
+            <p>Summary of new infrastructure project...</p>
+            
+            <h2>News Article</h2>
+            <p>Summary of new education policy...</p>
+            
+            <p class="note">**Compliance Justification:** The heading **"News Article"** is generic and repeated. A screen reader user navigating by headings will hear "News Article, News Article..." without knowing which section refers to which topic. The heading fails to describe the **topic or purpose** of the content below it, failing SC 2.4.6.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Labels that are Placeholders (Hidden Labels)</h3>
+            <p><strong>Scenario:</strong> A form where the developer relies on the placeholder attribute instead of a visible, associated label.</p>
+
+            <form style="border: 2px solid #dc3545; padding: 15px;">
+                <div class="form-field">
+                    <input type="text" id="f-user" placeholder="Enter Username Here">
+                </div>
+                <div class="form-field">
+                    <input type="text" id="f-pass" placeholder="Password">
+                </div>
+            </form>
+
+            <p class="note">**Compliance Justification:** While the placeholder text gives a visual cue, it often disappears when the user starts typing and is not considered a programmatically determined label for accessibility purposes (unless hidden labels like `aria-label` or `aria-labelledby` are correctly used, but even then, visual labels are AA best practice). The lack of a clear, persistent, and programmatically associated label fails SC 2.4.6.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 2.4.6 Headings and Labels</td>
+                    <td>AA</td>
+                    <td>All **Headings** (`<h1>` to `<h6>`) must be descriptive of the section's topic. All **Form Inputs** (including checkboxes, radio buttons, and text fields) must be explicitly associated with a clear, descriptive **`<label>`** that states the purpose of the field.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

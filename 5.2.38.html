@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.38: Language of Page (WCAG 3.1.1)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #FFD700; /* Unique color for 3.1.1 (Gold/Language) */
+            border-bottom: 3px solid #FFD700;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.37.html"><strong><< Previous</strong> (5.2.37)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.39.html"><strong>Next >></strong> (5.2.39)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.38: Language of Page (WCAG 3.1.1)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 3.1.1 Language of Page**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #FFD700; font-weight: bold;">Set Default Page Language</span></td></tr>
+            <tr><td>**Goal**</td><td>To ensure assistive technologies can correctly pronounce and translate content by knowing the dominant language of the page.</td></tr>
+            <tr><td>**Requirement**</td><td>The primary language of the page must be declared in the opening `<html>` tag using the `lang` attribute and a valid language code (e.g., "en", "hi", "te").</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: English Language Page</h3>
+            <p><strong>Scenario:</strong> A government portal page written primarily in English.</p>
+            
+            <pre style="background: #e6ffe6; padding: 10px; border: 1px solid #28a745;">
+                &lt;!DOCTYPE html&gt;
+                &lt;html <span style="color: blue; font-weight: bold;">lang="en"</span>&gt;
+                    ...
+                &lt;/html&gt;
+            </pre>
+
+            <p class="note">**Compliance Justification:** The use of `lang="en"` on the `<html>` element programmatically declares that the primary language of the content is English. Screen readers will use an English voice profile for pronunciation, meeting SC 3.1.1.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Hindi Language Page</h3>
+            <p><strong>Scenario:</strong> A government information page written primarily in Hindi.</p>
+            
+            <pre style="background: #e6ffe6; padding: 10px; border: 1px solid #28a745;">
+                &lt;!DOCTYPE html&gt;
+                &lt;html <span style="color: blue; font-weight: bold;">lang="hi"</span>&gt;
+                    ...
+                &lt;/html&gt;
+            </pre>
+
+            <p class="note">**Compliance Justification:** The use of `lang="hi"` correctly declares the primary language as Hindi. Text-to-speech software will utilize a Hindi voice, ensuring correct pronunciation and legibility for the user, meeting SC 3.1.1.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Language Attribute Missing Entirely</h3>
+            <p><strong>Scenario:</strong> The `lang` attribute is not included on the `<html>` tag.</p>
+            
+            <pre style="background: #fff0f0; padding: 10px; border: 1px solid #dc3545;">
+                &lt;!DOCTYPE html&gt;
+                &lt;html&gt; <span style="color: red; font-weight: bold;">&lt;-- lang attribute missing --&gt;</span>
+                    ...
+                &lt;/html&gt;
+            </pre>
+
+            <p class="note">**Compliance Justification:** Without the `lang` attribute, assistive technologies cannot reliably determine the language. They may default to the user's system language, which could lead to an English screen reader trying to read Hindi content with an English accent, rendering the text incomprehensible. This fails SC 3.1.1.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Invalid or Mismatched Language Code</h3>
+            <p><strong>Scenario:</strong> A page written in English incorrectly uses the language code for French.</p>
+
+            <pre style="background: #fff0f0; padding: 10px; border: 1px solid #dc3545;">
+                &lt;!DOCTYPE html&gt;
+                &lt;html <span style="color: red; font-weight: bold;">lang="fr"</span>&gt; <span style="color: gray;">&lt;-- Page content is actually English --&gt;</span>
+                    ...
+                    &lt;p&gt;The Ministry has released the final report today.&lt;/p&gt;
+                    ...
+                &lt;/html&gt;
+            </pre>
+
+            <p class="note">**Compliance Justification:** The page content is English, but the language code is set to French (`fr`). A screen reader will attempt to read the English text using a French voice profile, leading to mispronunciation and loss of meaning. While the attribute is present, the **programmatically determined language must accurately reflect the human language of the content** to pass SC 3.1.1.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 3.1.1 Language of Page</td>
+                    <td>A</td>
+                    <td>The primary language of the page **must** be declared using the `lang` attribute on the `<html>` tag (e.g., `<html lang="en">`). Use valid ISO 639-1 language codes.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

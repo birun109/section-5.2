@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.36: Label in Name (WCAG 2.5.3)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4682B4; /* Unique color for 2.5.3 (Steel Blue) */
+            border-bottom: 3px solid #4682B4;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Demo Styles */
+        .interactive-button {
+            padding: 8px 15px;
+            margin: 5px;
+            border: 2px solid #4682B4;
+            background-color: #eef4fb;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .icon-button {
+            padding: 5px 10px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.35.html"><strong><< Previous</strong> (5.2.35)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.37.html"><strong>Next >></strong> (5.2.37)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.36: Label in Name (WCAG 2.5.3)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 2.5.3 Label in Name**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #4682B4; font-weight: bold;">Accessible Name Must Contain Visible Label</span></td></tr>
+            <tr><td>**Goal**</td><td>To ensure that speech input users can activate any interactive component simply by speaking the text they see on the screen.</td></tr>
+            <tr><td>**Requirement**</td><td>The text of the visible label (e.g., "Submit") must be **contained within** the programmatically determined name (e.g., "Submit Application").</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Matching Names (Default Behavior)</h3>
+            <p><strong>Scenario:</strong> A simple button with clear text.</p>
+            
+            <button class="interactive-button">Download Form</button>
+            <p><strong>Visible Label:</strong> "Download Form"</p>
+            <p><strong>Accessible Name:</strong> "Download Form"</p>
+
+            <p class="note">**Compliance Justification:** When using standard HTML elements with visible text, the accessible name automatically matches the visible label. A user can say, **"Click Download Form"**, and the action will succeed. This is compliant.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Accessible Name Contains Visible Label (Icon Button)</h3>
+            <p><strong>Scenario:</strong> A button showing only a save icon, but which provides a descriptive tooltip and accessible name.</p>
+            
+            <button class="interactive-button icon-button" aria-label="Save Document">💾</button>
+            <p><strong>Visible Label:</strong> "💾"</p>
+            <p><strong>Accessible Name:</strong> "Save Document"</p>
+
+            <p class="note">**Compliance Justification:** Although the visible label is an icon (which is essentially null text), the accessible name, **"Save Document"**, does not contain any different visible text, and it clearly communicates the control's purpose. This is compliant because the visible text (`💾`) is not a conflicting word. *(Note: If the icon included visible text like "Sve", the accessible name would need to contain "Sve".)*</p>
+        </section>
+        
+        <section class="success">
+            <h3>Success Example 3: Longer Accessible Name</h3>
+            <p><strong>Scenario:</strong> A button whose visible label is enhanced by the accessible name.</p>
+            
+            <button class="interactive-button" aria-label="Confirm and Submit Application">Submit</button>
+            <p><strong>Visible Label:</strong> "Submit"</p>
+            <p><strong>Accessible Name:</strong> "Confirm and Submit Application"</p>
+
+            <p class="note">**Compliance Justification:** The visible label, **"Submit"**, is **contained within** the accessible name, **"Confirm and Submit Application"**. A user can say either **"Click Submit"** or **"Click Confirm and Submit Application"** to activate the control. This is compliant.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Conflicting Accessible Name</h3>
+            <p><strong>Scenario:</strong> A button is visually labeled "Pay Now" but programmatically labeled as "Finalize."</p>
+            
+            <button class="interactive-button" style="background-color: #f8d7da;" aria-label="Finalize Transaction">Pay Now</button>
+            <p><strong>Visible Label:</strong> "Pay Now"</p>
+            <p><strong>Accessible Name:</strong> "Finalize Transaction"</p>
+
+            <p class="note">**Compliance Justification:** The visible text, **"Pay Now"**, is **not contained within** the accessible name, **"Finalize Transaction"**. A speech input user who says **"Click Pay Now"** will fail to activate the control, as the software is listening for the word "Finalize." This fails SC 2.5.3.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Visible Text Hidden via CSS</h3>
+            <p><strong>Scenario:</strong> A developer hides the visual text of a button to show only an icon, but the text is still the accessible name.</p>
+
+            <button class="interactive-button" style="background-color: #f8d7da; color: transparent; text-shadow: 0 0 0 #000;">Save</button>
+            <p style="margin-top: 5px;">*(Visually appears as a button with no text, but the text "Save" is in the HTML.)*</p>
+
+            <p class="note">**Compliance Justification:** If the button's purpose is not clear from the visual presentation, a user might rely on the non-visible text or assume the wrong label. While the visible text (or lack thereof) might technically be contained, misleading the user by hiding text and then forcing them to guess the hidden label fails the intent of SC 2.5.3 and other related criteria like 3.3.2 (Labels or Instructions).</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 2.5.3 Label in Name</td>
+                    <td>A</td>
+                    <td>Ensure the **words/characters displayed visibly** on any interactive component (link, button, form control) are **included** in the element's **Accessible Name** (programmatic label, often set by `aria-label`). If the visible label is "Search," the accessible name must be "Search" or "Search the Website," but **not** "Find."</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

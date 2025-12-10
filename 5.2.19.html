@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.19: Text Spacing (WCAG 1.4.12)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #00008B; /* Unique color for 1.4.12 */
+            border-bottom: 3px solid #00008B;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table th, .analysis-table td, .summary-table th, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Failure Example CSS - Fixed height container */
+        .fixed-height-box {
+            height: 80px; /* Fixed height */
+            overflow: hidden; /* Content will be clipped */
+            border: 2px solid #dc3545;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        /* Failure Example CSS - Absolute positioning that overlaps */
+        .absolute-text {
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            background: yellow; /* Overlay */
+            padding: 5px;
+        }
+        .relative-parent {
+            position: relative;
+            border: 1px dashed #ccc;
+            height: 120px; /* Set height for visualization */
+        }
+    </style>
+    <script>
+        // Simulate user overriding the developer's CSS
+        function applySpacingTest() {
+            document.documentElement.style.setProperty('--user-line-height', '1.5');
+            document.documentElement.style.setProperty('--user-paragraph-spacing', '2.0em');
+            document.documentElement.style.setProperty('--user-letter-spacing', '0.12em');
+            document.documentElement.style.setProperty('--user-word-spacing', '0.16em');
+            alert('Text spacing has been programmatically set to WCAG 1.4.12 minimum values. Review the failure examples below to see clipping/overlap.');
+        }
+    </script>
+    <style>
+        /* Define CSS variables that the developer should use for flexibility */
+        :root {
+            --user-line-height: 1.4;
+            --user-paragraph-spacing: 1em;
+            --user-letter-spacing: 0;
+            --user-word-spacing: 0;
+        }
+        p {
+            line-height: var(--user-line-height);
+            margin-bottom: var(--user-paragraph-spacing);
+            letter-spacing: var(--user-letter-spacing);
+            word-spacing: var(--user-word-spacing);
+        }
+        .success p {
+             /* Use flexible units, ensuring text size is not fixed */
+             font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.18.html"><strong><< Previous</strong> (5.2.18)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.20.html"><strong>Next >></strong> (5.2.20)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.19: Text Spacing (WCAG 1.4.12)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**GIGW Statement**</td><td>In content implemented using markup languages... no loss of content or functionality occurs by setting all of the following...</td></tr>
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 1.4.12 Text Spacing**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level AA**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #00008B; font-weight: bold;">Content Must Tolerate User Text Spacing</span></td></tr>
+            <tr><td>**Goal**</td><td>To improve readability for users with low vision, dyslexia, and cognitive disabilities by allowing them to increase spacing.</td></tr>
+            <tr><td>**Requirement**</td><td>The layout must remain functional and visible when the user increases spacing to: **Line Height (1.5x)**, **Paragraph Spacing (2x)**, **Letter Spacing (0.12x)**, and **Word Spacing (0.16x)**.</td></tr>
+        </table>
+        
+        <button onclick="applySpacingTest()" style="background-color: #00008B; color: white; padding: 10px; border: none; cursor: pointer; margin-top: 10px;">
+            Click to Apply WCAG Spacing Test CSS
+        </button>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Flexible, Relative Layouts</h3>
+            <p><strong>Scenario:</strong> Standard article text and a flexible callout box.</p>
+            
+            <p>This paragraph demonstrates flexible, relative text placement. Developers used **`em` or `rem`** for padding and margins, and did not specify a fixed pixel height for containers. When the user's browser or assistive technology applies increased line height and word spacing, the content **reflows vertically**, ensuring all text remains visible.</p>
+
+            <div style="padding: 1em; margin: 1em 0; border: 1px solid #28a745; background: #e9f5e9;">
+                <p style="margin-bottom: 0;">This is a callout box. Its height and internal padding use relative units, so it will expand vertically without clipping if the user increases line height (1.5x) or paragraph spacing (2x).</p>
+            </div>
+            
+            <p class="note">**Compliance Justification:** The use of **relative units** (like `em`, `rem`, and percentages) for all vertical spacing properties (margins, padding, container height) ensures that when the user overrides the spacing, the container and surrounding elements can adapt and expand without text overlapping or being clipped. There is **no fixed `height` property** in CSS.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Fixed Height Container</h3>
+            <p><strong>Scenario:</strong> A developer sets a fixed `height` for an alert box using pixels, and text is intended to scroll vertically.</p>
+            
+            <p>The container below has a **fixed height of 80px** and uses `overflow: hidden;` or `overflow: scroll;` (which is generally undesirable for main text flow).</p>
+            <div class="fixed-height-box">
+                <p style="margin: 0;">This is a notification with a fixed container height. If you increase the line height to 1.5 times the font size (using the button above), this text will quickly run out of space and be **clipped** by the bottom border, causing **loss of content**.</p>
+            </div>
+
+            <p class="note">**Compliance Justification:** By setting a fixed `height` of 80px, the developer prevents the container from expanding when the user-applied line height (1.5x) and paragraph spacing (2x) increase. The text is **clipped** (hidden), resulting in a **loss of content**, which is a direct failure of 1.4.12.</p>
+        </section>
+
+        <section class="failure">
+            <h3>Failure Example 2: Text Overlap via Absolute Positioning</h3>
+            <p><strong>Scenario:</strong> A comment or label is positioned absolutely, overlapping the main text flow.</p>
+            
+            <div class="relative-parent">
+                <p>This is the main body text, which flows normally inside its container. The line height and paragraph spacing will increase when the user applies the accessibility settings (e.g., using the button above).</p>
+                <div class="absolute-text">
+                    <p style="margin: 0;">Absolutely Positioned Note</p>
+                </div>
+            </div>
+
+            <p class="note">**Compliance Justification:** When the line height of the main paragraph increases, the entire text block expands. The **absolutely positioned note** does not move down with the expanding text, causing the note to **overlap** and obscure the lines of the main text block, leading to a loss of both content and functionality (as the covered text can't be read).</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 1.4.12 Text Spacing</td>
+                    <td>AA</td>
+                    <td>Design layouts to be **flexible and expansive**. **AVOID** setting fixed pixel values for vertical properties like container `height`, padding, or margin of text-containing elements. Use **relative units** (`em`, `rem`, `%`) for spacing to ensure the layout can expand vertically without clipping or overlapping when the user overrides the default spacing to the required minimum metrics.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

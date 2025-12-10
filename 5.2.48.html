@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.48: Parsing (WCAG 4.1.1)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #008B8B; /* Unique color for 4.1.1 (Dark Cyan/Parsing) */
+            border-bottom: 3px solid #008B8B;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .code-example {
+            font-family: monospace;
+            white-space: pre-wrap;
+            background: #eee;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px dashed #008B8B;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.47.html"><strong><< Previous</strong> (5.2.47)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.49.html"><strong>Next >></strong> (5.2.49)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.48: Parsing (WCAG 4.1.1)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 4.1.1 Parsing**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #008B8B; font-weight: bold;">Valid and Well-Formed Markup</span></td></tr>
+            <tr><td>**Goal**</td><td>To guarantee that browsers and assistive technologies can process and interpret the page content consistently and without crashing.</td></tr>
+            <tr><td>**Requirements**</td><td>
+                <ul class="list-options">
+                    <li>**Proper Tags:** Elements requiring both start and end tags must have them (e.g., `&lt;div&gt;` and `&lt;/div&gt;`).</li>
+                    <li>**Correct Nesting:** Elements must be nested in the correct order (e.g., a paragraph inside a list item).</li>
+                    <li>**Unique IDs:** Every `id` attribute value must be unique on the page.</li>
+                    <li>**No Duplicated Attributes:** Attributes cannot be repeated on the same element.</li>
+                </ul>
+            </td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+        
+
+        <section class="success">
+            <h3>Success Example 1: Correct Tag Nesting and ID Usage</h3>
+            <p><strong>Scenario:</strong> Proper structure of a header element with a navigation list.</p>
+            
+            <div class="code-example" style="border-color: #28a745; background: #e6ffe6;">
+&lt;header id="main-header"&gt;
+    &lt;h1&gt;Ministry Portal&lt;/h1&gt;
+    &lt;nav role="navigation"&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="/contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+            </div>
+
+            <p class="note">**Compliance Justification:** All elements have complete tags and are correctly nested (e.g., `&lt;a&gt;` inside `&lt;li&gt;`, `&lt;li&gt;` inside `&lt;ul&gt;`). The `id` attribute (`main-header`) is unique. This well-formed markup is compliant with SC 4.1.1.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Self-Closing Tags</h3>
+            <p><strong>Scenario:</strong> Using elements that do not require closing tags, as allowed by HTML5 specifications.</p>
+            
+            <div class="code-example" style="border-color: #28a745; background: #e6ffe6;">
+&lt;label for="name"&gt;Name:&lt;/label&gt;
+&lt;input type="text" id="name"&gt;
+&lt;br&gt;
+&lt;img src="logo.png" alt="Logo"&gt;
+            </div>
+
+            <p class="note">**Compliance Justification:** Elements like `&lt;input&gt;`, `&lt;br&gt;`, and `&lt;img&gt;` do not require explicit closing tags (`&lt;/input&gt;`, etc.) under the current HTML5 specification. This adherence to the specification is compliant with SC 4.1.1.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Incorrect Nesting</h3>
+            <p><strong>Scenario:</strong> Overlapping or incorrectly nested HTML tags.</p>
+            
+            <div class="code-example" style="border-color: #dc3545; background: #f8d7da;">
+&lt;p&gt;This is &lt;strong&gt;bold and &lt;em&gt;italic.&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+            </div>
+
+            <p class="note">**Compliance Justification:** The `&lt;strong&gt;` tag is closed before the `&lt;em&gt;` tag, even though `&lt;em&gt;` was opened after `&lt;strong&gt;`. The correct nesting should be `&lt;strong&gt;&lt;em&gt;...&lt;/em&gt;&lt;/strong&gt;`. This overlapping structure confuses the parser, leading to unpredictable rendering or accessibility issues. This fails SC 4.1.1.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Duplicate IDs and Attributes</h3>
+            <p><strong>Scenario:</strong> Using the same ID multiple times and duplicating an attribute on one element.</p>
+
+            <div class="code-example" style="border-color: #dc3545; background: #f8d7da;">
+&lt;div id="menu"&gt;...&lt;/div&gt;
+&lt;div id="menu"&gt;...&lt;/div&gt;  &lt;!-- Duplicate ID --&gt;
+&lt;p id="footer" style="color:red" style="font-size:large"&gt;...&lt;/p&gt; &lt;!-- Duplicate Attribute: style --&gt;
+            </div>
+
+            <p class="note">**Compliance Justification:** The `id` attribute is meant to be a unique identifier for scripting and linking. Using `id="menu"` twice is a severe parsing error. Similarly, having the `style` attribute twice on the `&lt;p&gt;` element is invalid markup. Both issues violate the "well-formed" requirement and fail SC 4.1.1.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 4.1.1 Parsing</td>
+                    <td>A</td>
+                    <td>**Crucial Rule:** Always ensure your HTML/markup is **valid and well-formed**. Use a formal W3C HTML Validator to check for errors like missing end tags, incorrect nesting, duplicate attributes, and, most importantly, non-unique `id` attributes.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

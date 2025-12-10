@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.30: Link Purpose (In Context) (WCAG 2.4.4)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #6495ED; /* Unique color for 2.4.4 */
+            border-bottom: 3px solid #6495ED;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.29.html"><strong><< Previous</strong> (5.2.29)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.31.html"><strong>Next >></strong> (5.2.31)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.30: Link Purpose (In Context) (WCAG 2.4.4)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 2.4.4 Link Purpose (In Context)**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #6495ED; font-weight: bold;">Meaningful Link Text</span></td></tr>
+            <tr><td>**Goal**</td><td>To ensure all users can understand where a link goes, especially when reviewing a list of all links on a page (out of visual context).</td></tr>
+            <tr><td>**Requirement**</td><td>Link purpose must be clear from the link text itself OR from the link text combined with its programmatically determined context (e.g., the sentence, list item, or table cell it resides in).</td></tr>
+            <tr><td>**Developer Action**</td><td>Use descriptive text in the `<a>` tag. Avoid phrases like "read more" that are meaningless when viewed in a list.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Link Purpose Clear from Text Alone</h3>
+            <p><strong>Scenario:</strong> A direct link to a document or service.</p>
+            
+            <p>Please download the official guidelines: <a href="#">**Annual Budget Report 2024 (PDF)**</a></p>
+
+            <p class="note">**Compliance Justification:** The link text, **"Annual Budget Report 2024 (PDF)"**, is perfectly clear and descriptive on its own. It tells the user the document name, its type, and the year. This is the **best practice**.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Link Purpose Clear from Context</h3>
+            <p><strong>Scenario:</strong> A series of articles or news items using the phrase "Read More."</p>
+            
+            <ul>
+                <li>
+                    Article: Latest Policy Changes for MSMEs. <a href="#">**Read more**</a>.
+                </li>
+                <li>
+                    Article: Deadline Extended for Income Tax Filings. <a href="#">**Read more**</a>.
+                </li>
+            </ul>
+
+            <p class="note">**Compliance Justification:** When a screen reader reads the second link, the context (the preceding list item or sentence: "Article: Deadline Extended for Income Tax Filings") is included. The full context provides the necessary purpose, thus **Read more** in this specific structure is compliant with SC 2.4.4.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Ambiguous Link Text</h3>
+            <p><strong>Scenario:</strong> The entire page is a list of links with meaningless text.</p>
+            
+            <p>Available Downloads:</p>
+            <p><a href="#">**Click Here**</a> to get the form.</p>
+            <p><a href="#">**Click Here**</a> to submit the report.</p>
+            <p><a href="#">**Click Here**</a> for FAQs.</p>
+
+            <p class="note">**Compliance Justification:** If a screen reader lists all links, the user hears **"Click Here, Click Here, Click Here..."** The link text alone is ambiguous, and the programmatic context (a simple preceding sentence like "Available Downloads:") does not clearly distinguish between the three links, resulting in a failure of SC 2.4.4.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Non-Descriptive "More" Links (Out of Context)</h3>
+            <p><strong>Scenario:</strong> A news widget displays three separate articles, each followed by a "More" button placed outside of the article's structured element.</p>
+
+            <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 5px;">
+                <h4>Article 1: New Road Construction Project Announced</h4>
+                <p>The state government has released details on the new highway...</p>
+            </div>
+            <a href="#">**More**</a>
+
+            <div style="border: 1px solid #ccc; padding: 10px; margin-top: 10px; margin-bottom: 5px;">
+                <h4>Article 2: Drought Relief Fund Application Deadline</h4>
+                <p>Farmers are advised to apply before the end of the month...</p>
+            </div>
+            <a href="#">**More**</a>
+
+            <p class="note">**Compliance Justification:** Because the link text is just **"More"**, and the link is not programmatically associated with the article it references (e.g., inside the same list item or table cell), a screen reader only announces **"More, More"**. The user cannot differentiate between the two links without reading the surrounding content, failing SC 2.4.4.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 2.4.4 Link Purpose (In Context)</td>
+                    <td>A</td>
+                    <td>Ensure that the **link text itself** or the **link text combined with its immediate surrounding sentence/list item/table cell** clearly communicates the destination or action of the link. **Avoid generic, context-dependent phrases** if the context is not guaranteed to be programmatically associated with the link.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

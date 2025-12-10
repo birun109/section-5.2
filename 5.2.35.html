@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.35: Pointer Cancellation (WCAG 2.5.2)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #8A2BE2; /* Unique color for 2.5.2 (Blue Violet/Pointer) */
+            border-bottom: 3px solid #8A2BE2;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Demo Styles */
+        .interactive-button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: 2px solid #8A2BE2;
+            background-color: #e6e6fa;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.34.html"><strong><< Previous</strong> (5.2.34)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.36.html"><strong>Next >></strong> (5.2.36)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.35: Pointer Cancellation (WCAG 2.5.2)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 2.5.2 Pointer Cancellation**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #8A2BE2; font-weight: bold;">Activation on Pointer UP</span></td></tr>
+            <tr><td>**Goal**</td><td>To give users a chance to cancel an accidental click, tap, or drag action by allowing the action to finalize only upon pointer release.</td></tr>
+            <tr><td>**WCAG Conditions**</td><td>A function must satisfy one of: **1. No Down-Event** (activation is on up-event); **2. Abort or Undo** (undo mechanism provided); **3. Up Reversal** (up-event reverses down-event outcome); **4. Essential** (down-event is critical).</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Default Button Behavior (No Down-Event)</h3>
+            <p><strong>Scenario:</strong> A standard "Apply" button for submitting a form.</p>
+            
+            <button class="interactive-button">Apply Now (Activation on UP)</button>
+
+            <p class="note">**Compliance Justification:** Standard HTML buttons and links are compliant by default. Their activation (click) is tied to the **up-event** (releasing the mouse button) that occurs on the same element where the down-event (pressing the mouse button) occurred. This allows a user who presses the button accidentally to move the pointer off the button before releasing it, thus **aborting the action**. (Condition 1: No Down-Event execution).</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Abort or Undo Mechanism</h3>
+            <p><strong>Scenario:</strong> A financial transaction button that executes immediately upon press.</p>
+            
+            <button class="interactive-button" style="background-color: #ffffe0;">Transfer Funds (Activates on DOWN)</button>
+            <p>*(Immediately after activation, a temporary **"Undo Transaction"** button appears next to it.)*</p>
+
+            <p class="note">**Compliance Justification:** Even if the function is executed on the down-event, the page provides a prompt **"Undo"** mechanism immediately after the action is completed. This meets **Condition 2 (Abort or Undo)**, allowing the user to reverse the accidental outcome.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Action Triggered by Down-Event</h3>
+            <p><strong>Scenario:</strong> A developer uses JavaScript to override the default behavior and trigger a destructive action immediately on `mousedown` (down-event).</p>
+            
+            <button class="interactive-button" style="background-color: #f8d7da;" onclick="alert('Action Executed Immediately!');">Delete Record (Activation on DOWN)</button>
+            <p style="color: red; font-weight: bold;">(Imagine the alert is a permanent deletion)</p>
+            
+            <p class="note">**Compliance Justification:** When a user with a tremor accidentally clicks this button, the action ("Delete Record") is executed the moment the mouse button is pressed (`mousedown`), giving the user **no opportunity to move the pointer away** or abort the action before completion. Since no undo mechanism is provided, this violates SC 2.5.2.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Non-Reversible Drag and Drop</h3>
+            <p><strong>Scenario:</strong> An image editor allows users to drag a layer off the canvas to delete it, but the deletion is irreversible.</p>
+
+            <div style="border: 2px solid #dc3545; padding: 15px; text-align: center;">
+                <p>Drag this box:</p>
+                <div style="display: inline-block; padding: 5px; border: 1px solid #333; cursor: move;">Layer 1</div>
+                <div style="margin-top: 10px;">Trash Can Drop Target</div>
+            </div>
+
+            <p class="note">**Compliance Justification:** Drag-and-drop is a single pointer action. If a user accidentally drops the item into the trash area, and there is **no "Undo" function** or no clear mechanism for aborting the drop (like dropping outside an active zone), the permanent action is accidentally executed, failing SC 2.5.2.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 2.5.2 Pointer Cancellation</td>
+                    <td>A</td>
+                    <td>Ensure that all clickable/tappable controls rely on the **pointer release (up-event)** for activation. If an action *must* execute on pointer press (down-event), then you **must** provide a reliable mechanism to **Abort or Undo** the resulting action.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

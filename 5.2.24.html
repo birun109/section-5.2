@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.24: Timing Adjustable (WCAG 2.2.1)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #008080; /* Unique color for 2.2.1 */
+            border-bottom: 3px solid #008080;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .timer-box {
+            border: 2px solid #008080;
+            padding: 15px;
+            text-align: center;
+            background-color: #e6f7f7;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.23.html"><strong><< Previous</strong> (5.2.23)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.25.html"><strong>Next >></strong> (5.2.25)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.24: Timing Adjustable (WCAG 2.2.1)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 2.2.1 Timing Adjustable**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #008080; font-weight: bold;">Time Limits Must Be User Controllable</span></td></tr>
+            <tr><td>**Goal**</td><td>To ensure users have sufficient time to interact with or read content before a session times out or a task expires.</td></tr>
+            <tr><td>**Requirement**</td><td>One of three primary methods must be offered: **Turn off**, **Adjust** ($\ge 10\times$ default time), or **Extend** (warning $\ge 20$ seconds before expiry, extendable $\ge 10$ times).</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Extend Mechanism (Most Common)</h3>
+            <p><strong>Scenario:</strong> A user is filling out a long application form with a 15-minute session timeout.</p>
+            
+            <div class="timer-box">
+                Your session will expire in 15 minutes.
+            </div>
+            
+            <p>At the 14:30 mark (30 seconds remaining), a modal warning pops up:</p>
+            <div style="border: 2px solid green; background: #e0f0e0; padding: 10px;">
+                <p style="margin: 0;">**WARNING!** Your session expires in 30 seconds. Press the **Spacebar** or **Click Here** to extend the session by 5 minutes. You can do this 9 more times.</p>
+            </div>
+
+            <p class="note">**Compliance Justification:** This uses the **Extend** method. The user is warned at $\ge 20$ seconds before expiry and given a **simple action** (press Spacebar/Click) to extend the time. The user is allowed to extend the time at least ten times (or until the total session time is $\ge 10$ times the default). Since the user has control before the timeout, this meets the criterion.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Adjust Mechanism</h3>
+            <p><strong>Scenario:</strong> A user is about to take a practice quiz where the default time limit is 5 minutes.</p>
+            
+            <p>Before the quiz begins, the user sees a setting on the preferences page:</p>
+            <p>
+                **Time Limit Preference:** <label for="time-adjust">Select Quiz Time Limit:</label>
+                <select id="time-adjust">
+                    <option value="5">5 minutes (Default)</option>
+                    <option value="10">10 minutes</option>
+                    <option value="25">25 minutes</option>
+                    <option value="50">50 minutes (10 times the default)</option>
+                    <option value="60">60 minutes</option>
+                </select>
+            </p>
+
+            <p class="note">**Compliance Justification:** This uses the **Adjust** method. The user is allowed to adjust the time limit before encountering it to a wide range that is at least **ten times** the length of the default setting ($10 \times 5 \text{ minutes} = 50 \text{ minutes}$).</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Abrupt Session Timeout</h3>
+            <p><strong>Scenario:</strong> A user is filling out a lengthy government application form with a 30-minute session timeout.</p>
+            
+            <div class="timer-box" style="border-color: #dc3545; background-color: #fcebeb;">
+                Session active. No time remaining display.
+            </div>
+
+            <p>At the 30-minute mark, the server simply returns an "Session Expired" error, deleting all unsaved progress. **No warning was given, and no control was offered.**</p>
+
+            <p class="note">**Compliance Justification:** The system fails because it does not offer any of the required controls: **Turn off**, **Adjust**, or **Extend**. The abrupt timeout without warning or opportunity to save progress creates a major accessibility barrier for users who need extra time to complete complex tasks.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Extend Limit Too Restrictive</h3>
+            <p><strong>Scenario:</strong> A user is on a transactional page with a 10-minute timeout. A warning is given, but the user can only extend the time once by 1 minute.</p>
+
+            <p class="note">**Compliance Justification:** While an **Extend** mechanism is offered, it is too restrictive. The user must be allowed to extend the time limit **at least ten times** (for a total of $\ge 100$ minutes in this case, or until $10\times$ the default time is reached). Allowing only one small extension fails the "Extend" criteria and thus fails the SC 2.2.1.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 2.2.1 Timing Adjustable</td>
+                    <td>A</td>
+                    <td>For any content-set time limit (e.g., session timeouts, reading time), developers must provide a way for the user to control the duration. The preferred method for session timeouts is the **Extend** option: warn the user $\ge 20$ seconds before expiry and offer an easy way to refresh the session $\ge 10$ times. If using **Adjust**, the max time must be $\ge 10 \times$ the default time.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.20: Content on Hover or Focus (WCAG 1.4.13)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #8A2BE2; /* Unique color for 1.4.13 */
+            border-bottom: 3px solid #8A2BE2;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table th, .analysis-table td, .summary-table th, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Tooltip Styles for Examples */
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+            margin: 20px 0;
+            padding: 5px 10px;
+            border: 1px solid #8A2BE2;
+            background: #e6e6fa;
+        }
+        .tooltip-content {
+            position: absolute;
+            z-index: 10;
+            bottom: 150%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            white-space: nowrap;
+            display: none;
+            min-width: 200px;
+        }
+        
+        /* Success Styles */
+        .success-tooltip:hover .tooltip-content,
+        .success-tooltip:focus-within .tooltip-content {
+            display: block; /* Persistent */
+            background: #28a745;
+            color: white;
+            padding-right: 30px; /* Space for close button */
+        }
+        .close-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: transparent;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+
+        /* Failure Styles */
+        .failure-tooltip-content {
+            background: #dc3545;
+            color: white;
+        }
+        /* FAILS: No hover on content; disappears immediately */
+        .failure-tooltip:hover .failure-tooltip-content,
+        .failure-tooltip:focus-within .failure-tooltip-content {
+            /* This JS/CSS would typically be set so that removal of hover on the parent causes immediate disappearance */
+            display: block; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.19.html"><strong><< Previous</strong> (5.2.19)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.21.html"><strong>Next >></strong> (5.2.21)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.20: Content on Hover or Focus (WCAG 1.4.13)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**GIGW Statement**</td><td>Where receiving and then removing pointer hover or keyboard focus triggers additional content to become visible and then hidden, the following are true: Dismissible, Hover-able, and Persistent.</td></tr>
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 1.4.13 Content on Hover or Focus**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level AA**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #8A2BE2; font-weight: bold;">Non-Intrusive & Controllable Tooltips/Menus</span></td></tr>
+            <tr><td>**Goal**</td><td>To ensure users can reliably view and interact with content that appears and disappears based on hover/focus.</td></tr>
+            <tr><td>**Requirement**</td><td>The transient content must be **Dismissible**, **Hover-able**, and **Persistent**.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Compliant Tooltip</h3>
+            <p><strong>Scenario:</strong> A help icon displays a lengthy tooltip on hover or focus.</p>
+            
+            <div class="tooltip-container success-tooltip" tabindex="0">
+                <span>Hover/Focus for Help Info</span>
+                <div class="tooltip-content">
+                    This detailed information is:
+                    <ol>
+                        <li>**Persistent**: It won't disappear if you hover over the text itself.</li>
+                        <li>**Dismissible**: Click the 'X' button or press the ESC key.</li>
+                        <li>**Hover-able**: You can move your mouse to read the text inside.</li>
+                    </ol>
+                    <button class="close-button" onclick="this.parentNode.style.display = 'none';" aria-label="Dismiss additional content">X</button>
+                </div>
+            </div>
+
+            <p class="note">**Compliance Justification:** This tooltip fulfills all three requirements: It is **Persistent** and **Hover-able** because the hover/focus state applies to the container element, allowing the pointer to move over the content. It is **Dismissible** via an explicit 'X' button (and ideally, the ESC key), allowing the user to close it without moving the focus away from the trigger element.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Non-Hover-able Content</h3>
+            <p><strong>Scenario:</strong> A menu system or a tooltip that disappears the moment the pointer moves off the trigger element.</p>
+            
+            <div class="tooltip-container failure-tooltip">
+                <span>Hover Here (Failure)</span>
+                <div class="tooltip-content failure-tooltip-content">
+                    This content is NOT Hover-able. If you try to move the mouse pointer to the text inside, the content will disappear immediately.
+                </div>
+            </div>
+
+            <p class="note">**Compliance Justification:** When a user with low vision uses screen magnification, they may need to move their pointer slowly and carefully to bring the **transient content** into view. If the content disappears before they can move the pointer onto the content itself, it fails the **Hover-able** requirement, making it impossible for them to read long tooltips or select sub-menu items.</p>
+        </section>
+
+        <section class="failure">
+            <h3>Failure Example 2: Non-Dismissible Content</h3>
+            <p><strong>Scenario:</strong> A large, distracting panel that appears on focus and can only be removed by moving the keyboard focus to another element.</p>
+
+            <div style="border: 1px dashed #dc3545; padding: 10px; margin-top: 20px;">
+                <p>This button triggers a large, non-error-related help box.</p>
+                <button **tabindex="0"** onfocus="document.getElementById('failure-box').style.display='block';">Trigger Focus</button>
+                <div id="failure-box" style="display: none; border: 2px solid red; background: #fee; padding: 10px; margin-top: 10px;">
+                    **LARGE HELP BOX:** This box obscures other content. There is NO 'X' button and the ESC key does nothing. The only way to remove it is to **Tab Away**.
+                </div>
+            </div>
+
+            <p class="note">**Compliance Justification:** If a piece of transient content **obscures or replaces** other content, it must be **Dismissible**. Forcing the user to move the keyboard focus away (Tab Away) to close it fails this requirement, as it causes them to lose their place and disrupts their keyboard navigation flow.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 1.4.13 Content on Hover or Focus</td>
+                    <td>AA</td>
+                    <td>Design transient content (tooltips, sub-menus) to be triggered by the **container** element, ensuring it is **Hover-able** (pointer can safely move onto it). Ensure it is **Persistent** while the container is focused/hovered. If the content obscures other information, make sure it is **Dismissible** via an explicit close button or the ESC key.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

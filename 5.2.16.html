@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.16: Images of Text (WCAG 1.4.5)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #696969; /* Unique color for 1.4.5 */
+            border-bottom: 3px solid #696969;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table th, .analysis-table td, .summary-table th, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .styled-text {
+            font-family: 'Georgia', serif;
+            font-size: 2em;
+            color: darkviolet;
+            text-shadow: 1px 1px 2px #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.15.html"><strong><< Previous</strong> (5.2.15)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.17.html"><strong>Next >></strong> (5.2.17)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.16: Images of Text (WCAG 1.4.5)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**GIGW Statement**</td><td>If the technologies being used can achieve the visual presentation, text is used to convey information rather than images of text...</td></tr>
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 1.4.5 Images of Text**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level AA**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #696969; font-weight: bold;">Use Actual Text, Not Images of Text</span></td></tr>
+            <tr><td>**Goal**</td><td>To ensure text is customizable, scalable, and accessible to assistive technologies.</td></tr>
+            <tr><td>**Requirement**</td><td>Use actual text styled with **CSS** instead of rasterized images of text, unless the text presentation is **essential** (logo) or **customizable**.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Stylized Heading using CSS</h3>
+            <p><strong>Scenario:</strong> A unique, shadow-based heading style is required for branding.</p>
+            
+            <p class="styled-text">Welcome to the Portal</p>
+            
+            <p class="note">**Compliance Justification:** The stylistic effects (unique font, large size, color, and text shadow) are achieved entirely using **CSS**. Since this is live, rendered text, a user can resize it to 200%, change its color using a browser extension, and a screen reader can read the content directly. This fulfills the criterion by prioritizing **text over image**.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Essential Use (Logo)</h3>
+            <p><strong>Scenario:</strong> Displaying the official government logo containing the brand name.</p>
+            
+            <p>
+                <img src="logo.png" alt="Ministry of Digital Affairs Official Logo" style="width: 200px; height: 50px;">
+            </p>
+            <p class="note">**Compliance Justification:** Logos and brand names are specifically **exempt** because the particular visual presentation is **essential** for identification and branding. This is one of the valid exceptions to 1.4.5, provided the image still has proper **alt text** (fulfilling 1.1.1).</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Navigation Links as Images</h3>
+            <p><strong>Scenario:</strong> The main navigation menu uses rasterized images for each link to achieve a specific font and color.</p>
+            
+            <nav>
+                <a href="#home">
+                    <img src="nav-home.png" alt="Home" style="height: 30px;">
+                </a>
+                <a href="#services">
+                    <img src="nav-services.png" alt="Our Services" style="height: 30px;">
+                </a>
+            </nav>
+
+            <p class="note">**Compliance Justification:** The text "Home" and "Our Services" could easily be rendered using CSS. Using image files means: 1) Users who resize text may find the text in the image does not scale, or scales poorly; 2) The text cannot be customized by a user's high-contrast theme; 3) The file size is larger than plain text. Since the presentation is **not essential**, this is a clear failure of 1.4.5.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 1.4.5 Images of Text</td>
+                    <td>AA</td>
+                    <td>**Prioritize Actual Text:** Use **HTML and CSS** to achieve all necessary styling (fonts, colors, sizes, shadows) for content, headings, and navigation. **Limit images of text** to only those instances where the visual presentation is **essential** (e.g., logos, specific diagrams) or when the user can **customize** the appearance.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

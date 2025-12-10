@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.17: Reflow (WCAG 1.4.10)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4B0082; /* Unique color for 1.4.10 */
+            border-bottom: 3px solid #4B0082;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table th, .analysis-table td, .summary-table th, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Success Example CSS - Uses responsive stacking */
+        .responsive-layout {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap; 
+        }
+        .content-column {
+            flex: 1;
+            min-width: 300px; /* Base size */
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        /* Media query for small screens/high zoom (320px width threshold) */
+        @media (max-width: 600px) {
+            .responsive-layout {
+                flex-direction: column; /* Stacks the columns */
+            }
+        }
+
+        /* Failure Example CSS - Fixed width that exceeds 320px */
+        .fixed-width-container {
+            width: 500px; /* Forces wide content, causing horizontal scroll at 320px */
+            background-color: #fff0f0;
+            padding: 15px;
+            border: 2px dashed #dc3545;
+            margin: 10px 0;
+            overflow-x: hidden; /* Often developers use this to hide the scrollbar, which causes content loss (also a failure) */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.16.html"><strong><< Previous</strong> (5.2.16)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.18.html"><strong>Next >></strong> (5.2.18)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.17: Reflow (WCAG 1.4.10)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**GIGW Statement**</td><td>Content can be presented without loss of information or functionality and without requiring scrolling in two dimensions...</td></tr>
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 1.4.10 Reflow**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level AA**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #4B0082; font-weight: bold;">No Horizontal Scroll at 320px Width</span></td></tr>
+            <tr><td>**Goal**</td><td>To ensure content uses a single vertical scrollbar at small viewports (or 400% zoom) to improve readability and usability.</td></tr>
+            <tr><td>**Requirement**</td><td>Content must reflow into a single column when the viewport width is equivalent to **320 CSS pixels** (the width of a standard smartphone at 400% zoom).</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Adaptive Column Layout (Flexbox Reflow)</h3>
+            <p><strong>Scenario:</strong> A page with two columns (main content and sidebar) that must stack vertically on small screens.</p>
+            
+            <div class="responsive-layout">
+                <div class="content-column">
+                    <h4>Main Content</h4>
+                    <p>This block uses responsive design to ensure its width is always based on the available space, **never forcing a horizontal scrollbar**. When the screen narrows, this content remains readable in a single column.</p>
+                </div>
+                <div class="content-column">
+                    <h4>Sidebar/Navigation</h4>
+                    <p>This secondary block uses Flexbox to gracefully **drop beneath** the main content when the viewport width reaches 320px, eliminating horizontal scrolling and preserving all links and functionality.</p>
+                </div>
+            </div>
+
+            <p class="note">**Compliance Justification:** The design successfully uses **Fluid Layouts** and **Media Queries** to adapt from a two-column structure to a single, vertically scrolling column. This allows users to read all content by scrolling only up and down, even at 400% zoom.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Essential Exception (Interactive Map)</h3>
+            <p><strong>Scenario:</strong> A section displaying a large, complex, and high-detail geographic information system (GIS) map.</p>
+            
+            <p>The map is contained within a scrollable `div`, and the main page itself does not have a horizontal scrollbar.</p>
+            
+            <p class="note">**Compliance Justification:** This content requires a **two-dimensional layout** for its meaning and function. Therefore, **internal horizontal scrolling** within the map component is permitted, provided the **overall page** layout does not require two-dimensional scrolling to view the surrounding text or controls.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Fixed Width Container</h3>
+            <p><strong>Scenario:</strong> A developer sets the width of a main content wrapper using a fixed pixel value that is greater than 320px.</p>
+            
+            <p>The container below is styled to be **500px wide**.</p>
+            <div class="fixed-width-container">
+                This content block is 500 pixels wide. If the user views this page on a 320px width device (or zooms in 400% on a large screen), they will **be forced to scroll horizontally** to read the end of this sentence. This is the definition of two-dimensional scrolling and violates 1.4.10.
+            </div>
+
+            <p class="note">**Compliance Justification:** Using fixed pixel units (`width: 500px;`) for non-essential content forces the viewport to expand beyond 320px, introducing a **horizontal scrollbar** on the main page. This makes the content incredibly difficult to consume for users with low vision or mobile users.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Large, Non-Reflowing Images/Tables</h3>
+            <p><strong>Scenario:</strong> An embedded image or table that has a fixed width of 600px and does not scale down on small screens.</p>
+
+            <p>The failure is often caused by setting **`width="600px"`** directly on an `<img>` or `<table>` element.</p>
+
+            <p class="note">**Compliance Justification:** The large element extends beyond the 320px viewport width, creating a **horizontal scrollbar** for the entire page. All large media and data tables must either **scale down proportionally** (using relative width like `width: 100%;` and `height: auto;`) or be placed within a container that allows only one-dimensional scrolling for the element itself.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 1.4.10 Reflow</td>
+                    <td>AA</td>
+                    <td>Ensure the entire page layout is **responsive**. Content must reflow into a **single-column vertical scroll** at **320 CSS pixels** wide. **AVOID** fixed pixel widths (`px`) for large elements, containers, and main wrappers. Use **responsive design techniques** (Flexbox, Grid, Media Queries) to stack content instead of placing it side-by-side on small screens.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

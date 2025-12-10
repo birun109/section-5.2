@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.21: Keyboard (WCAG 2.1.1)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #6A5ACD; /* Unique color for 2.1.1 */
+            border-bottom: 3px solid #6A5ACD;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table th, .analysis-table td, .summary-table th, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Styles for examples */
+        .success-button {
+            padding: 8px 15px;
+            background-color: #6A5ACD;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .failure-div {
+            /* Custom element used as button, lacks inherent keyboard support */
+            padding: 8px 15px;
+            background-color: #dc3545;
+            color: white;
+            display: inline-block;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.20.html"><strong><< Previous</strong> (5.2.20)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.22.html"><strong>Next >></strong> (5.2.22)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.21: Keyboard (WCAG 2.1.1)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**GIGW Statement**</td><td>All functionality of the content is operable through a keyboard interface without requiring specific timings...</td></tr>
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 2.1.1 Keyboard**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #6A5ACD; font-weight: bold;">All Functions Must Be Keyboard Operable</span></td></tr>
+            <tr><td>**Goal**</td><td>To ensure all interactive elements can be operated by users who rely on keyboard navigation (including screen reader users, speech input users, and users with motor disabilities).</td></tr>
+            <tr><td>**Requirement**</td><td>Every function must have a **keyboard equivalent**. The keyboard interaction must be simple (no complex timing) and must not rely solely on mouse movements.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Standard HTML Controls</h3>
+            <p><strong>Scenario:</strong> Basic form elements and buttons.</p>
+            
+            <button class="success-button">Submit (Tab/Enter)</button>
+            <a href="#" class="success-button">Help Link (Tab/Enter)</a>
+            <input type="checkbox" id="check-s">
+            <label for="check-s">Agree to Terms (Tab/Space)</label>
+
+            <p class="note">**Compliance Justification:** Native HTML controls (`<button>`, `<a>`, `<input type="checkbox">`) are keyboard operable by default. The user can reach them using the **Tab** key and activate them using **Enter** or **Spacebar**, meeting the criterion automatically.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Keyboard Accessible Drag-and-Drop Alternative</h3>
+            <p><strong>Scenario:</strong> A feature that allows users to reorder items using drag-and-drop.</p>
+
+            <p>The page provides a "Move Up" and "Move Down" button next to each item that needs reordering.</p>
+
+            <p class="note">**Compliance Justification:** While drag-and-drop inherently requires path-dependent input (mouse movement), the criterion is met because a **keyboard-accessible alternative** (**endpoint-only** functionality) is provided through the explicit "Move Up/Down" buttons. The user can achieve the same **functionality** without a mouse.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Custom Control Lacks Tabindex and Event Handlers</h3>
+            <p><strong>Scenario:</strong> A developer uses a non-interactive element (`<div>`) and JavaScript to make it look and act like a button, but forgets keyboard support.</p>
+            
+            <div class="failure-div" onclick="alert('Clicked!');">
+                Custom Div Button (FAIL)
+            </div>
+
+            <p class="note">**Compliance Justification:** The custom `<div>` is not focusable by default, meaning a user pressing **Tab** will skip right over it. It is not possible to activate the `onclick` handler using the **Enter** key or **Spacebar**. To fix this, the developer would need to add **`tabindex="0"`** and event handlers for the `keydown` event checking for Enter/Space.</p>
+        </section>
+
+        <section class="failure">
+            <h3>Failure Example 2: Reliance on Mouse Hover for Visibility/Action</h3>
+            <p><strong>Scenario:</strong> A critical "Next Step" button only becomes visible when the mouse cursor hovers over the parent container.</p>
+
+            <div style="border: 1px solid red; padding: 10px; margin-top: 10px;">
+                <p>Mouse over this box to reveal the button.</p>
+                <button style="display: none;" id="hidden-btn">Next Step</button>
+            </div>
+
+            <p class="note">**Compliance Justification:** Since keyboard focus is not equivalent to mouse hover (unless explicitly coded using `:focus` or `:focus-within`), a keyboard user may never be able to access the hidden "Next Step" button, resulting in a **loss of functionality** and failure of the criterion.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 2.1.1 Keyboard</td>
+                    <td>A</td>
+                    <td>Ensure **all interactive elements** (links, buttons, form controls) are accessible using the **Tab** key for navigation and **Enter/Spacebar** for activation. If custom controls are built with non-interactive elements (like `<div>` or `<span>`), they must be programmatically made focusable using **`tabindex="0"`** and must handle keyboard events (`Enter`/`Space`) to mimic button functionality.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

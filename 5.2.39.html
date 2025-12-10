@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.39: Language of Parts (WCAG 3.1.2)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #CD853F; /* Unique color for 3.1.2 (Peru/Language) */
+            border-bottom: 3px solid #CD853F;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Highlight language changes visually */
+        .hindi {
+            color: darkgreen;
+            font-style: italic;
+            border-bottom: 1px dashed darkgreen;
+            padding-bottom: 1px;
+        }
+        .french {
+            color: darkred;
+            font-style: italic;
+            border-bottom: 1px dashed darkred;
+            padding-bottom: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.38.html"><strong><< Previous</strong> (5.2.38)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.40.html"><strong>Next >></strong> (5.2.40)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.39: Language of Parts (WCAG 3.1.2)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 3.1.2 Language of Parts**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**AA**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #CD853F; font-weight: bold;">Identify Language Changes</span></td></tr>
+            <tr><td>**Goal**</td><td>To ensure assistive technologies use the correct pronunciation when encountering foreign words or phrases within content.</td></tr>
+            <tr><td>**Requirement**</td><td>When a passage or phrase's human language differs from the page's default language (set by 3.1.1), the language of that specific part must be declared using the `lang` attribute.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Hindi Phrase within English Text</h3>
+            <p><strong>Scenario:</strong> An English document contains a quote in Hindi.</p>
+            
+            <p>The officer greeted the delegation with a traditional phrase:
+                <span lang="hi" class="hindi">**"नमस्ते"**</span> (Namaste), before beginning the discussion.
+            </p>
+
+            <pre style="background: #e6ffe6; padding: 10px; border: 1px solid #28a745;">
+                &lt;p&gt;The officer greeted the delegation with a traditional phrase:
+                    &lt;span <span style="color: blue; font-weight: bold;">lang="hi"</span>&gt;**"नमस्ते"**&lt;/span&gt; (Namaste), before beginning the discussion.
+                &lt;/p&gt;
+            </pre>
+
+            <p class="note">**Compliance Justification:** The page is English (`lang="en"` on `<html>`). The Hindi word, **"नमस्ते"**, is correctly contained within a `<span>` element with the `lang="hi"` attribute. A screen reader will switch to a Hindi voice for this word, ensuring correct pronunciation. This meets SC 3.1.2.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: French Quote (Passage) within English Text</h3>
+            <p><strong>Scenario:</strong> A large block quote in a different language.</p>
+            
+            <p>The philosophical principle outlined was:
+                <blockquote lang="fr" class="french">
+                    **"La liberté guide le peuple."**
+                </blockquote>
+            </p>
+
+            <pre style="background: #e6ffe6; padding: 10px; border: 1px solid #28a745;">
+                &lt;blockquote <span style="color: blue; font-weight: bold;">lang="fr"</span>&gt;
+                    **"La liberté guide le peuple."**
+                &lt;/blockquote&gt;
+            </pre>
+
+            <p class="note">**Compliance Justification:** The entire block quote is correctly marked with `lang="fr"`. The screen reader will correctly apply French pronunciation rules to the entire sentence/passage, meeting SC 3.1.2.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Foreign Phrase Not Declared</h3>
+            <p><strong>Scenario:</strong> An English page contains a common foreign phrase that is not considered part of the English vernacular.</p>
+            
+            <p>The committee agreed the decision was a <span style="color: red;">**fait accompli**</span> and moved on to the next agenda item.
+            </p>
+
+            <pre style="background: #fff0f0; padding: 10px; border: 1px solid #dc3545;">
+                &lt;p&gt;The committee agreed the decision was a **&lt;-- lang attribute missing --&gt; fait accompli** and moved on...&lt;/p&gt;
+            </pre>
+
+            <p class="note">**Compliance Justification:** "Fait accompli" is a French phrase. Without a `lang="fr"` declaration, an English screen reader will attempt to read it using English phonetic rules, resulting in significant mispronunciation. Although commonly used, it is generally not considered "part of the vernacular" and requires declaration. This fails SC 3.1.2.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Incorrect Language Code Used</h3>
+            <p><strong>Scenario:</strong> An English page contains a Japanese term that is incorrectly labeled as Chinese.</p>
+
+            <p>The term for courtesy is <span lang="zh" style="color: red;">**rei**</span>, which is widely practiced in Japanese culture.</p>
+            
+            <pre style="background: #fff0f0; padding: 10px; border: 1px solid #dc3545;">
+                &lt;span <span style="color: red; font-weight: bold;">lang="zh"</span>&gt;rei&lt;/span&gt; <span style="color: gray;">&lt;-- 'zh' is Chinese; word is Japanese --&gt;</span>
+            </pre>
+
+            <p class="note">**Compliance Justification:** The word "rei" is Japanese, but the language code is set to Chinese (`zh`). The screen reader will apply Chinese pronunciation rules, leading to incorrect speech output. The determined language must accurately reflect the human language of the part, otherwise, it fails SC 3.1.2.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 3.1.2 Language of Parts</td>
+                    <td>AA</td>
+                    <td>Identify any block of text, phrase, or word that is in a different language from the page's default language and wrap it in an element (like `<span>` or `<blockquote>`) with the appropriate **`lang` attribute** (e.g., `<span lang="hi">`).</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

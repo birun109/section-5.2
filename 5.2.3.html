@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Captions Showcase (5.2.3)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #C70039; /* Unique color for captions */
+            border-bottom: 3px solid #C70039;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        video {
+            display: block;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+        }
+        .note {
+            font-style: italic;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        .caption-example {
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            white-space: pre-wrap;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    
+     .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="nav-links">
+            <a href="5.2.2.html"><strong><< Previous</strong> (5.2.2)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.4.html"><strong>Next >></strong> (5.2.4)</a>
+        </div>
+        <h1>GIGW 3.0 Statement 5.2.3: Captions (WCAG 1.2.2)</h1>
+        
+        <h2>Clause: Pre-recorded Audio Content in Synchronised Media</h2>
+        <p><strong>Goal:</strong> Provide users who are deaf or hard of hearing access to the audio content of a video.</p>
+        <p><strong>Requirement:</strong> Synchronized **Captions** must be provided for all pre-recorded videos with audio.</p>
+
+        <hr>
+
+        <section class="success">
+            <h3>✅ Success Example: Video with Full Captions</h3>
+            <p><strong>Scenario:</strong> A pre-recorded video announcement by the Ministry of Education.</p>
+            
+            <video controls src="ministry-announcement.mp4" width="500" height="300">
+                <track kind="captions" src="announcement-captions.vtt" srclang="en" label="English Captions" default>
+            </video>
+            
+            <h4>Caption Content Example (from `announcement-captions.vtt`)</h4>
+            <div class="caption-example">
+                00:00:01.000 --&gt; 00:00:04.500
+                **[SOUND: Opening fanfare music]**
+
+                00:00:05.100 --&gt; 00:00:09.800
+                **[Secretary Sharma]:** Good afternoon. We are delighted to confirm the new policy.
+
+                00:00:10.200 --&gt; 00:00:13.000
+                **[Reporter]:** Will this affect the budget allocation?
+            </div>
+            <p class="note">**Compliance Justification:** Captions are provided, synchronized, and they **include speaker identification** (Secretary Sharma, Reporter) and **non-speech sounds** (**[SOUND: Opening fanfare music]**), ensuring deaf users receive equivalent auditory information.</p>
+        </section>
+
+        <hr>
+
+        <section class="failure">
+            <h3 class="failure">❌ Failure Example 1: Missing Captions Entirely</h3>
+            <p><strong>Scenario:</strong> A video tutorial for filing a tax return, with voice narration.</p>
+            <video controls src="tax-tutorial-fail.mp4" width="500" height="300"></video>
+            
+            <p class="note">**Compliance Justification:** The full voice narration containing crucial instructions is inaccessible to users who are deaf or hard of hearing because **no captions are provided**.</p>
+        </section>
+        
+        <section class="failure">
+            <h3 class="failure">❌ Failure Example 2: Incomplete Captions (Missing Sound Effects)</h3>
+            <p><strong>Scenario:</strong> A weather safety video where a thunderclap is used as an urgent warning cue.</p>
+            
+            <video controls src="weather-safety-fail.mp4" width="500" height="300">
+                <track kind="captions" src="incomplete-weather-captions.vtt" srclang="en" label="English Captions">
+            </video>
+            
+            <h4>Incomplete Caption Content Example (Simulated Failure)</h4>
+            <div class="caption-example">
+                00:00:01.000 --&gt; 00:00:04.000
+                Seek shelter immediately. The storm has arrived.
+            </div>
+            <p class="note">**Compliance Justification:** If the loud **thunderclap** is the primary signal of immediate danger, and the captions omit **[SOUND: Loud Thunderclap]**, a deaf user misses the urgent, non-speech auditory cue. The captions are not equivalent, resulting in a failure.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>GIGW Statement</th>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Required Action (Govt. & Dev.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5.2.3 (Captions)</td>
+                    <td>SC 1.2.2</td>
+                    <td>A</td>
+                    <td>Provide synchronized captions for all pre-recorded videos, including **dialogue, speaker identification, and all meaningful sound effects**.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

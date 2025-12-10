@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.50: Status Messages (WCAG 4.1.3)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0 0 0, 0.1);
+        }
+        h1 {
+            color: #4682B4; /* Unique color for 4.1.3 (Steel Blue/Status) */
+            border-bottom: 3px solid #4682B4;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .status-box {
+            border: 1px solid #4682B4;
+            padding: 10px;
+            margin-bottom: 15px;
+            min-height: 40px; /* Ensure space for message */
+            background-color: #eaf3ff;
+        }
+        .live-message {
+            color: #4682B4;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.49.html"><strong><< Previous</strong> (5.2.49)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.3.1.html"><strong>Next >></strong> (5.3.1)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.50: Status Messages (WCAG 4.1.3)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 4.1.3 Status Messages**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**AA**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #4682B4; font-weight: bold;">Non-Disruptive Status Updates</span></td></tr>
+            <tr><td>**Goal**</td><td>To provide dynamic feedback (success, loading, progress) that is immediately announced by assistive technologies without causing focus change or context change.</td></tr>
+            <tr><td>**Requirement**</td><td>Use ARIA Live Regions (`aria-live`) or specialized ARIA roles (`role="status"`, `role="alert"`, `role="log"`) on the container element where the status message appears.</td></tr>
+            <tr><td>**Developer Action**</td><td>Wrap the message container with `role="status"` or `aria-live="polite"` so ATs announce content injected into it. Do **NOT** move focus to the message container.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+        
+
+        <section class="success">
+            <h3>Success Example 1: Form Submission Success (role="status")</h3>
+            <p><strong>Scenario:</strong> User clicks 'Save' on a form. The status message appears, but focus remains on the form.</p>
+            
+            <p><strong>Status Message Container (Programmatic):</strong></p>
+            <div class="status-box" role="status" aria-live="polite">
+                <span class="live-message">✅ Form settings saved successfully.</span> 
+            </div>
+
+            <p>When the JavaScript updates the content of the `&lt;div role="status"...&gt;`, a screen reader will announce: "Form settings saved successfully," while the user's cursor remains active in the form field they were last using.</p>
+
+            <p class="note">**Compliance Justification:** Using `role="status"` (which implicitly uses `aria-live="polite"`) ensures the message is programmatically determined and announced without stealing focus, achieving compliant non-disruptive feedback.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Loading Progress (aria-live="polite")</h3>
+            <p><strong>Scenario:</strong> A section of content takes time to load, and a progress message appears.</p>
+            
+            <p><strong>Loading Container (Programmatic):</strong></p>
+            <div class="status-box" aria-live="polite">
+                <span class="live-message">⏳ Loading data... 50% complete.</span> 
+            </div>
+
+            <p class="note">**Compliance Justification:** `aria-live="polite"` tells the screen reader to finish announcing what the user is currently focused on and then announce the new content injected into the live region. This prevents disruption while ensuring the progress is communicated. Compliant.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Status Message Delivered via Simple Focus Shift</h3>
+            <p><strong>Scenario:</strong> After adding an item to a cart, JavaScript forces the keyboard focus to the success message at the top of the page.</p>
+            
+            <p>When the user clicks the "Add to Cart" button, JavaScript executes: `document.getElementById('success-message').focus();`</p>
+
+            <div class="status-box" style="border-color: #dc3545; background: #f8d7da;">
+                <span style="color: red; font-weight: bold;">Added to cart successfully.</span>
+            </div>
+
+            <p class="note">**Compliance Justification:** Forcing focus to the success message (often done via `tabindex="-1"` and `.focus()`) is highly disruptive. It pulls the user out of their current context (e.g., browsing product details) and moves their point of regard, requiring them to manually tab or navigate back. This fails SC 4.1.3.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Non-Programmatic Visual-Only Status Message</h3>
+            <p><strong>Scenario:</strong> A visual status update appears (e.g., a green checkmark) without using ARIA roles or live regions.</p>
+
+            <div class="status-box" style="border-color: #dc3545; background: #f8d7da;">
+                <span style="font-size: 2em; color: #28a745;">✅</span> Settings Updated!
+                </div>
+
+            <p class="note">**Compliance Justification:** The message is visually clear but is not programmatically announced to assistive technologies as a **status update** when it appears. A screen reader user, unless they manually move their cursor to the area, will not be automatically notified of this change in content. This fails SC 4.1.3.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 4.1.3 Status Messages</td>
+                    <td>AA</td>
+                    <td>**Rule:** Status messages (success, loading, progress, errors that don't steal focus) must use **ARIA Live Regions** (e.g., `role="status"` or `aria-live="polite"`) on the container. This ensures that the message is automatically announced by screen readers without forcefully moving the user's keyboard focus away from their current position.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

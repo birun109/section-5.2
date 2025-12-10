@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.29: Focus Order (WCAG 2.4.3)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #696969; /* Unique color for 2.4.3 */
+            border-bottom: 3px solid #696969;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Demo Styles */
+        .form-example {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 15px;
+            border: 1px dashed #696969;
+        }
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 5px;
+        }
+        .form-field label {
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        .form-field input, .form-field select {
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+        .order-indicator {
+            font-weight: bold;
+            color: blue;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.28.html"><strong><< Previous</strong> (5.2.28)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.30.html"><strong>Next >></strong> (5.2.30)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.29: Focus Order (WCAG 2.4.3)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 2.4.3 Focus Order**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #696969; font-weight: bold;">Logical Tab Order</span></td></tr>
+            <tr><td>**Goal**</td><td>To ensure keyboard users can navigate interactive elements in an order that makes sense visually and semantically.</td></tr>
+            <tr><td>**Requirement**</td><td>The order in which focus moves must follow the expected reading sequence (left-to-right, top-to-bottom) of the content.</td></tr>
+            <tr><td>**Developer Action**</td><td>Design layouts where the **visual order** matches the **source code order**. Avoid overriding the browser's default tab sequence unless absolutely necessary for complex widgets.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Logical Form Flow (Source Code Matches Visual Order)</h3>
+            <p><strong>Scenario:</strong> A simple contact form designed in a logical, single-column flow.</p>
+            
+            <p>*(To test, click on the **Name** field, then press the **Tab** key repeatedly. The focus should move sequentially: Name $\rightarrow$ Email $\rightarrow$ Phone $\rightarrow$ Submit.)*</p>
+
+            <div class="form-example">
+                <div class="form-field">
+                    <label for="s-name">1. Name</label>
+                    <input type="text" id="s-name" tabindex="0">
+                </div>
+                <div class="form-field">
+                    <label for="s-email">2. Email</label>
+                    <input type="email" id="s-email" tabindex="0">
+                </div>
+                <div class="form-field">
+                    <label for="s-phone">3. Phone</label>
+                    <input type="tel" id="s-phone" tabindex="0">
+                </div>
+                <button type="submit" tabindex="0">4. Submit</button>
+            </div>
+
+            <p class="note">**Compliance Justification:** The input fields appear in the source code in the correct logical sequence (Name, Email, Phone, Submit). By using the default tab order based on source code, the navigation sequence **preserves the meaning** of the form flow, meeting SC 2.4.3.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Disrupted Order using tabindex</h3>
+            <p><strong>Scenario:</strong> A form where a developer tried to manually set the focus order using high `tabindex` values, causing confusion.</p>
+            
+            <p>*(To test, click on the **Name** field, then press the **Tab** key repeatedly. The focus jumps illogically.)*</p>
+
+            <div class="form-example">
+                <div class="form-field">
+                    <label for="f-name">Name</label>
+                    <input type="text" id="f-name" tabindex="3">
+                    <span class="order-indicator">Tab Order: 3</span>
+                </div>
+                <div class="form-field">
+                    <label for="f-email">Email</label>
+                    <input type="email" id="f-email" tabindex="1">
+                    <span class="order-indicator">Tab Order: 1</span>
+                </div>
+                <div class="form-field">
+                    <label for="f-phone">Phone</label>
+                    <input type="tel" id="f-phone" tabindex="2">
+                    <span class="order-indicator">Tab Order: 2</span>
+                </div>
+                <button type="submit" tabindex="4">Submit</button>
+            </div>
+
+            <p class="note">**Compliance Justification:** The visual and semantic order (Name, Email, Phone) is ignored. The keyboard user tabs: **Email (1) $\rightarrow$ Phone (2) $\rightarrow$ Name (3) $\rightarrow$ Submit (4)**. This sequence makes no sense for filling out a form, **disrupting operability and meaning**, thus failing SC 2.4.3.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Visual and Source Code Misalignment (Complex Layout)</h3>
+            <p><strong>Scenario:</strong> A multi-column layout where elements are styled to appear side-by-side but are not structured correctly in the source code.</p>
+
+            <div style="display: flex; gap: 20px; border: 1px dashed #dc3545; padding: 10px;">
+                <div style="flex: 1;">
+                    <p>**(Source Order 1, Visual Left)**</p>
+                    <button tabindex="0">Button A</button>
+                </div>
+                <div style="flex: 1;">
+                    <p>**(Source Order 3, Visual Right)**</p>
+                    <button tabindex="0">Button C</button>
+                </div>
+            </div>
+            <div style="display: flex; gap: 20px; border: 1px dashed #dc3545; padding: 10px; margin-top: 10px;">
+                <div style="flex: 1;">
+                    <p>**(Source Order 2, Visual Left)**</p>
+                    <button tabindex="0">Button B</button>
+                </div>
+                <div style="flex: 1;">
+                    <p>**(Source Order 4, Visual Right)**</p>
+                    <button tabindex="0">Button D</button>
+                </div>
+            </div>
+
+            <p>*(If the code places Button A, B, C, D in the DOM source order, but styles it into columns, a keyboard user would tab A $\rightarrow$ B $\rightarrow$ C $\rightarrow$ D, instead of the expected reading order A $\rightarrow$ C $\rightarrow$ B $\rightarrow$ D, causing confusion.)*</p>
+
+            <p class="note">**Compliance Justification:** When the visual flow (top-to-bottom, left-to-right) is A, C, B, D, but the source code order forces A, B, C, D, the **keyboard navigation order contradicts the semantic flow**. Screen readers and keyboard users will follow the illogical source order, leading to a failure of SC 2.4.3.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 2.4.3 Focus Order</td>
+                    <td>A</td>
+                    <td>Ensure that the **order of focusable elements** on a page (links, forms, buttons) is the same as the **logical and visual reading order** of the content. This is achieved primarily by structuring the HTML source code (DOM) correctly.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

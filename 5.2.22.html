@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.22: No Keyboard Trap (WCAG 2.1.2)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #483D8B; /* Unique color for 2.1.2 */
+            border-bottom: 3px solid #483D8B;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table th, .analysis-table td, .summary-table th, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Styles for examples */
+        .trap-zone {
+            border: 2px solid #dc3545;
+            padding: 15px;
+            margin-top: 10px;
+        }
+        .escape-zone {
+            border: 2px solid #28a745;
+            padding: 15px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.21.html"><strong><< Previous</strong> (5.2.21)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.23.html"><strong>Next >></strong> (5.2.23)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.22: No Keyboard Trap (WCAG 2.1.2)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**GIGW Statement**</td><td>If keyboard focus can be moved to a component... then focus can be moved away from that component using only a keyboard interface...</td></tr>
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 2.1.2 No Keyboard Trap**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #483D8B; font-weight: bold;">Keyboard Focus Must Not Be Trapped</span></td></tr>
+            <tr><td>**Goal**</td><td>To guarantee that keyboard-only users can navigate away from any interactive element or section on the page and access all other content.</td></tr>
+            <tr><td>**Requirement**</td><td>Focus must be able to leave a component using standard keyboard keys (**Tab**, **Shift+Tab**, or **Arrow keys**). If a custom key is required (e.g., ESC), the user must be clearly notified.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Compliant Modal Dialog</h3>
+            <p><strong>Scenario:</strong> A modal dialog box (pops up and grays out the background) that contains a form.</p>
+            
+            <div class="escape-zone">
+                <p><strong>Simulated Modal:</strong> A modal dialog containing multiple fields.</p>
+                <input type="text" value="Field 1" tabindex="0">
+                <input type="text" value="Field 2" tabindex="0">
+                <button **tabindex="0"**>Close</button>
+            </div>
+
+            <p class="note">**Compliance Justification:** When the user tabs through the modal, the focus moves from "Field 1" to "Field 2" and finally to the "Close" button. The **Close button** must either:
+                1.  Move focus to the next logical element **outside** the modal when pressed (standard operation).
+                2.  Allow the user to use **Shift+Tab** from "Field 1" or **Tab** from the "Close" button to exit the modal boundary (if using a non-true modal pattern).
+                3.  Most commonly, the user is advised that **ESC** closes the modal, which releases the trap.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Non-Standard Escape Route is Documented</h3>
+            <p><strong>Scenario:</strong> A highly complex data grid where standard Tab movement is reserved for navigation *within* the grid.</p>
+
+            <div class="escape-zone">
+                <p><strong>Complex Data Grid:</strong> Use **Arrow Keys** to move between cells. Press **ESC** to exit the grid and tab to the next page element.</p>
+                <input type="text" value="Before Grid" tabindex="0">
+                <input type="text" value="After Grid" tabindex="0">
+            </div>
+
+            <p class="note">**Compliance Justification:** Since the **Tab** key is trapped (by design, to move through the internal fields of the grid), the developer provides **clear instructions** that a non-standard key (**ESC**) is required to move the focus away from the component. This fulfills the advisory requirement of SC 2.1.2.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+       <section class="failure">
+    <h3>Failure Example 1: Trapped Focus in an Embedded Applet/Widget</h3>
+    <p><strong>Scenario:</strong> A poorly coded component captures the Tab key, preventing the user from moving to the rest of the page.</p>
+
+    <p>This is content BEFORE the trap.</p>
+    <input type="text" value="Field 1 before trap" tabindex="0">
+    
+    <div class="trap-zone" id="keyboard-trap-zone">
+        <p><strong>The Trap Zone:</strong> <span style="font-weight: bold; color: red;">Once you tab into Field A, you cannot tab out!</span></p>
+        <input type="text" value="Field A (First in Trap)" tabindex="0" id="first-trap-element">
+        <input type="text" value="Field B (Last in Trap)" tabindex="0" id="last-trap-element">
+    </div>
+
+    <p>This content is AFTER the trap and is unreachable by Tab.</p>
+    <input type="text" value="Field 2 after trap" tabindex="0">
+
+    <p class="note">
+        **Compliance Justification:** When the user tabs from "Field B" (the last element in the trap zone), the custom JavaScript intercepts the Tab key press and returns the focus to "Field A" (the first element). The user is **trapped**, cannot reach "Field 2 after trap," and the page functionality is lost. This is a direct failure of **SC 2.1.2**.
+    </p>
+
+    <script>
+        // --- JAVASCRIPT TO SIMULATE THE KEYBOARD TRAP ---
+        const first = document.getElementById('first-trap-element');
+        const last = document.getElementById('last-trap-element');
+
+        document.getElementById('keyboard-trap-zone').addEventListener('keydown', function(e) {
+            const isTab = (e.key === 'Tab' || e.keyCode === 9);
+
+            if (!isTab) {
+                return; // Only care about Tab key presses
+            }
+
+            if (e.target === last && !e.shiftKey) {
+                // If focus is on the LAST element and user presses Tab (forward)
+                e.preventDefault(); 
+                first.focus(); // Send focus back to the FIRST element
+            }
+
+            if (e.target === first && e.shiftKey) {
+                // If focus is on the FIRST element and user presses Shift+Tab (backward)
+                e.preventDefault(); 
+                last.focus(); // Send focus back to the LAST element
+            }
+        });
+        // --- END JAVASCRIPT ---
+    </script>
+</section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 2.1.2 No Keyboard Trap</td>
+                    <td>A</td>
+                    <td>**Test all interactive components (especially custom widgets, modals, and

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Non-text Content Showcase (5.2.1)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #4CAF50;
+            /* Unique color for 1.1.1 */
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+
+        .failure h3 {
+            color: #dc3545;
+        }
+
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        img,
+        audio,
+        button {
+            display: block;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+        }
+
+        .icon-button {
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .note {
+            font-style: italic;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="nav-links">
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.2.html"><strong>Next >></strong> (5.2.2)</a>
+        </div>
+        <h1>GIGW 3.0 Statement 5.2.1: Non-text Content (WCAG 1.1.1)</h1>
+
+        <h2>Clause: All non-text content must have a text alternative that serves the equivalent purpose.</h2>
+
+        <hr>
+
+        <section class="success">
+            <h3>✅ Success Example 1: Informative Image with Equivalent ALT Text</h3>
+            <p><strong>Image:</strong> A flowchart detailing the four steps for filing an online complaint.</p>
+
+            <img src="complaint-flowchart.png"
+                alt="Flowchart showing the complaint process: 1. Fill out personal details. 2. Describe the incident. 3. Upload supporting documents. 4. Submit and receive confirmation ID."
+                width="400" height="150">
+            <p class="note">**Compliance Justification:** The `alt` text conveys the **full equivalent purpose and
+                information** of the flowchart, making it accessible to screen reader users.</p>
+        </section>
+
+        <hr>
+
+        <section class="failure">
+            <h3 class="failure">❌ Failure Example 1: Non-equivalent or Generic ALT Text</h3>
+            <p><strong>Image:</strong> The same flowchart detailing the four steps for filing an online complaint.</p>
+
+            <img src="complaint-flowchart.png" alt="A flowchart diagram." width="400" height="150">
+            <p class="note">**Compliance Justification:** The `alt` text is not meaningful and **does not serve the
+                equivalent purpose**, failing to communicate the four steps of the complaint process.</p>
+        </section>
+
+        <hr>
+
+        <section class="success">
+            <h3>✅ Success Example 2: Control/Input (Icon Button)</h3>
+            <p><strong>Control:</strong> A magnifying glass icon used as a search button.</p>
+
+            <button class="icon-button" onclick="openSearch()">
+                <img src="search-icon.png" alt="" aria-label="Search the Website" width="30" height="30">
+            </button>
+            <p class="note">**Compliance Justification:** The control has a **name that describes its purpose** ("Search
+                the Website"), as required by the Control/Input exception clause.</p>
+        </section>
+
+        <hr>
+
+        <section class="failure">
+            <h3 class="failure">❌ Failure Example 2: Decorative Image Not Ignored</h3>
+            <p>A decorative star separates the content.</p>
+            <img src="decorative-star.png" alt="Small yellow star." width="15" height="15">
+            <span> Important announcement follows.</span>
+            <p class="note">**Compliance Justification:** The image is pure decoration, yet the screen reader announces
+                "Small yellow star," disrupting the flow and failing the Decoration/Formatting exception (which requires
+                it to be implemented so it can be ignored, typically using `alt=""`).</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>GIGW Statement</th>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Required Developer Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5.2.1 (Non-text Content)</td>
+                    <td>SC 1.1.1</td>
+                    <td>A</td>
+                    <td>Provide text alternatives (`alt` attribute) that convey **equivalent purpose** for all non-text
+                        content, and use `alt=""` for purely decorative elements.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

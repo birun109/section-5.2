@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Section 5.2 Audit: Accessibility (Source Verified)</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Base Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.4;
+            margin: 0;
+            padding: 10px;
+            background-color: #f0f4f7;
+            color: #333;
+            font-size: 0.9em;
+        }
+        .container {
+            max-width: 95%; 
+            margin: auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #00796b; 
+            border-bottom: 3px solid #00796b;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2em;
+        }
+        h2 {
+            color: #00bcd4;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            font-size: 1.4em;
+        }
+
+        /* --- NEW DASHBOARD LAYOUT --- */
+        .top-dashboard-row {
+            /* 3 equal columns for the two charts and the summary table */
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .chart-area {
+            background: #fdfdfd;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+            min-height: 350px; /* Ensures consistent height */
+            display: flex;
+            flex-direction: column;
+        }
+        .score-box {
+            background-color: #e0f7fa;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #00796b;
+            margin-bottom: 10px;
+        }
+        .conformity-text {
+            font-size: 1.6em;
+            color: #4caf50; 
+        }
+        .chart-container {
+            flex-grow: 1;
+            position: relative;
+        }
+        .chart-container canvas {
+            max-height: 200px;
+        }
+        .report-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            background-color: #e91e63; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .report-button:hover {
+            background-color: #c2185b;
+        }
+
+        /* Summary Table */
+        .summary-table {
+            width: 100%;
+            margin-top: 15px;
+            border-collapse: collapse;
+            flex-grow: 1;
+        }
+        .summary-table th, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .summary-table th {
+            background-color: #00796b;
+            color: white;
+        }
+        .summary-table td {
+            font-weight: bold;
+        }
+        /* --- END NEW DASHBOARD LAYOUT --- */
+
+        /* Filter Controls */
+        .filter-area {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #00796b;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        #filterLabel {
+            margin-left: 15px;
+            font-weight: bold;
+            color: #555;
+        }
+
+
+        /* Clauses (Thumbnail/Card Format) */
+        .clauses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 15px;
+        }
+        .clause-card {
+            background: #ffffff;
+            border: 1px solid #cfd8dc;
+            border-left: 5px solid; 
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: border-color 0.3s, opacity 0.3s;
+        }
+        .clause-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center; 
+            margin-bottom: 10px;
+        }
+        .clause-header h3 {
+            margin: 0;
+            font-size: 1.1em;
+            color: #333;
+            flex-grow: 1;
+            padding-right: 10px;
+        }
+        .clause-id {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #263238;
+            text-decoration: underline;
+            margin-right: 10px;
+        }
+        .level-tag {
+            font-size: 0.8em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+        .A { background-color: #fce4ec; color: #ad1457; border: 1px solid #ad1457;} 
+        .AA { background-color: #e3f2fd; color: #1565c0; border: 1px solid #1565c0;}
+        .AAA { background-color: #e8f5e9; color: #2e7d32; border: 1px solid #2e7d32;}
+
+        .clause-check {
+            transform: scale(1.3);
+            margin-left: 15px;
+            accent-color: #4caf50;
+            min-width: 20px; 
+        }
+        .clause-details-toggle {
+            color: #00796b;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 0;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: block;
+        }
+        .clause-details {
+            border-top: 1px dashed #cfd8dc;
+            margin-top: 10px;
+            padding-top: 10px;
+            display: none; 
+            font-size: 0.95em; 
+        }
+        .clause-details p {
+            margin: 8px 0;
+        }
+        .principle-tag {
+            font-size: 0.75em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: white;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+        .example-section {
+            padding: 5px 10px;
+            margin-top: 5px;
+            border-left: 3px solid;
+            border-radius: 3px;
+            font-style: italic;
+        }
+        .success-example {
+            border-left-color: #28a745;
+            background-color: #f0fff0;
+        }
+        .failure-example {
+            border-left-color: #dc3545;
+            background-color: #fff0f0;
+        }
+        .wcag-link {
+            display: inline-block;
+            margin-top: 5px;
+            font-size: 0.85em;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        /* Principle Colors (WCAG P-O-U-R) */
+        .P { border-color: #f44336; background-color: #f44336; } 
+        .O { border-color: #2196f3; background-color: #2196f3; } 
+        .U { border-color: #ff9800; background-color: #ff9800; } 
+        .R { border-color: #4caf50; background-color: #4caf50; } 
+        .P-card { border-left-color: #f44336; }
+        .O-card { border-left-color: #2196f3; }
+        .U-card { border-left-color: #ff9800; }
+        .R-card { border-left-color: #4caf50; }
+
+        /* Print Styles */
+        @media print {
+            .top-dashboard-row, .report-button, .clause-details-toggle, .clause-check, .filter-area {
+                display: none !important; 
+            }
+            .clause-details {
+                display: block !important; 
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+            h1, h2 {
+                color: #000 !important;
+                border-color: #000 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>GIGW 3.0 Audit Checklist: Section 5.2 Website Accessibility (Source Verified)</h1>
+        
+
+        <div class="top-dashboard-row">
+            
+            <div class="chart-area">
+                <h2>Overall Compliance Score (50 Clauses)</h2>
+                <div class="score-box">
+                    Overall Conformity: <span id="conformity-score" class="conformity-text">0.0%</span>
+                </div>
+                <div class="chart-container"><canvas id="conformityChart"></canvas></div>
+            </div>
+            
+            <div class="chart-area">
+                <h2>Compliance by WCAG Principle</h2>
+                <div class="chart-container"><canvas id="principleChart"></canvas></div>
+                <button class="report-button" onclick="generateReport()">Generate PDF Report</button>
+            </div>
+
+            <div class="chart-area">
+                <h2>WCAG Level Count (GIGW 5.2 Clauses)</h2>
+                <table class="summary-table">
+                    <thead>
+                        <tr>
+                            <th>Level</th>
+                            <th>Count of Clauses</th>
+                            <th>Required by GIGW (Minimum)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="A">Level A</td>
+                            <td id="count-A">0</td>
+                            <td>Mandatory</td>
+                        </tr>
+                        <tr>
+                            <td class="AA">Level AA</td>
+                            <td id="count-AA">0</td>
+                            <td>Mandatory</td>
+                        </tr>
+                        <tr>
+                            <td class="AAA">Level AAA</td>
+                            <td id="count-AAA">0</td>
+                            <td>Recommended</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="filter-area">
+            <label class="switch">
+                <input type="checkbox" id="pendingFilter" onchange="filterClauses()">
+                <span class="slider"></span>
+            </label>
+            <span id="filterLabel">Show **All** Clauses (Toggle to show **Pending** only)</span>
+        </div>
+
+        <h2>Section 5.2: Accessibility Clauses (Mandatory)</h2>
+        
+        <div class="clauses-grid" id="clausesGrid">
+        </div>
+    </div>
+
+    <script>
+        // --- GIGW 3.0 Clause Data (Source Verified 5.2.1 to 5.2.50) ---
+        // ADDED: failureExample to each object
+        const wcagClauses = [
+            // P - Perceivable
+            { id: '5.2.1', wcag: '1.1.1', level: 'A', principle: 'P', title: 'All non-text content (Alt Text)', mandate: '(images, icons, buttons) must have a functional text equivalent (Alt Text) that conveys its purpose or meaning.', example: 'A graph image summarizing data has alt="Graph showing 15% growth in scheme adoption over Q3 2024".', failureExample: 'A crucial button icon for "Download" has alt="icon", failing to convey its function.' },
+            { id: '5.2.2', wcag: '1.2.1', level: 'A', principle: 'P', title: 'Audio-only & Video-only', mandate: 'Provide a text transcript or accurate description for all purely audio or video content (without synchronized media) to convey the full meaning.', example: 'A standalone pre-recorded voice note from a department head is accompanied by a full, time-coded text transcript link.', failureExample: 'A welcome video plays music and shows the minister\'s name in a text overlay, but no transcript is provided for a visually impaired user to get the name.' },
+            { id: '5.2.3', wcag: '1.2.2', level: 'A', principle: 'P', title: 'Captions (Prerecorded)', mandate: 'All pre-recorded synchronized media (video with audio) must include accurate captions for hearing-impaired users.', example: 'A policy announcement video embedded on the site has closed captions that match the spoken dialogue exactly and are synchronized correctly.', failureExample: 'A video uses automatic captions that have major transcription errors (e.g., confusing policy names) or are not synchronized with the speech.' },
+            { id: '5.2.4', wcag: '1.2.3', level: 'A', principle: 'P', title: 'Audio Description or Media Alternative', mandate: 'For videos where important information is only conveyed visually (e.g., charts, text overlays), an audio description track or a full text alternative is required.', example: 'A short film explaining a new policy includes narration describing key visual information.', failureExample: 'A video shows a complex organizational chart shift but only has dialogue related to a meeting, leaving the visual information inaccessible.' },
+            { id: '5.2.5', wcag: '1.2.4', level: 'AA', principle: 'P', title: 'Captions (Live)', mandate: 'Captions must be provided for all live synchronized media (e.g., live streaming of a government address).', example: 'A live webcast of a parliamentary session uses a real-time captioning service that displays the speaker\'s words with minimal delay.', failureExample: 'A live stream of a press conference offers no captioning service, making the speech inaccessible to hearing-impaired viewers.' },
+            { id: '5.2.6', wcag: '1.2.5', level: 'AA', principle: 'P', title: 'Audio Description (Prerecorded)', mandate: 'Audio description must be provided for all pre-recorded video content to explain important visual events (e.g., charts shown on screen).', example: 'An animated infographic describing a new scheme includes a comprehensive audio narration that explains every piece of text and animation shown.', failureExample: 'A 10-minute training video has no audio description, missing crucial on-screen instructions that are not spoken aloud.' },
+            { id: '5.2.7', wcag: '1.3.1', level: 'A', principle: 'P', title: 'Info and Relationships', mandate: 'Content structure and semantics must be conveyed programmatically. Headings, lists, and form fields must use correct markup.', example: 'Headings are structured logically using <h1> through <h6>. A list of documents uses <ul> and <li> tags.', failureExample: 'The main title of a section is visually large and bolded, but is marked up as a paragraph (<code>&lt;p&gt;</code>) instead of a heading (<code>&lt;h2&gt;</code>).' },
+            { id: '5.2.8', wcag: '1.3.2', level: 'A', principle: 'P', title: 'Meaningful Sequence', mandate: 'The reading order of content (as determined by the code) must be logical and match the visual presentation (e.g., top-to-bottom).', example: 'A sequence of steps in an application process is coded in the same order it appears visually, ensuring a screen reader follows the logical process flow.', failureExample: 'A two-column layout is visually logical, but the source code places the right column\'s content before the left column\'s, causing a screen reader to read the information out of order.' },
+            { id: '5.2.9', wcag: '1.3.3', level: 'A', principle: 'P', title: 'Sensory Characteristics', mandate: 'Instructions should not rely solely on sensory characteristics (e.g., color, shape, size, sound, location).', example: 'Instructions read: "Click on \'Download PDF\' button (the blue button on the left)" providing both label and location, or location/color.', failureExample: 'Instructions state: "Fill in the fields marked in red," with no text indicator (like "* required") provided for color-blind users.' },
+            { id: '5.2.10', wcag: '1.3.4', level: 'AA', principle: 'P', title: 'Orientation', mandate: 'Content must not restrict its view and operation to a single display orientation (portrait or landscape) unless a specific orientation is essential.', example: 'A government website adapts gracefully to both portrait and landscape orientation on mobile devices, reflowing content correctly.', failureExample: 'A large, complex chart is restricted to landscape view only on mobile devices, displaying a warning message instead of adapting the content for portrait viewing.' },
+            { id: '5.2.11', wcag: '1.3.5', level: 'AA', principle: 'P', title: 'Identify Input Purpose', mandate: 'Input fields collecting specific user data (e.g., name, email, phone) should programmatically identify their purpose to assist with form-filling and auto-complete features.', example: 'A field for the user\'s name has the attribute <code>autocomplete="name"</code>.', failureExample: 'An address field lacks the necessary <code>autocomplete</code> attribute, forcing users to manually type data that their browser could otherwise fill.' },
+            { id: '5.2.12', wcag: '1.4.1', level: 'A', principle: 'P', title: 'Use of Color', mandate: 'Color must not be the only means of conveying information, indicating an action, or soliciting a response.', example: 'A password strength meter uses color (Green, Yellow, Red) and text labels ("Strong," "Medium," "Weak") to show status.', failureExample: 'In a list of required documents, only the item number is colored red to indicate missing items, with no additional text indicator or icon.' },
+            { id: '5.2.13', wcag: '1.4.2', level: 'A', principle: 'P', title: 'Audio Control (Auto-play)', mandate: 'Any audio that plays automatically for more than 3 seconds must have a mechanism to pause or stop it, or the volume must be controlled independently.', example: 'A welcome video on the homepage starts playing, but a prominent, keyboard-accessible "Pause" button is displayed immediately and is visible.', failureExample: 'A background audio loop starts immediately upon page load and plays for 20 seconds with no visible or keyboard-accessible control to stop it.' },
+            { id: '5.2.14', wcag: '1.4.3', level: 'AA', principle: 'P', title: 'Contrast (Minimum)', mandate: 'The visual presentation of text and images of text must have a contrast ratio of at least 4.5:1 (for small text) against the background.', example: 'Body text (16px, regular weight) on a white background uses a color with a contrast ratio of 7:1, easily passing the requirement.', failureExample: 'Light gray body text on a white background, resulting in a contrast ratio of 2.8:1, fails to meet the minimum 4.5:1 requirement.' },
+            { id: '5.2.15', wcag: '1.4.4', level: 'AA', principle: 'P', title: 'Text Resizing (200%)', mandate: 'Text must be resizable up to 200% without loss of content, functionality, or requirement for horizontal scrolling.', example: 'Increasing the browser zoom to 200%, and the text reflows gracefully, adjusting the layout and remaining fully readable within the window.', failureExample: 'At 200% zoom, the main navigation menu overlaps the page content, and the user must scroll horizontally to read a single line of text.' },
+            { id: '5.2.16', wcag: '1.4.5', level: 'AA', principle: 'P', title: 'Images of Text', mandate: 'Purely decorative text should be avoided. Text should be rendered as real code, not pictures of text, to allow user agents (like screen readers or magnification tools) to handle it efficiently.', example: 'A major section uses standard HTML text and CSS for styling.', failureExample: 'The title for the "Latest Circulars" section is an embedded JPEG image of the words "Latest Circulars," which loses sharpness and clarity when zoomed.' },
+            { id: '5.2.17', wcag: '1.4.10', level: 'AA', principle: 'P', title: 'Reflow', mandate: 'Content must not require scrolling in two dimensions (horizontal scrolling) when viewed at a width of 320 CSS pixels.', example: 'The website layout shifts dynamically when the browser width is reduced to 320px, presenting content in a single vertical column.', failureExample: 'On a mobile device in portrait mode, the main content area has a minimum width greater than 320px, forcing the user to scroll both vertically and horizontally.' },
+            { id: '5.2.18', wcag: '1.4.11', level: 'AA', principle: 'P', title: 'Non-Text Contrast', mandate: 'Graphical objects (icons, charts, boundaries of components) must have a contrast ratio of at least 3:1 against adjacent colors.', example: 'The boundary of an unselected radio button is a dark border that contrasts well with the light background.', failureExample: 'The thin line separating columns in a data table (a graphical object) has a contrast ratio of only 2.5:1, making it difficult to discern the boundary.' },
+            { id: '5.2.19', wcag: '1.4.12', level: 'AA', principle: 'P', title: 'Text Spacing', mandate: 'When text spacing properties (line height, letter spacing, word spacing, paragraph spacing) are adjusted by the user, no loss of content or functionality should occur.', example: 'A user employs a reading tool to increase line height to 1.5 times font size and word spacing to 0.16 times the font size, and all text remains fully visible and readable.', failureExample: 'When the user increases letter spacing, some letters overlap or text wraps poorly, causing text to be cut off or obscured by other elements.' },
+            { id: '5.2.20', wcag: '1.4.13', level: 'AA', principle: 'P', title: 'Hover or Focus Content', mandate: 'Content that appears on hover or focus (e.g., tooltips, fly-out menus) must meet three conditions: be dismissible, be hoverable, and be persistent until dismissed or irrelevant.', example: 'A pop-up menu for navigation can be dismissed by pressing the Escape key, and stays visible if the user moves their pointer over it.', failureExample: 'A tooltip appears on hover but vanishes immediately when the pointer moves from the trigger element to the tooltip content itself, making it impossible to read.' },
+
+            // O - Operable
+            { id: '5.2.21', wcag: '2.1.1', level: 'A', principle: 'O', title: 'Keyboard', mandate: 'All website functionality must be operable using only the keyboard, without requiring a specific pace or timing for individual keystrokes.', example: 'A user can navigate through all links, buttons, and form fields, and trigger all actions using only the Tab, Shift+Tab, Enter, and Space keys.', failureExample: 'A custom photo gallery component only advances photos when the mouse is clicked, providing no keyboard control for navigation.' },
+            { id: '5.2.22', wcag: '2.1.2', level: 'A', principle: 'O', title: 'No Keyboard Trap', mandate: 'If keyboard focus can be moved into a component (like a modal window), it must also be able to be moved out of that component using a standard key (like Tab or Esc).', example: 'After opening a pop-up window, the user can press the Tab key to cycle through elements and press Escape or Tab out to the rest of the page.', failureExample: 'When a modal opens, tabbing only cycles through elements inside the modal, and pressing Escape does nothing, trapping the keyboard user inside the component.' },
+            { id: '5.2.23', wcag: '2.1.4', level: 'A', principle: 'O', title: 'Character Key Shortcuts', mandate: 'If a single character key shortcut (e.g., pressing \'M\' to open a menu) is implemented, there must be a way to turn it off, remap it, or ensure the shortcut is only active when the component has focus.', example: 'The website uses \'C\' as a shortcut to launch the Contact Us form, but provides an easily accessible setting to disable this single-key shortcut.', failureExample: 'Pressing the letter \'S\' on any part of the page unexpectedly submits the current form without warning, with no option to disable the shortcut.' },
+            { id: '5.2.24', wcag: '2.2.1', level: 'A', principle: 'O', title: 'Timing Adjustable', mandate: 'If a time limit is set (e.g., for a quiz or session timeout), the user must be able to turn it off, adjust it to at least ten times the default, or extend it before time runs out.', example: 'A user filling out a 15-minute application form receives a warning at 13 minutes and is given a clear, accessible option to extend the session timer by 30 minutes.', failureExample: 'An online registration form times out after 10 minutes without any warning or option to extend the session, causing the user to lose all entered data.' },
+            { id: '5.2.25', wcag: '2.2.2', level: 'A', principle: 'O', title: 'Pause, Stop, Hide', mandate: 'Moving, flashing, scrolling, or auto-updating information must be stoppable, paused, hidden, or controllable by the user.', example: 'A news ticker at the top of the page includes a clearly visible "Pause" button or icon that stops the automatic scrolling.', failureExample: 'An auto-scrolling image carousel on the homepage moves continuously, with no accessible controls to pause the motion.' },
+            { id: '5.2.26', wcag: '2.3.1', level: 'A', principle: 'O', title: 'Three Flashes or Below Threshold', mandate: 'Web content must not contain anything that flashes or blinks more than three times in any one-second period, due to the risk of triggering seizures.', example: 'A subtle loading animation only changes colors twice per second, safely below the flashing threshold.', failureExample: 'A graphic warning animation flashes rapidly with high-contrast colors at a rate of five times per second, posing a seizure risk.' },
+            { id: '5.2.27', wcag: '2.4.1', level: 'A', principle: 'O', title: 'Bypass Blocks', mandate: 'A mechanism must be available to bypass blocks of content that are repeatedly on multiple Web pages (e.g., navigation links, banners, headers).', example: 'The first element on the page is a visible or programmatically defined "Skip to Main Content" link that is keyboard accessible.', failureExample: 'A keyboard user must tab through 50 global navigation links on every page before reaching the main content area, with no bypass mechanism available.' },
+            { id: '5.2.28', wcag: '2.4.2', level: 'A', principle: 'O', title: 'Page Titled', mandate: 'Web pages must have titles that accurately and clearly describe the topic or purpose of the page.', example: 'The title tag for the main page reads: <code>&lt;title&gt;Ministry of Finance - Budget Documents 2024&lt;/title&gt;</code>.', failureExample: 'Multiple pages use the generic title: <code>&lt;title&gt;Welcome to Our Website&lt;/title&gt;</code>, making it difficult for users to distinguish pages in their browser history or tabs.' },
+            { id: '5.2.29', wcag: '2.4.3', level: 'A', principle: 'O', title: 'Focus Order', mandate: 'If a page can be navigated sequentially and the sequence affects meaning or operation (e.g., a form or a sequence of steps), focusable components must receive focus in an order that preserves meaning.', example: 'Tabbing through an online application form moves sequentially between fields from Name to Address to Phone Number to Submit Button.', failureExample: 'In a registration form, tabbing moves from the first name field to the submit button, then back to the last name field, creating a confusing and illogical focus flow.' },
+            { id: '5.2.30', wcag: '2.4.4', level: 'A', principle: 'O', title: 'Link Purpose (In Context)', mandate: 'The purpose of each link must be clear from the link text alone, or from the link text combined with the surrounding paragraph or list item context.', example: 'A link reads: Read the **full policy details (PDF)**. The link text is clear.', failureExample: 'Multiple links on the same page have the text "**Click Here**" and are not differentiated by the surrounding context.' },
+            { id: '5.2.31', wcag: '2.4.5', level: 'AA', principle: 'O', title: 'Multiple Ways', mandate: 'There must be more than one way to locate a web page within a set of web pages (unless the page is a step in a process).', example: 'The user can reach the \'e-Tender\' page via the main navigation bar, the sitemap, and the search function.', failureExample: 'The \'Annual Report\' page is only accessible via a single link buried deep within a long "Archives" page, with no navigation menu or search function access.' },
+            { id: '5.2.32', wcag: '2.4.6', level: 'AA', principle: 'O', title: 'Headings and Labels', mandate: 'Headings and labels must be concise, descriptive, and accurately describe the topic or purpose of the content they introduce.', example: 'A form field for an address uses the label "Permanent Residential Address (required)".', failureExample: 'A section covering required documents uses the vague heading "Section C," which provides no information about the content to a user scanning headings.' },
+            { id: '5.2.33', wcag: '2.4.7', level: 'AA', principle: 'O', title: 'Focus Visible', mandate: 'Any user interface component that receives keyboard focus must have a highly visible focus indicator.', example: 'When a user tabs to a button, a thick, high-contrast blue ring appears around the element, clearly indicating its current focus state.', failureExample: 'The website uses CSS to remove the default focus outline (`outline: none;`) and provides no visible replacement indicator.' },
+            { id: '5.2.34', wcag: '2.5.1', level: 'A', principle: 'O', title: 'Pointer Gestures', mandate: 'All functionality that uses complex pointer gestures (e.g., multi-touch, drag-and-drop, or path-based) must also be operable with a single pointer (e.g., tap, click) without the need for the complex gesture.', example: 'A map that can be zoomed using a two-finger pinch (complex gesture) also provides standard zoom in/out buttons accessible via a single click.', failureExample: 'A drag-and-drop file upload interface only accepts the drag-and-drop gesture, offering no standard "Browse/Select File" button alternative.' },
+            { id: '5.2.35', wcag: '2.5.2', level: 'A', principle: 'O', title: 'Pointer Cancellation', mandate: 'For single-pointer actions, functionality should only be executed on the up event (e.g., mouseup, touchend), allowing the user to cancel the action by dragging the pointer away before releasing.', example: 'When clicking a "Submit" button, the action is only registered when the mouse button is released. If the user moves the mouse off the button before releasing, the submission is cancelled.', failureExample: 'A button is programmed to execute on the `mousedown` event, meaning if a user accidentally clicks, the action is immediately triggered with no way to cancel by dragging the pointer away.' },
+            { id: '5.2.36', wcag: '2.5.3', level: 'A', principle: 'O', title: 'Label in Name', mandate: 'The accessible name of a user interface component must contain the visual text label of that component.', example: 'A button is visually labeled "Download PDF" and its accessible name (e.g., aria-label) is also "Download PDF".', failureExample: 'A form input is visually labeled "Name," but its accessible name is set to "User\'s Full Name (Required)," confusing screen reader users who expect the visible text to match the announced name.' },
+            { id: '5.2.37', wcag: '2.5.4', level: 'A', principle: 'O', title: 'Motion Actuation', mandate: 'Functionality triggered by device motion (e.g., shaking the phone) or user gestures (e.g., tilting) must also have an alternative, standard UI component (button/link) to perform the same action.', example: 'An application allows users to clear form fields by shaking the device (motion actuation) but also provides a keyboard-accessible "Clear Form" button.', failureExample: 'An application requires the user to shake their device to undo a recent action, providing no accessible undo button or command.' },
+
+            // U - Understandable
+            { id: '5.2.38', wcag: '3.1.1', level: 'A', principle: 'U', title: 'Language of Page', mandate: 'The default human language of the entire Web page must be programmatically determined (e.g., using the lang attribute on the html element).', example: 'The HTML tag for an English page is defined as <code>&lt;html lang="en"&gt;</code>.', failureExample: 'The main language of the page is Hindi, but the <code>lang</code> attribute is incorrectly set to <code>en</code>, causing screen readers to mispronounce all the text.' },
+            { id: '5.2.39', wcag: '3.1.2', level: 'AA', principle: 'U', title: 'Language of Parts', mandate: 'The human language of every passage or phrase that is different from the default language of the content must be programmatically identified.', example: 'An English page states that the government announced the new initiative: <code>&lt;span lang="hi"&gt;Jan Dhan Yojana&lt;/span&gt;</code>.', failureExample: 'A paragraph of text in a foreign language is embedded in an English page without the correct <code>lang</code> attribute, leading to incorrect pronunciation by assistive technologies.' },
+            { id: '5.2.40', wcag: '3.2.1', level: 'A', principle: 'U', title: 'On Focus', mandate: 'When any user interface component receives focus, it must not automatically cause a major change of context (e.g., navigating to a new page or submitting a form) unless the user has been advised of the behavior beforehand.', example: 'Tabbing to a text input field allows the user to start typing.', failureExample: 'Tabbing to a navigation link automatically triggers navigation to the new page, preventing the user from reading the link text or cancelling the action.' },
+            { id: '5.2.41', wcag: '3.2.2', level: 'A', principle: 'U', title: 'On Input', mandate: 'Changing the setting of any user interface component (e.g., typing in a text field, selecting a checkbox) must not automatically cause a change of context unless the user has been advised of the behavior beforehand.', example: 'Selecting a value from a drop-down menu automatically filters the results below, which is announced by a status message.', failureExample: 'Selecting an option from a drop-down menu automatically submits the entire form without providing a separate, explicit submit button or warning the user.' },
+            { id: '5.2.42', wcag: '3.2.3', level: 'AA', principle: 'U', title: 'Consistent Navigation', mandate: 'Navigational mechanisms (e.g., main menu, breadcrumbs, search) that are repeated on multiple web pages must appear in the same relative order and position each time.', example: 'The logo link is always in the top-left corner, and the search box is always in the top-right corner across all pages.', failureExample: 'The main navigation menu is a horizontal bar on the homepage but switches to a vertical sidebar menu on all internal pages.' },
+            { id: '5.2.43', wcag: '3.2.4', level: 'AA', principle: 'U', title: 'Consistent Identification', mandate: 'Components with the same functionality within a set of web pages must be consistently identified (same text label, same icon, same accessible name).', example: 'A button that filters content is always labeled "Filter Results" and uses a magnifying glass icon across the site.', failureExample: 'The button to go back to the homepage is labeled "Home" on one page, but labeled "Go Back" on another, confusing users about its consistent function.' },
+            { id: '5.2.44', wcag: '3.3.1', level: 'A', principle: 'U', title: 'Error Identification', mandate: 'If an input error is automatically detected (e.g., missing required field), the error must be clearly identified and described to the user in text.', example: 'When a required form field is left blank, a message appears next to the field: "Error: This field is mandatory."', failureExample: 'An input error is only indicated by coloring the field border red, with no text description of the error provided.' },
+            { id: '5.2.45', wcag: '3.3.2', level: 'A', principle: 'U', title: 'Labels or Instructions', mandate: 'Labels or instructions must be provided for all input components, clearly describing the input needed (e.g., date format, required fields).', example: 'A date field has an accompanying example format: "Enter date (DD-MM-YYYY)" and uses the <code>&lt;label&gt;</code> tag.', failureExample: 'A user must enter a password but is given no instruction on the required complexity (e.g., minimum length, special characters) until they submit the form and an error appears.' },
+            { id: '5.2.46', wcag: '3.3.3', level: 'AA', principle: 'U', title: 'Error Suggestion', mandate: 'If an input error is detected and suggestions for correction are known (e.g., a misspelled state name), the suggestions should be provided to the user.', example: 'The user inputs "Utter Pradesh." The error message reads: "Invalid State Name. Did you mean \'Uttar Pradesh\'?"', failureExample: 'The user misspells their email address domain (e.g., "gamil.com"). The error message states "Invalid Email Address" but provides no suggestion (e.g., "Did you mean \'gmail.com\'?")' },
+            { id: '5.2.47', wcag: '3.3.4', level: 'AA', principle: 'U', title: 'Error Prevention (Legal, Financial, Data)', mandate: 'For pages that result in legal commitments, financial transactions, or modification/deletion of data, the user must be able to reverse the action, check/correct the data, or confirm the submission.', example: 'Before confirming an e-payment, the user is presented with a review screen listing all transaction details (check/correct) and a final, explicit "Confirm Payment" button (confirmation).', failureExample: 'Clicking the "Delete Account" button on a profile page immediately deletes the user\'s profile without any secondary confirmation dialog or undo option.' },
+
+            // R - Robust
+            { id: '5.2.48', wcag: '4.1.1', level: 'A', principle: 'R', title: 'Parsing', mandate: 'Content implemented using markup languages (e.g., HTML) must have complete start/end tags, proper nesting, no duplicate attributes, and unique IDs to ensure reliable parsing by user agents.', example: 'The HTML passes validation checks, with all elements correctly nested and all attributes properly quoted.', failureExample: 'An HTML form contains duplicate IDs, or an attribute like `class` is listed twice on the same element, causing rendering or scripting failures in some older assistive technologies.' },
+            { id: '5.2.49', wcag: '4.1.2', level: 'A', principle: 'R', title: 'Name, Role, Value', mandate: 'For all user interface components (including form elements, links, and components generated by scripts), the Name, Role, and State (Value) must be programmatically determined.', example: 'A custom checkbox is correctly identified by a screen reader as having the Role of a checkbox, the Name of "Agree to Terms," and the current State as "Checked" or "Unchecked."', failureExample: 'A custom-built "traffic light" status indicator uses a <code>&lt;div&gt;</code> with no ARIA role or state, so a screen reader user only hears "clickable object" with no information about the component\'s purpose or current status.' },
+            { id: '5.2.50', wcag: '4.1.3', level: 'AA', principle: 'R', title: 'Status Messages', mandate: 'Status messages (e.g., "Item successfully added," "Processing your request") must be conveyed to the user by assistive technologies without receiving focus.', example: 'After a successful form submission, a message appears and uses the ARIA live region attribute (<code>aria-live="polite"</code>), which causes a screen reader to announce the success message immediately.', failureExample: 'A form submission success message appears visually, but is not enclosed in an ARIA live region, so a screen reader user remains focused on the form and never hears the confirmation message.' }
+        ];
+
+        const totalClauses = wcagClauses.length;
+        const principleLabels = ['Perceivable (P)', 'Operable (O)', 'Understandable (U)', 'Robust (R)'];
+        const principleKeys = { 'P': 'Perceivable', 'O': 'Operable', 'U': 'Understandable', 'R': 'Robust' };
+        const principleColors = ['#f44336', '#2196f3', '#ff9800', '#4caf50'];
+
+        let conformityChart, principleChart;
+
+        // --- Core Functions ---
+
+        function toggleDetails(button) {
+            const details = button.nextElementSibling;
+            const isVisible = details.style.display === 'block';
+            details.style.display = isVisible ? 'none' : 'block';
+            button.textContent = isVisible ? 'Show Details and Examples' : 'Hide Details and Examples';
+        }
+
+        // MODIFIED: Function to generate the link using the GIGW clause ID
+        function generateClauseLink(clauseId) {
+            // Assumes a local file structure where 5.2.1 links to 5.2.1.html
+            return `${clauseId}.html`; 
+        }
+
+        function renderClauses() {
+            const grid = document.getElementById('clausesGrid');
+            grid.innerHTML = wcagClauses.map(clause => `
+                <div class="clause-card ${clause.principle}-card" data-principle="${clause.principle}" data-clause-id="${clause.id}">
+                    <div class="clause-header">
+                        <a class="clause-id" href="${generateClauseLink(clause.id)}" target="_blank" title="View GIGW Clause ${clause.id} Document">${clause.id}</a>
+                        <div style="display: flex; align-items: center; margin-left: auto;">
+                            <span class="level-tag ${clause.level}">${clause.wcag} ${clause.level}</span>
+                            <span class="principle-tag ${clause.principle}">${clause.principle}</span>
+                            <input type="checkbox" class="clause-check" onchange="updateDashboard()">
+                        </div>
+                    </div>
+                    <h3>${clause.title}</h3>
+                    <button class="clause-details-toggle" onclick="toggleDetails(this)">Show Details and Examples</button>
+                    <div class="clause-details">
+                        <p><strong>WCAG SC:</strong> ${clause.wcag} (Level: ${clause.level}) 
+                           <a class="wcag-link" href="https://www.w3.org/WAI/WCAG21/Understanding/${clause.wcag.replace(/\./g, '')}.html" target="_blank">[View WCAG ${clause.wcag} Understanding]</a></p>
+                        <p><strong>Mandate/Rationale:</strong> ${clause.mandate}</p>
+                        
+                        <div class="example-section success-example">
+                            <strong>✅ Success Example:</strong> ${clause.example}
+                        </div>
+                        <div class="example-section failure-example">
+                            <strong>❌ Failure Example:</strong> ${clause.failureExample}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            updateLevelSummary(); 
+        }
+
+        function filterClauses() {
+            const showPendingOnly = document.getElementById('pendingFilter').checked;
+            const filterLabel = document.getElementById('filterLabel');
+            const cards = document.querySelectorAll('.clause-card');
+
+            filterLabel.innerHTML = showPendingOnly 
+                ? 'Show **Pending** Clauses only (Toggle to show **All**)'
+                : 'Show **All** Clauses (Toggle to show **Pending** only)';
+
+            cards.forEach(card => {
+                const isChecked = card.querySelector('.clause-check').checked;
+                const shouldShow = showPendingOnly ? !isChecked : true;
+                card.style.display = shouldShow ? 'block' : 'none';
+            });
+        }
+
+        function updateDashboard() {
+            const checks = document.querySelectorAll('.clause-check');
+            let compliantCount = 0;
+            const principleCounts = { 'P': 0, 'O': 0, 'U': 0, 'R': 0 };
+            const principleCompliantCounts = { 'P': 0, 'O': 0, 'U': 0, 'R': 0 };
+
+            checks.forEach((check, index) => {
+                const clause = wcagClauses[index];
+                principleCounts[clause.principle]++;
+                if (check.checked) {
+                    compliantCount++;
+                    principleCompliantCounts[clause.principle]++;
+                }
+            });
+
+            const conformityScore = (compliantCount / totalClauses) * 100;
+            document.getElementById('conformity-score').textContent = `${conformityScore.toFixed(1)}%`;
+
+            // Update Conformity Chart
+            if (conformityChart) conformityChart.destroy();
+            const ctxConformity = document.getElementById('conformityChart').getContext('2d');
+            conformityChart = new Chart(ctxConformity, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Compliant', 'Pending'],
+                    datasets: [{
+                        data: [compliantCount, totalClauses - compliantCount],
+                        backgroundColor: ['#4caf50', '#ff9800'],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: { callbacks: { label: function(tooltipItem) { return tooltipItem.label + ': ' + tooltipItem.raw; } } }
+                    }
+                }
+            });
+
+            // Update Principle Chart
+            const principleComplianceData = principleLabels.map(label => {
+                const key = label.substring(label.length - 2, label.length - 1);
+                return (principleCompliantCounts[key] / principleCounts[key]) * 100 || 0;
+            });
+
+            if (principleChart) principleChart.destroy();
+            const ctxPrinciple = document.getElementById('principleChart').getContext('2d');
+            principleChart = new Chart(ctxPrinciple, {
+                type: 'bar',
+                data: {
+                    labels: principleLabels,
+                    datasets: [{
+                        label: 'Compliance Percentage',
+                        data: principleComplianceData,
+                        backgroundColor: principleColors,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, max: 100, title: { display: true, text: 'Compliance (%)' } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+        
+        // Function to count and display A/AA/AAA summary
+        function updateLevelSummary() {
+            const levelCounts = { 'A': 0, 'AA': 0, 'AAA': 0 };
+
+            wcagClauses.forEach(clause => {
+                if (levelCounts.hasOwnProperty(clause.level)) {
+                    levelCounts[clause.level]++;
+                }
+            });
+
+            document.getElementById('count-A').textContent = levelCounts['A'];
+            document.getElementById('count-AA').textContent = levelCounts['AA'];
+            document.getElementById('count-AAA').textContent = levelCounts['AAA'] || 0; // Use 0 if AAA count is missing
+        }
+
+        function generateReport() {
+            window.print();
+        }
+
+        // Initialize the report
+        document.addEventListener('DOMContentLoaded', () => {
+            renderClauses();
+            updateDashboard(); // Initialize charts
+        });
+    </script>
+</body>
+</html>

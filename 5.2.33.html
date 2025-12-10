@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.33: Focus Visible (WCAG 2.4.7)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #6495ED; /* Unique color for 2.4.7 */
+            border-bottom: 3px solid #6495ED;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Demo Styles */
+        .interactive-element {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            border: 2px solid #ccc;
+            background-color: #f9f9f9;
+            text-decoration: none;
+            color: #333;
+            cursor: pointer;
+        }
+        
+        /* --- Success: Highly Visible Focus Indicator --- */
+        .compliant-button:focus {
+            outline: 4px dashed #0056b3; /* Strong, high-contrast outline */
+            background-color: #e0eaff;
+            border-color: #0056b3;
+            outline-offset: 2px;
+        }
+        
+        /* --- Failure: Hidden Focus Indicator --- */
+        .non-compliant-button:focus {
+            outline: none; /* Removing the focus indicator is a failure! */
+            box-shadow: none;
+            /* No visible change on focus */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.32.html"><strong><< Previous</strong> (5.2.32)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.34.html"><strong>Next >></strong> (5.2.34)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.33: Focus Visible (WCAG 2.4.7)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 2.4.7 Focus Visible**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**AA**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #6495ED; font-weight: bold;">Keyboard Focus Must Be Visible</span></td></tr>
+            <tr><td>**Goal**</td><td>To ensure that users navigating via keyboard always know which element has the current focus.</td></tr>
+            <tr><td>**Requirement**</td><td>A visible focus indicator must be provided for all keyboard-operable elements. The indicator must have a minimum contrast ratio against its unfocused state.</td></tr>
+            <tr><td>**Developer Action**</td><td>Preserve the browser's default focus ring or implement a high-contrast, custom focus indicator (like a thick outline or box shadow).</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Highly Contrastive Focus Indicator</h3>
+            <p><strong>Scenario:</strong> A set of buttons uses a clear, high-contrast blue dashed outline when focused.</p>
+            
+            <p>*(To test, press the **Tab** key to move focus onto the buttons below.)*</p>
+            
+            <a href="#" class="interactive-element compliant-button">Link with Focus Ring</a>
+            <button class="interactive-element compliant-button">Button with Focus Ring</button>
+
+            <p class="note">**Compliance Justification:** When focus is received, the element displays a **strong, visible change** (thick blue outline) that contrasts clearly with the surrounding unfocused state. This makes the currently focused element easy to locate, meeting SC 2.4.7.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Hidden Focus Indicator</h3>
+            <p><strong>Scenario:</strong> A developer uses CSS to remove the default browser focus ring globally without providing a replacement.</p>
+            
+            <p>*(To test, press the **Tab** key to move focus onto the buttons below. You will notice the focus position is lost.)*</p>
+            
+            <a href="#" class="interactive-element non-compliant-button">Link with NO Focus Ring</a>
+            <button class="interactive-element non-compliant-button">Button with NO Focus Ring</button>
+            <input type="text" placeholder="Input with NO Focus Ring" class="interactive-element non-compliant-button">
+
+            <p class="note">**Compliance Justification:** The CSS property `outline: none;` was applied to the `:focus` pseudo-class without providing any alternative visual feedback. When a keyboard user tabs to these elements, there is **no visible indication** of where the focus is located, resulting in a failure of SC 2.4.7.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Focus Indicator Hidden Behind Other Elements</h3>
+            <p><strong>Scenario:</strong> A link is placed near the edge of a container, and when focused, the focus ring is clipped by an overflow property of the container.</p>
+
+            <div style="width: 250px; height: 50px; overflow: hidden; border: 1px solid #dc3545; padding: 10px;">
+                <p style="margin: 0;">Link with part of the focus ring clipped or hidden. <a href="#" class="compliant-button" style="margin-right: -10px;">Clipped Link</a></p>
+            </div>
+
+            <p class="note">**Compliance Justification:** Even if a focus indicator is technically present, if it is hidden or obscured by other content or CSS properties, it is not "visible" to the user. The user cannot fully perceive the focus location, leading to a failure of SC 2.4.7.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 2.4.7 Focus Visible</td>
+                    <td>AA</td>
+                    <td>**Crucial Rule:** Ensure that every interactive element (`<a>`, `<button>`, `<input>`, etc.) has a highly visible focus indicator when navigated to using the keyboard (e.g., Tab key). **DO NOT** remove the default browser outline without providing a strong, clear custom replacement.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

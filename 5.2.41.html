@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.41: On Input (WCAG 3.2.2)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #008000; /* Unique color for 3.2.2 (Green/Input) */
+            border-bottom: 3px solid #008000;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Demo Styles */
+        .demo-form {
+            border: 1px solid #008000;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .demo-select {
+            padding: 8px;
+            margin-right: 15px;
+            border: 1px solid #ccc;
+        }
+        .warning-text {
+            color: #FF8C00;
+            font-style: italic;
+            margin-top: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.40.html"><strong><< Previous</strong> (5.2.40)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.42.html"><strong>Next >></strong> (5.2.42)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.41: On Input (WCAG 3.2.2)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 3.2.2 On Input**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #008000; font-weight: bold;">Input Must Be Predictable</span></td></tr>
+            <tr><td>**Goal**</td><td>To prevent unexpected consequences (like page navigation or submission) when a user changes a form control value, unless the user has been forewarned.</td></tr>
+            <tr><td>**Definition of Context Change**</td><td>Major change in content, page navigation, or opening a new window.</td></tr>
+            <tr><td>**Requirement**</td><td>A change in a form control's value (input) should not automatically cause a context change. If it does, a warning must be provided *before* the user interacts.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Standard Form (No Automatic Context Change)</h3>
+            <p><strong>Scenario:</strong> A user selects a language preference from a dropdown, but nothing happens until they press Submit.</p>
+            
+            <form class="demo-form">
+                <label for="lang-pref">Preferred Language:</label>
+                <select id="lang-pref" class="demo-select">
+                    <option>English</option>
+                    <option>Hindi</option>
+                </select>
+                <button type="submit">Update Settings</button>
+            </form>
+
+            <p class="note">**Compliance Justification:** Changing the value in the `<select>` menu does **not** automatically trigger a context change (like submission or page reload). The user must explicitly activate the "Update Settings" button. This is the **preferred, compliant method** and requires no warning.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Automatic Submission with Explicit Warning</h3>
+            <p><strong>Scenario:</strong> A form must submit instantly when a value is selected, but the user is warned.</p>
+            
+            <form class="demo-form" style="border-color: #FF8C00;">
+                <label for="sort-warn">Sort Results By:</label>
+                <span class="warning-text">**Warning: Selecting an option below will immediately update the search results.**</span>
+                <select id="sort-warn" class="demo-select" onchange="this.form.submit();" style="background-color: #fffacd;">
+                    <option>Date</option>
+                    <option>Relevance</option>
+                </select>
+            </form>
+
+            <p class="note">**Compliance Justification:** Although changing the `<select>` value automatically triggers a context change (form submission/page reload), the user is **explicitly advised of this behavior** by the visible warning text before they interact with the control. This makes the unpredictable behavior predictable and is compliant.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Auto-Submission Without Warning</h3>
+            <p><strong>Scenario:</strong> A developer makes a dropdown menu trigger a page reload instantly when a value is selected, with no warning.</p>
+            
+            <form class="demo-form" style="border-color: #dc3545;">
+                <label for="filter-fail">Filter Data By:</label>
+                <select id="filter-fail" class="demo-select" onchange="window.location.href='new-results-page.html';" style="background-color: #f8d7da;">
+                    <option>All</option>
+                    <option>Recent</option>
+                </select>
+                <p style="color: red; margin-top: 10px;">(Selecting 'Recent' automatically reloads the page to display new results.)</p>
+                <p>No warning text is present on the page.</p>
+            </form>
+
+            <p class="note">**Compliance Justification:** Changing the value in the `<select>` menu automatically causes a **change of context** (page reload) via the `onchange` event. Since the user was **not advised** that this would happen, the resulting navigation is unexpected and disorienting. This fails SC 3.2.2.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Checkbox Triggering Major Content Shift</h3>
+            <p><strong>Scenario:</strong> Clicking a checkbox causes a large section of the page content to disappear, confusing the user.</p>
+
+            <form class="demo-form" style="border-color: #dc3545;">
+                <input type="checkbox" id="toggle-content" onchange="/* JavaScript to hide the main form below */" style="margin-right: 5px;">
+                <label for="toggle-content">Show Advanced Options</label>
+                <p style="color: red; margin-top: 10px;">(Checking/unchecking the box instantly hides/shows a large, complex form below.)</p>
+                <p>No warning is present to advise of the immediate content change.</p>
+            </form>
+
+            <p class="note">**Compliance Justification:** The immediate and extensive disappearance/reappearance of content constitutes a **major change of context**. If this content change is triggered automatically by the `onchange` event of the checkbox without a clear warning, it violates SC 3.2.2. The change must either wait for an explicit "Apply" button or be clearly announced.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 3.2.2 On Input</td>
+                    <td>A</td>
+                    <td>**Rule:** A change in a form control's value (input) should **not** automatically submit a form, reload the page, or cause any other major **change of context**. If this auto-action is necessary, you **must** provide a clear, visible warning to the user *before* they change the input value.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

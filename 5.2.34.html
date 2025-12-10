@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.34: Pointer Gestures (WCAG 2.5.1)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #FF8C00; /* Unique color for 2.5.1 (Orange/Gesture) */
+            border-bottom: 3px solid #FF8C00;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Demo Styles */
+        .map-container {
+            border: 1px solid #ccc;
+            height: 150px;
+            background: #eee;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+        .control-buttons {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .control-buttons button {
+            padding: 5px 10px;
+            margin-left: 5px;
+            border: 1px solid #007bff;
+            background-color: #eaf3ff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.33.html"><strong><< Previous</strong> (5.2.33)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.35.html"><strong>Next >></strong> (5.2.35)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.34: Pointer Gestures (WCAG 2.5.1)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 2.5.1 Pointer Gestures**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #FF8C00; font-weight: bold;">Avoid Complex Gestures</span></td></tr>
+            <tr><td>**Goal**</td><td>To provide simple, keyboard-operable alternatives for complex touch or pointer gestures, accommodating users with motor skill limitations.</td></tr>
+            <tr><td>**Requirement**</td><td>Any function requiring a gesture (multi-point, e.g., pinch) or a path (e.g., swipe, drag-and-drop) must also be achievable by a single click/tap (e.g., using buttons).</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Map Zoom Functionality</h3>
+            <p><strong>Scenario:</strong> A government map interface where users can zoom in and out.</p>
+            
+            <div class="map-container">
+                <div class="control-buttons">
+                    <button>+</button>
+                    <button>-</button>
+                </div>
+                <p>Interactive Map Area (Allows Pinch-to-Zoom or Scroll-Zoom)</p>
+            </div>
+
+            <p class="note">**Compliance Justification:** The zoom function can be performed by a complex gesture (multipoint pinch on a touchscreen or path-based scroll-wheel drag on a desktop). However, the inclusion of the **"+" and "-" buttons** provides an equivalent mechanism that can be operated with a **single tap/click**, meeting SC 2.5.1.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Swipe-Based Image Carousel</h3>
+            <p><strong>Scenario:</strong> A mobile news feed uses a horizontal swipe gesture to move between news slides.</p>
+            
+            <div style="border: 2px solid #28a745; padding: 10px; text-align: center;">
+                <button>&lt; Previous</button>
+                Image Carousel (Swipe Left/Right)
+                <button>Next &gt;</button>
+            </div>
+
+            <p class="note">**Compliance Justification:** The horizontal swipe (a path-based gesture) is primarily used for navigation. The inclusion of visible **"Previous"** and **"Next"** buttons allows a user to perform the exact same function with a single, non-path-based tap, making the content accessible under SC 2.5.1.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Path-Based Gesture Requirement (Authentication)</h3>
+            <p><strong>Scenario:</strong> A mandatory security feature requires the user to trace a complex shape (e.g., a circle) on a canvas to log in.</p>
+            
+            <div style="border: 2px solid #dc3545; padding: 15px; text-align: center;">
+                <h4>Login Authentication</h4>
+                <p>Required: Draw the shape displayed below to proceed.</p>
+                <div style="width: 100px; height: 50px; background: #fcebeb; margin: 10px auto;">
+                    
+
+[Image of a circle to draw]
+
+                </div>
+            </div>
+
+            <p class="note">**Compliance Justification:** Tracing a specific shape is a **path-based gesture**. Since this is an authentication mechanism (not an "essential" artistic function like signing a form), and **no equivalent single-tap/click option** (like a password field or PIN entry) is provided, this fails SC 2.5.1.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Exclusive Drag-and-Drop Sorting</h3>
+            <p><strong>Scenario:</strong> A user must reorder a list of tasks using only a drag-and-drop motion (a path-based gesture) with no alternative controls.</p>
+
+            <ul style="border: 1px solid #dc3545; padding: 10px;">
+                <li>Task 1 (Drag to reorder)</li>
+                <li>Task 2 (Drag to reorder)</li>
+                <li>Task 3 (Drag to reorder)</li>
+            </ul>
+
+            <p class="note">**Compliance Justification:** Dragging an item from one position to another requires a path-based gesture. If **no alternative controls** (like "Move Up" and "Move Down" buttons next to each task) are provided, users with motor impairments cannot perform the function, failing SC 2.5.1.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 2.5.1 Pointer Gestures</td>
+                    <td>A</td>
+                    <td>If your functionality requires users to perform a **path-based gesture** (swipe, drag, draw) or a **multipoint gesture** (pinch), you **must** provide an alternative mechanism that uses only a **single tap/click** (e.g., buttons, simple links) to achieve the same result.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.43: Consistent Identification (WCAG 3.2.4)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #FF4500; /* Unique color for 3.2.4 (Orange Red/Consistency) */
+            border-bottom: 3px solid #FF4500;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Demo Styles */
+        .component-box {
+            border: 1px solid #FF4500;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .control-button {
+            padding: 8px 15px;
+            background-color: #ffe0cc;
+            border: 1px solid #FF4500;
+            cursor: pointer;
+        }
+        .control-input {
+            padding: 8px;
+            border: 1px solid #FF4500;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.42.html"><strong><< Previous</strong> (5.2.42)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.44.html"><strong>Next >></strong> (5.2.44)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.43: Consistent Identification (WCAG 3.2.4)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 3.2.4 Consistent Identification**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**AA**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #FF4500; font-weight: bold;">Same Function, Same Label</span></td></tr>
+            <tr><td>**Goal**</td><td>To ensure users can confidently predict the function of a component (visually and programmatically) across an entire website, reducing errors and cognitive load.</td></tr>
+            <tr><td>**Requirement**</td><td>Components that perform the same function must have identical **Accessible Names** (the name read by screen readers or used by voice commands) and generally identical **visual labels**.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Consistent Button Labels</h3>
+            <p><strong>Scenario:</strong> The final button in a multi-step form process is repeated on different pages.</p>
+            
+            <h4>Page A: Step 2</h4>
+            <div class="component-box" style="border-color: #28a745;">
+                <span class="label">Button:</span> 
+                <button class="control-button" aria-label="Confirm and Proceed">**Submit Application**</button>
+            </div>
+
+            <h4>Page B: Step 3</h4>
+            <div class="component-box" style="border-color: #28a745;">
+                <span class="label">Button:</span> 
+                <button class="control-button" aria-label="Confirm and Proceed">**Submit Application**</button>
+            </div>
+
+            <p class="note">**Compliance Justification:** Both buttons have the identical visual label (**"Submit Application"**) and identical accessible name (`aria-label="Confirm and Proceed"`). Since they perform the same function (finalizing the form), the consistent identification is compliant with SC 3.2.4.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Consistent Search Fields</h3>
+            <p><strong>Scenario:</strong> A site-wide search field appears in the header and footer.</p>
+            
+            <h4>Header Search Field</h4>
+            <div class="component-box" style="border-color: #28a745;">
+                <label for="search-top" class="label">Search Site:</label>
+                <input type="text" id="search-top" placeholder="Search..." class="control-input" title="Search Site">
+            </div>
+
+            <h4>Footer Search Field</h4>
+            <div class="component-box" style="border-color: #28a745;">
+                <label for="search-bottom" class="label">Search Site:</label>
+                <input type="text" id="search-bottom" placeholder="Search..." class="control-input" title="Search Site">
+            </div>
+
+            <p class="note">**Compliance Justification:** Both search fields perform the same function. They share the same visual label (**"Search Site:"**) and the same programmatic label (`title="Search Site"`). This consistency is compliant.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Different Button Labels for Same Function</h3>
+            <p><strong>Scenario:</strong> Two buttons performing the exact same "next step" action use different visual labels.</p>
+
+            <h4>Page A: Step 1 (Visual Label)</h4>
+            <div class="component-box" style="border-color: #dc3545;">
+                <span class="label">Button:</span> 
+                <button class="control-button" style="background-color: #f8d7da;">**Continue**</button>
+            </div>
+
+            <h4>Page B: Step 2 (Visual Label)</h4>
+            <div class="component-box" style="border-color: #dc3545;">
+                <span class="label">Button:</span> 
+                <button class="control-button" style="background-color: #f8d7da;">**Next Step**</button>
+            </div>
+
+            <p class="note">**Compliance Justification:** Since both buttons perform the identical "move forward" function, they must share the same label. Using **"Continue"** on one page and **"Next Step"** on the next page fails to identify the component consistently. Users who look for a specific button label or use speech commands are disadvantaged. This fails SC 3.2.4.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Inconsistent Accessible Names for Icon Buttons</h3>
+            <p><strong>Scenario:</strong> A "Cart" icon button appears on multiple pages but uses different `aria-label` values.</p>
+
+            <h4>Page C: Product Page (Accessible Name)</h4>
+            <div class="component-box" style="border-color: #dc3545;">
+                <span class="label">Icon Button:</span> 
+                <button class="control-button" style="background-color: #f8d7da;" aria-label="Shopping Cart">🛒</button>
+            </div>
+
+            <h4>Page D: Checkout Page (Accessible Name)</h4>
+            <div class="component-box" style="border-color: #dc3545;">
+                <span class="label">Icon Button:</span> 
+                <button class="control-button" style="background-color: #f8d7da;" aria-label="View Basket">🛒</button>
+            </div>
+
+            <p class="note">**Compliance Justification:** Both buttons perform the same function (navigate to the order review page). However, the accessible name is **"Shopping Cart"** on Page C and **"View Basket"** on Page D. A speech input user who learns to say "Click Shopping Cart" will fail to activate the button on Page D. This inconsistent programmatic identification fails SC 3.2.4.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 3.2.4 Consistent Identification</td>
+                    <td>AA</td>
+                    <td>**Rule:** If two or more components perform the exact same action across different pages of a website, they **must** have the same **visual label** (if text is present) and the same **Accessible Name** (`aria-label` or equivalent programmatic name).</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

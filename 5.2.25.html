@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.25: Pause, Stop, Hide (WCAG 2.2.2)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4B0082; /* Unique color for 2.2.2 */
+            border-bottom: 3px solid #4B0082;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* --- Demo Styles --- */
+        
+        /* 1. Failure: Autoscroll without control */
+        .scrolling-news-trap {
+            overflow: hidden;
+            white-space: nowrap;
+            border: 1px solid #dc3545;
+            padding: 5px;
+            margin-bottom: 15px;
+            background-color: #fcebeb;
+        }
+        .scrolling-text {
+            display: inline-block;
+            animation: scroll 10s linear infinite; /* Lasts more than 5 seconds */
+            padding-left: 100%; /* Start off-screen */
+        }
+        @keyframes scroll {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+
+        /* 2. Success: Pause/Play Button */
+        .carousel-container {
+            border: 1px solid #28a745;
+            padding: 10px;
+            background-color: #e6f7e6;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .slider-content {
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-weight: bold;
+            transition: opacity 1s;
+        }
+
+        /* 3. Success: Auto-Update with frequency control */
+        .data-stream {
+            border: 1px dashed #007bff;
+            padding: 10px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.24.html"><strong><< Previous</strong> (5.2.24)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.26.html"><strong>Next >></strong> (5.2.26)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.25: Pause, Stop, Hide (WCAG 2.2.2)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 2.2.2 Pause, Stop, Hide**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #4B0082; font-weight: bold;">Control Over Moving Content</span></td></tr>
+            <tr><td>**Goal**</td><td>To give users control over automatically moving or rapidly changing content.</td></tr>
+            <tr><td>**Requirement (Moving/Scrolling/Blinking)**</td><td>Must have a **Pause, Stop, or Hide** mechanism if the movement is automatic, lasts $\ge 5$ seconds, and runs in parallel with other content.</td></tr>
+            <tr><td>**Requirement (Auto-Updating)**</td><td>Must have a **Pause, Stop, Hide** mechanism or **control over the update frequency** if the update is automatic and runs in parallel with other content.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Controllable Carousel (Moving Content)</h3>
+            <p><strong>Scenario:</strong> An image carousel or news slider that rotates slides automatically every 5 seconds (runs for more than 5 seconds).</p>
+            
+            <div class="carousel-container">
+                <div id="slider-text" class="slider-content">
+                    Slide 1: This text moves automatically!
+                </div>
+                <button id="pause-btn" onclick="togglePause(this)">**Pause**</button>
+                <button onclick="currentSlide = 0; updateSlider(true);">Reset</button>
+            </div>
+            
+            <p class="note">**Compliance Justification:** This meets the criterion by providing a clear **Pause** button. The movement is automatic and lasts longer than 5 seconds, so user control is essential for users to read the content on the slides.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Adjustable Data Stream (Auto-Updating Content)</h3>
+            <p><strong>Scenario:</strong> A dashboard widget displaying real-time stock prices or traffic data.</p>
+            
+            <div class="data-stream">
+                <p>Latest Data Refresh: <span id="data-time">0 seconds ago</span></p>
+                
+                <p>
+                    <button onclick="pauseUpdates(this)">**Pause Updates**</button>
+                    <label for="freq-select">Update Frequency:</label>
+                    <select id="freq-select" onchange="setFrequency(this.value)">
+                        <option value="5000">5 seconds (Default)</option>
+                        <option value="10000">10 seconds</option>
+                        <option value="30000">30 seconds</option>
+                        <option value="60000">1 minute</option>
+                    </select>
+                </p>
+            </div>
+
+            <p class="note">**Compliance Justification:** The system offers a **Pause** mechanism and control over the **Frequency** of the updates. Both satisfy the requirement for auto-updating content, allowing users to stabilize the data stream to read the information.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Non-Controllable Scrolling News Ticker</h3>
+            <p><strong>Scenario:</strong> A non-essential news ticker running perpetually at the top of the page without user controls.</p>
+            
+            <div class="scrolling-news-trap">
+                <div class="scrolling-text">
+                    *** Urgent News Update: Developers forgot to add a pause button! This scrolling text runs forever and cannot be stopped. *** This constant movement can distract users trying to read the main content below. ***
+                </div>
+            </div>
+
+            <p class="note">**Compliance Justification:** The scrolling text is **Moving** (scrolling), **starts automatically**, **lasts more than 5 seconds** (indefinitely), and is presented **in parallel** with other content. The **lack of any mechanism** to pause, stop, or hide the element makes this a failure of SC 2.2.2.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Auto-Updating Stock Ticker with Fixed Rate</h3>
+            <p><strong>Scenario:</strong> A stock price widget updates every 10 seconds, but the user cannot slow it down or stop it.</p>
+
+            <p style="border: 2px solid #dc3545; padding: 10px; margin-top: 15px;">
+                Stock Price: ₹ <span id="failure-stock-price">100.00</span> (Updates every 10 seconds, NO control provided.)
+            </p>
+
+            <p class="note">**Compliance Justification:** The auto-updating information is presented in parallel with other content, yet the developer has provided **no mechanism** to pause it, stop it, hide it, or control the frequency. A user relying on a screen reader might miss the crucial stock value before it refreshes, leading to a failure of SC 2.2.2.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 2.2.2 Pause, Stop, Hide</td>
+                    <td>A</td>
+                    <td>**Moving/Blinking/Scrolling:** Provide a **Pause/Stop/Hide** button for all non-essential automatic movement lasting $\ge 5$ seconds. **Auto-Updating:** Provide a **Pause/Stop/Hide** button or a **Frequency Control** for all non-essential automatic data updates.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <script>
+        // --- JAVASCRIPT TO MAKE THE DEMO INTERACTIVE ---
+        
+        // --- Success Example 1: Controllable Carousel ---
+        let sliderInterval;
+        let isPaused = false;
+        let currentSlide = 0;
+        const slides = ["Slide 1: This text moves automatically!", "Slide 2: Important announcement!", "Slide 3: Please pause to read."];
+        const sliderText = document.getElementById('slider-text');
+        const pauseBtn = document.getElementById('pause-btn');
+
+        function updateSlider(reset = false) {
+            if (reset) {
+                currentSlide = 0;
+            }
+            if (!isPaused) {
+                sliderText.style.opacity = 0; // Fade out
+                setTimeout(() => {
+                    sliderText.textContent = slides[currentSlide];
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    sliderText.style.opacity = 1; // Fade in
+                }, 1000); // Wait for fade out
+            }
+        }
+
+        function togglePause(button) {
+            isPaused = !isPaused;
+            if (isPaused) {
+                clearInterval(sliderInterval);
+                button.textContent = 'Play';
+                sliderText.style.background = '#ffd700';
+            } else {
+                sliderInterval = setInterval(updateSlider, 5000); // 5s interval
+                button.textContent = 'Pause';
+                sliderText.style.background = 'none';
+                updateSlider(); // Start immediately
+            }
+        }
+
+        // Initialize carousel
+        sliderText.textContent = slides[0];
+        sliderInterval = setInterval(updateSlider, 5000);
+        
+        // --- Success Example 2 & Failure Example 2: Auto-Updating Data ---
+        let updateInterval;
+        let updateFrequency = 5000;
+        let isUpdatePaused = false;
+        let lastUpdateTime = Date.now();
+        const dataTimeElement = document.getElementById('data-time');
+        const failureStockPrice = document.getElementById('failure-stock-price');
+        let stockValue = 100.00;
+
+        function updateData(force = false) {
+            if (!isUpdatePaused || force) {
+                // Update Success Data
+                lastUpdateTime = Date.now();
+                dataTimeElement.textContent = `0 seconds ago (${new Date().toLocaleTimeString()})`;
+                
+                // Update Failure Data (The failure is the lack of control, not the update itself)
+                stockValue += (Math.random() - 0.5) * 5;
+                failureStockPrice.textContent = stockValue.toFixed(2);
+                
+                if (!force) {
+                    clearInterval(updateInterval);
+                    updateInterval = setInterval(updateData, updateFrequency);
+                }
+            }
+        }
+        
+        function pauseUpdates(button) {
+            isUpdatePaused = !isUpdatePaused;
+            if (isUpdatePaused) {
+                clearInterval(updateInterval);
+                button.textContent = 'Resume Updates';
+            } else {
+                updateInterval = setInterval(updateData, updateFrequency);
+                button.textContent = 'Pause Updates';
+                updateData(true); // Resume immediately
+            }
+        }
+
+        function setFrequency(newFreq) {
+            updateFrequency = parseInt(newFreq);
+            if (!isUpdatePaused) {
+                updateData(true); // Restart interval with new frequency
+            }
+        }
+
+        // Initialize auto-updating data
+        updateData(true); 
+    </script>
+</body>
+</html>

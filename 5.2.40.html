@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.40: On Focus (WCAG 3.2.1)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4B0082; /* Unique color for 3.2.1 (Indigo/Focus) */
+            border-bottom: 3px solid #4B0082;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Demo Styles */
+        .demo-form {
+            border: 1px solid #4B0082;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .demo-select {
+            padding: 8px;
+            margin-right: 15px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.39.html"><strong><< Previous</strong> (5.2.39)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.41.html"><strong>Next >></strong> (5.2.41)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.40: On Focus (WCAG 3.2.1)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 3.2.1 On Focus**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #4B0082; font-weight: bold;">No Context Change On Focus</span></td></tr>
+            <tr><td>**Goal**</td><td>To provide a predictable experience for all users, particularly keyboard users, by ensuring actions like navigation do not occur automatically when tabbing to an element.</td></tr>
+            <tr><td>**Definition of Context Change**</td><td>Major change in content, page navigation, or opening a new window.</td></tr>
+            <tr><td>**Requirement**</td><td>Focusing on an element (e.g., via the Tab key) must not automatically trigger a change of context. Such changes must be initiated by an **explicit user action** (e.g., clicks a link, presses a submit button), not merely when the control gains focus via tabbing.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+        
+
+        <section class="success">
+            <h3>Success Example 1: Predictable Navigation</h3>
+            <p><strong>Scenario:</strong> Tabbing through a navigation menu.</p>
+            
+            <nav style="border: 1px solid #28a745; padding: 10px;">
+                <a href="#">Home</a> | 
+                <a href="#">Services</a> | 
+                <a href="#">Contact Us</a>
+            </nav>
+
+            <p class="note">**Compliance Justification:** When a user tabs from "Home" to **"Services"**, the "Services" link receives focus, but the page does not automatically navigate. The user must explicitly press **Enter/Space** or click the link to proceed. This predictability is compliant with SC 3.2.1.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Non-Submitting Dropdown/Select Menu</h3>
+            <p><strong>Scenario:** A form where users select a state from a dropdown menu, but the form only submits when they click the submit button.</p>
+            
+            <form class="demo-form">
+                <label for="city-select">Select City:</label>
+                <select id="city-select" class="demo-select">
+                    <option>Select...</option>
+                    <option>New Delhi</option>
+                    <option>Mumbai</option>
+                </select>
+                <button type="submit">Submit Form</button>
+            </form>
+
+            <p class="note">**Compliance Justification:** The user can tab onto the `<select>` menu. When they select an option (a change event), the page **does not automatically submit** the form or navigate away. The submission requires the explicit action of clicking the "Submit Form" button. This is compliant.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Automatic Navigation on Focus</h3>
+            <p><strong>Scenario:</strong> A custom navigation link uses JavaScript to immediately navigate to a new page upon receiving focus.</p>
+            
+            <nav style="border: 1px solid #dc3545; padding: 10px;">
+                <a href="#">Home</a> | 
+                <a href="#" onfocus="window.location.href='unexpected-page.html';" style="background-color: #f8d7da;">**Services (Failure Point)**</a> | 
+                <a href="#">Contact Us</a>
+            </nav>
+
+            <p class="note">**Compliance Justification:** If a keyboard user presses **Tab** to move focus to the "Services" link, the `onfocus` event immediately triggers page navigation. The user did not intend to activate the link; they only intended to move the keyboard cursor. This **unexpected change of context** immediately upon focus fails SC 3.2.1.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Automatic Form Submission on Change (without explicit action)</h3>
+            <p><strong>Scenario:</strong> A form where selecting a value from a dropdown menu automatically submits the entire form.</p>
+
+            <form class="demo-form" style="border-color: #dc3545;">
+                <label for="sort-select">Sort Results By:</label>
+                <select id="sort-select" class="demo-select" onchange="this.form.submit();" style="background-color: #f8d7da;">
+                    <option>Relevance</option>
+                    <option>Date</option>
+                </select>
+                <p style="color: red; margin-top: 10px;">(Selecting 'Date' automatically submits the form.)</p>
+            </form>
+
+            <p class="note">**Compliance Justification:** When a user selects a new value in the `<select>` menu, the `onchange` event triggers the `form.submit()`. This automatically navigates the user to a new results page (a change of context) without an explicit submission action (like clicking a "Go" or "Submit" button). This violates SC 3.2.1.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 3.2.1 On Focus</td>
+                    <td>A</td>
+                    <td>**Crucial Rule:** Never allow keyboard focus (e.g., tabbing) to automatically trigger a "change of context" such as page navigation or form submission. Ensure critical actions only occur when the user explicitly **activates** the control (by clicking, tapping, or pressing Enter/Space).</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shortcut Remapping Scenario</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #f7f7f7;
+  }
+  .container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  h1, h2 {
+    margin-top: 0;
+  }
+  .panel {
+    margin: 15px 0;
+    padding: 15px;
+    border-left: 4px solid #007acc;
+    background: #eef7ff;
+    border-radius: 6px;
+  }
+  label {
+    font-weight: bold;
+  }
+  select {
+    padding: 5px;
+    font-size: 1rem;
+  }
+  .history {
+    margin-top: 20px;
+    padding: 10px;
+    background: #d7ffd7;
+    border: 1px solid #7ac67a;
+    display: none;
+    border-radius: 6px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Shortcut Remapping Example</h1>
+
+  <div class="panel">
+    <h2>Scenario</h2>
+    <p>A complex online dashboard originally uses the global shortcut <strong>'C'</strong> to open the Client History panel.</p>
+  </div>
+
+  <div class="panel">
+    <h2>User Settings</h2>
+    <p>Users may remap the default shortcut from <strong>'C'</strong> to another option requiring a non-printable key:</p>
+
+    <label for="shortcutSelect">Choose Shortcut:</label>
+    <select id="shortcutSelect">
+      <option value="c">C</option>
+      <option value="ctrl+c">Ctrl + C</option>
+      <option value="alt+c">Alt + C</option>
+    </select>
+  </div>
+
+  <div class="panel">
+    <h2>Compliance Justification</h2>
+    <p>The system provides a mechanism to <strong>remap</strong> the risky single-character shortcut to one requiring <strong>Ctrl</strong> or <strong>Alt</strong>. This makes it harder to trigger accidentally by speech or unintended key presses, aligning with accessibility requirements.</p>
+  </div>
+
+  <div id="historyPanel" class="history">
+    <strong>Client History Panel Opened ✔</strong>
+  </div>
+</div>
+
+<script>
+  let selectedShortcut = "c";
+  const selector = document.getElementById("shortcutSelect");
+  const historyPanel = document.getElementById("historyPanel");
+
+  selector.addEventListener("change", function() {
+    selectedShortcut = this.value;
+    historyPanel.style.display = "none";
+  });
+
+  document.addEventListener("keydown", function(e) {
+    let activate = false;
+
+    if (selectedShortcut === "c" && e.key.toLowerCase() === "c" && !e.ctrlKey && !e.altKey) {
+      activate = true;
+    }
+    if (selectedShortcut === "ctrl+c" && e.key.toLowerCase() === "c" && e.ctrlKey) {
+      activate = true;
+    }
+    if (selectedShortcut === "alt+c" && e.key.toLowerCase() === "c" && e.altKey) {
+      activate = true;
+    }
+
+    if (activate) {
+      historyPanel.style.display = "block";
+    }
+  });
+</script>
+
+</body>
+</html>

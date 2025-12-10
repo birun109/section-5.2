@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Section 5.2: Accessibility Overview</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 30px;
+            background-color: #f0f4f7;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #004d40; 
+            border-bottom: 4px solid #00796b;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2.2em;
+        }
+        h2 {
+            color: #00796b;
+            border-bottom: 2px solid #e0f7fa;
+            padding-bottom: 8px;
+            margin-top: 30px;
+            font-size: 1.6em;
+        }
+        h3 {
+            color: #2196f3;
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        p, ul {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+
+        /* Dashboard Link Button */
+        .dashboard-link-box {
+            text-align: center;
+            margin: 40px 0;
+            padding: 20px;
+            background-color: #e0f7fa; /* Light cyan background */
+            border: 2px solid #00bcd4;
+            border-radius: 10px;
+        }
+        .dashboard-link-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #e91e63; /* Pink/Magenta */
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .dashboard-link-button:hover {
+            background-color: #c2185b;
+            transform: translateY(-2px);
+        }
+        
+        /* Highlight Boxes */
+        .highlight-box {
+            padding: 15px;
+            border-left: 5px solid;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+        .risk-box {
+            border-left-color: #dc3545; /* Red for Risk */
+            background-color: #fff0f0;
+        }
+        .standard-box {
+            border-left-color: #4caf50; /* Green for Standard */
+            background-color: #e8f5e9;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>GIGW 3.0: Section 5.2 Accessibility - Policy Overview</h1>
+        
+        <div class="dashboard-link-box">
+            <p>Access the live audit results, compliance scores, and detailed clause status:</p>
+            <button onclick="goToDashboardWithAlert()" class="dashboard-link-button">
+                <span style="margin-right: 10px;">📊</span> GO TO AUDIT DASHBOARD & REPORT (5.2 ACCESSIBILITY)
+            </button>
+            
+            <p style="margin-top: 15px; font-size: 0.9em; color: #555;">(For training purpose only)</p>
+        </div>
+        
+        <h2>1. Overview of Section 5.2 (Accessibility)</h2>
+        <p>GIGW 3.0 Section 5.2 mandates that all government websites must be usable by people with disabilities, irrespective of the device or technology they use. This section contains 50 specific clauses derived directly from international standards, covering fundamental aspects of digital inclusion.</p>
+        
+        <h3>Key Goal:</h3>
+        <ul>
+            <li>To ensure **Perceivable, Operable, Understandable, and Robust (POUR)** web content.</li>
+            <li>Mandatory compliance with WCAG 2.1 Level A and Level AA success criteria.</li>
+            <li>Providing universal access to government information and services.</li>
+        </ul>
+
+        <h2>2. Importance and Impact of Compliance</h2>
+        <p>Accessibility is not just a technical requirement, but a fundamental right and a legal necessity, particularly for government services:</p>
+        
+        <ul>
+            <li>**Statutory Compliance:** It upholds principles of equality and non-discrimination as enshrined in national acts relating to persons with disabilities.</li>
+            <li>**Service Reach:** A compliant website ensures that citizens with visual, auditory, cognitive, or motor disabilities can effectively access essential government schemes, forms, and public information.</li>
+            <li>**Enhanced User Experience (UX):** Many accessibility features, like proper headings and keyboard navigation, improve usability for all users, including those on mobile devices or slow internet connections.</li>
+        </ul>
+
+        <h2>3. Risks of Non-Compliance (Audit Failure)</h2>
+        <div class="highlight-box risk-box">
+            <p>Non-compliance with GIGW 5.2 presents significant operational and reputational risks:</p>
+            <ul>
+                <li>**Inaccessibility to Citizens:** Government services become unusable by an estimated 5-8% of the population, leading to exclusion and inequality.</li>
+                <li>**Legal and Policy Violations:** Failure to meet mandated accessibility standards can result in contravention of national policies and guidelines aimed at digital inclusion.</li>
+                <li>**Audit Failure & Project Delay:** The website will fail to meet the GIGW compliance requirements necessary for launch or recertification, leading to project stalls and resource waste.</li>
+            </ul>
+        </div>
+        
+        <h2>4. Alignment with International Standards</h2>
+        <div class="highlight-box standard-box">
+            <p>GIGW 3.0 Section 5.2 is directly based on the globally accepted benchmark for web accessibility:</p>
+            <ul>
+                <li>**Web Content Accessibility Guidelines (WCAG) 2.1:** The GIGW clauses map one-to-one with WCAG Success Criteria.</li>
+                <li>**Conformance Level:** GIGW mandates achieving conformance to **WCAG 2.1 Level AA** as a minimum requirement.</li>
+                <li>**Structure:** The 50 GIGW clauses are divided into the four WCAG Principles:
+                    <ul>
+                        <li>**P**erceivable (1.x) - Information presentation</li>
+                        <li>**O**perable (2.x) - User interface components and navigation</li>
+                        <li>**U**nderstandable (3.x) - Information and operation clarity</li>
+                        <li>**R**obust (4.x) - Content interpretability by user agents</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <h2>5. Overall Relevant Important Points</h2>
+        <ul>
+            <li>**Focus on Keyboard:** Ensuring every function is operable purely through the keyboard is the most critical test for operable design.</li>
+            <li>**Semantic Markup:** The correct use of HTML elements (headings, lists, forms) is vital, as visual appearance alone is insufficient for assistive technologies.</li>
+            <li>**Text Contrast:** Contrast ratio (4.5:1 for small text) is a non-negotiable requirement for Level AA compliance, addressing low-vision users.</li>
+            <li>**Dynamic Content:** Any status update, error message, or content change must be conveyed programmatically using ARIA live regions (e.g., Clause 5.2.50).</li>
+        </ul>
+
+        <hr>
+        <p style="text-align: center; font-size: 0.85em; color: #777;">&copy; GIGW 3.0 Audit Documentation. Generated for Section 5.2 (Accessibility). Prepared by ETDC Agartala, STQC, MeitY, Govt. of India</p>
+    </div>
+    <script>
+        // Add this JavaScript function block, preferably before the closing </body> tag
+        function goToDashboardWithAlert() {
+            // 1. Display the alert message
+            alert("You are now navigating to the dynamic GIGW 5.2 Audit Dashboard. Ensure your local files (5.2.x.html) are available.");
+            
+            // 2. Redirect the user to the report page
+            // Note: Change 'audit-report.html' if your dashboard file is named differently.
+            window.location.href = "5.2_dashboard_all.html";
+        }
+    </script>
+</body>
+</html>

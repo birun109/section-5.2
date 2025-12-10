@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Live Captions Showcase (5.2.5)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #900C3F; /* Darker tone for seriousness/live event */
+            border-bottom: 3px solid #900C3F;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #C70039;
+            margin-top: 25px;
+            border-left: 5px solid #C70039;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .live-video-mock {
+            width: 500px;
+            height: 300px;
+            background-color: #000;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            position: relative;
+        }
+        .live-caption-text {
+            position: absolute;
+            bottom: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: yellow;
+            padding: 5px 10px;
+            width: 90%;
+            text-align: center;
+            font-size: 16px;
+        }
+        .note {
+            font-style: italic;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+         .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="nav-links">
+            <a href="5.2.4.html"><strong><< Previous</strong> (5.2.4)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.6.html"><strong>Next >></strong> (5.2.6)</a>
+        </div>
+        <h1>GIGW 3.0 Statement 5.2.5: Live Captions (WCAG 1.2.4)</h1>
+        
+        <h2>Clause: Live Audio Content in Synchronised Media</h2>
+        <p><strong>Requirement:</strong> Captions must be provided for all live video streams and broadcasts to ensure real-time access for deaf or hard-of-hearing users.</p>
+
+        <hr>
+
+        <section class="success">
+            <h3>✅ Success Example: Live Stream with Real-Time Captions</h3>
+            <p><strong>Media:</strong> A live press conference being streamed online.</p>
+            
+            <div class="live-video-mock">
+                <p>LIVE PRESS CONFERENCE</p>
+                <div class="live-caption-text">
+                    **[PM]**: ...and the new infrastructure plan will commence in Q1. **[SOUND: Applause]**
+                </div>
+            </div>
+            
+            <p class="note">The captions are generated in real-time and include necessary non-speech information (**[SOUND: Applause]**), which confirms compliance. Developers must ensure the live streaming platform supports this feature (e.g., using a professional captioning service).</p>
+        </section>
+
+        <hr>
+
+        <section class="failure">
+            <h3 class="failure">❌ Failure Example 1: Missing Captions Entirely</h3>
+            <p><strong>Media:</strong> A live emergency broadcast about a severe weather event.</p>
+            
+            <div class="live-video-mock" style="background-color: #333;">
+                <p>LIVE EMERGENCY ALERT</p>
+            </div>
+            
+            <p class="note">Crucial, real-time information (e.g., evacuation routes, specific warnings) is only conveyed via audio. Without captions, deaf users are completely excluded from accessing this vital, time-sensitive content, resulting in a Level AA failure.</p>
+        </section>
+        
+        <section class="failure">
+            <h3 class="failure">❌ Failure Example 2: Non-Synchronized or Delayed Captions</h3>
+            <p><strong>Media:</strong> A live Q&A session where captions appear minutes after the speaker finishes their sentence.</p>
+            
+            <div class="live-video-mock" style="background-color: #333;">
+                <p>LIVE Q&A SESSION</p>
+                <div class="live-caption-text" style="color: #ffc107;">
+                    **Caption Text**: (This caption relates to the speaker's statement from 30 seconds ago.)
+                </div>
+            </div>
+            
+            <p class="note">While captions exist, if they are severely delayed or unsynchronized (e.g., due to poor automated system quality), they fail to serve the purpose of **real-time accessibility**, making the flow of the conversation incomprehensible to the user.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>GIGW Statement</th>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Required Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5.2.5 (Live Captions)</td>
+                    <td>SC 1.2.4</td>
+                    <td>AA</td>
+                    <td>Government organizations and developers must ensure that all live synchronized media is provided with accurate, synchronized, real-time captions.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

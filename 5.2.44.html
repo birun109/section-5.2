@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.44: Error Identification (WCAG 3.3.1)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #FF0000; /* Unique color for 3.3.1 (Red/Error) */
+            border-bottom: 3px solid #FF0000;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Demo Styles */
+        .demo-form {
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .error-message {
+            color: #FF0000;
+            font-weight: bold;
+            display: block;
+            margin-top: 5px;
+        }
+        .error-field {
+            border: 2px solid #FF0000 !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.43.html"><strong><< Previous</strong> (5.2.43)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.45.html"><strong>Next >></strong> (5.2.45)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.44: Error Identification (WCAG 3.3.1)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 3.3.1 Error Identification**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #FF0000; font-weight: bold;">Error Identified and Described in Text</span></td></tr>
+            <tr><td>**Goal**</td><td>To ensure all users, especially screen reader users, know where an error occurred and how to fix it immediately after form submission.</td></tr>
+            <tr><td>**Requirement**</td><td>Upon automatic error detection, the field in error must be visually and programmatically identified, and a clear, descriptive text message explaining the error must be provided.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+        
+
+        <section class="success">
+            <h3>Success Example 1: Required Field Missing</h3>
+            <p><strong>Scenario:</strong> User submits a form without filling out the email field.</p>
+            
+            <form class="demo-form">
+                <div class="form-group">
+                    <label for="email-success">Email Address (Required)</label>
+                    <input type="text" id="email-success" class="error-field" value="" aria-invalid="true" aria-describedby="email-error-msg">
+                    <span id="email-error-msg" class="error-message">Error: This field is required and cannot be blank.</span>
+                </div>
+                <button type="submit">Submit Form</button>
+            </form>
+
+            <p class="note">**Compliance Justification:** The error field is **identified** visually (red border) and programmatically (`aria-invalid="true"`). The error is **described in text** using the associated `<span>` element. A screen reader will announce that the field is invalid and read the error message, ensuring compliance with SC 3.3.1.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Incorrect Data Format</h3>
+            <p><strong>Scenario:</strong> User enters an invalid date format.</p>
+            
+            <form class="demo-form">
+                <div class="form-group">
+                    <label for="date-success">Date of Birth (DD/MM/YYYY)</label>
+                    <input type="text" id="date-success" class="error-field" value="20/20/2020" aria-invalid="true" aria-describedby="date-error-msg">
+                    <span id="date-error-msg" class="error-message">Error: Date format is invalid. Please use DD/MM/YYYY (e.g., 01/12/2025).</span>
+                </div>
+                <button type="submit">Submit Form</button>
+            </form>
+
+            <p class="note">**Compliance Justification:** The input field is **identified** as an error and the error is **described** clearly in text, specifying the expected format. This helps users with cognitive or learning disabilities understand how to fix the error. Compliant.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Error Indicated Only by Colour</h3>
+            <p><strong>Scenario:</strong> An empty required field is submitted, and the only indication of the error is a red border around the field.</p>
+            
+            <form class="demo-form" style="border-color: #dc3545;">
+                <div class="form-group">
+                    <label for="name-fail-color">Full Name (Required)</label>
+                    <input type="text" id="name-fail-color" style="border: 2px solid red;">
+                    </div>
+                <button type="submit">Submit Form</button>
+            </form>
+
+            <p class="note">**Compliance Justification:** The field is **identified** visually (red border), but the error is **not described in text**. Users who are color-blind or using screen readers will not perceive the error or know what to fix. This fails SC 3.3.1 because the description must be in text.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Error Described in Separate Location</h3>
+            <p><strong>Scenario:</strong> The error message is placed in a single, unlinked summary at the top of a long page, forcing the user to find the error manually.</p>
+
+            <div class="error-summary" style="border: 2px solid #dc3545; padding: 10px; margin-bottom: 15px;">
+                <p class="error-message">Form Submission Failed:</p>
+                <ul style="margin-left: 20px;">
+                    <li>Field 3 is blank.</li>
+                </ul>
+            </div>
+            <form class="demo-form" style="border-color: #dc3545;">
+                <div class="form-group">
+                    <label for="field1">Field 1</label><input type="text" id="field1" value="OK">
+                </div>
+                <div class="form-group">
+                    <label for="field2">Field 2</label><input type="text" id="field2" value="OK">
+                </div>
+                <div class="form-group">
+                    <label for="field3">Field 3 (Required)</label><input type="text" id="field3" class="error-field" value="">
+                </div>
+                <button type="submit">Submit Form</button>
+            </form>
+
+            <p class="note">**Compliance Justification:** While the error is technically described in text, the field itself (`id="field3"`) is not programmatically associated with the error message, and a screen reader might not link the two. More critically, the message "Field 3 is blank" is not explicitly descriptive enough, and requires the user to remember where "Field 3" is on a long form. SC 3.3.1 requires the error be identified **and** described *in text* directly related to the item in error.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 3.3.1 Error Identification</td>
+                    <td>A</td>
+                    <td>When a form error is detected: 1) **Visually and Programmatically Identify** the field in error (e.g., red border, `aria-invalid="true"`). 2) Provide a **clear, human-readable text description** of the error next to the field (e.g., "Password must contain 8 characters").</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

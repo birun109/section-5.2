@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.49: Name, Role, Value (WCAG 4.1.2)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0 0 0, 0.1);
+        }
+        h1 {
+            color: #FF8C00; /* Unique color for 4.1.2 (Dark Orange/NRV) */
+            border-bottom: 3px solid #FF8C00;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .code-example {
+            font-family: monospace;
+            white-space: pre-wrap;
+            background: #eee;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px dashed #FF8C00;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.48.html"><strong><< Previous</strong> (5.2.48)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.50.html"><strong>Next >></strong> (5.2.50)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.49: Name, Role, Value (WCAG 4.1.2)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 4.1.2 Name, Role, Value**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #FF8C00; font-weight: bold;">Accessible Name, Role, and State</span></td></tr>
+            <tr><td>**Goal**</td><td>To ensure assistive technologies can accurately announce what a control is (Role), what it's called (Name), and its current condition (State/Value).</td></tr>
+            <tr><td>**Requirement**</td><td>Interactive components must correctly expose:
+                <ul class="list-options">
+                    <li>**Name:** The text label or accessible name.</li>
+                    <li>**Role:** The type of component (button, checkbox, link, etc.).</li>
+                    <li>**State/Value:** Current status (checked, expanded, value of a text field).</li>
+                </ul>
+            </td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+        
+
+        <section class="success">
+            <h3>Success Example 1: Native HTML Checkbox</h3>
+            <p><strong>Scenario:</strong> A standard checkbox where the user can set the state (checked/unchecked).</p>
+            
+            <div class="code-example" style="border-color: #28a745; background: #e6ffe6;">
+&lt;input type="checkbox" id="newsletter" checked&gt;
+&lt;label for="newsletter"&gt;Subscribe to Newsletter&lt;/label&gt;
+            </div>
+
+            <p class="note">**Compliance Justification:** Native HTML automatically exposes the Name (from the `<label>`), the Role (checkbox), and the State (checked) to the accessibility tree. When the state changes (user unchecks it), the user agent is notified. This is compliant.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Custom Dropdown Menu using ARIA</h3>
+            <p><strong>Scenario:</strong> A custom component built using `&lt;div&gt;` elements to act as an expandable navigation menu.</p>
+            
+            <div class="code-example" style="border-color: #28a745; background: #e6ffe6;">
+&lt;div role="button" aria-expanded="false" aria-controls="sub-menu"&gt;
+    Products
+&lt;/div&gt;
+&lt;ul id="sub-menu"&gt;...&lt;/ul&gt;
+            </div>
+
+            <p class="note">**Compliance Justification:** Since a `&lt;div&gt;` is not inherently a control, ARIA is used:
+                <ul style="margin-left: 20px;">
+                    <li>**Role:** `role="button"` (Tells ATs it's an interactive button).</li>
+                    <li>**Name:** The visible text "Products".</li>
+                    <li>**State:** `aria-expanded="false"` (Tells ATs the menu is currently closed).</li>
+                </ul>
+                When the user activates it, JavaScript must update `aria-expanded` to `"true"`, notifying the ATs of the state change. This is compliant.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Missing Role and State (Custom Checkbox)</h3>
+            <p><strong>Scenario:</strong> A visual checkbox created solely with a `&lt;span&gt;` element and CSS.</p>
+            
+            <div class="code-example" style="border-color: #dc3545; background: #f8d7da;">
+&lt;span class="custom-checkbox"&gt;&lt;/span&gt; 
+&lt;span&gt;I accept the terms&lt;/span&gt;
+            </div>
+
+            <p class="note">**Compliance Justification:** The `&lt;span&gt;` element has no inherent interactive role or state. A screen reader will only announce the visible text "I accept the terms" followed by "text." It will not recognize this as an interactive checkbox, nor will it announce its current checked state. This fails SC 4.1.2.</p>
+        </section>
+        
+        <section class="failure">
+            <h3>Failure Example 2: Custom Field Value Not Programmatically Set</h3>
+            <p><strong>Scenario:</strong> A custom input field that visualizes a number value using JavaScript but doesn't expose the value.</p>
+
+            <div class="code-example" style="border-color: #dc3545; background: #f8d7da;">
+&lt;div role="textbox" aria-label="Amount"&gt;
+    &lt;span id="value-display"&gt;100&lt;/span&gt;
+&lt;/div&gt;
+            </div>
+
+            <p class="note">**Compliance Justification:** While the **Role** (`textbox`) and **Name** (`aria-label`) are correct, the current **Value** (`100`) is only in a generic `&lt;span&gt;`. For a text box role, the value must be exposed programmatically, usually through the `aria-valuenow` or by making the text content of the element available as the value. Since the value is not programmatically set or announced as the component's value, this fails SC 4.1.2.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 4.1.2 Name, Role, Value</td>
+                    <td>A</td>
+                    <td>**Rule:** For all interactive elements (native or custom), ensure they expose their **Name** (what it's called), **Role** (what it is), and **State/Value** (what it's doing/its current value) to the accessibility tree. Use **native HTML elements** whenever possible, and use **ARIA attributes** (`role`, `aria-label`, `aria-checked`, etc.) carefully and consistently for custom components.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Audio Description Showcase (5.2.4)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #0056b3;
+            border-bottom: 3px solid #0056b3;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        video {
+            display: block;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+        }
+        .note {
+            font-style: italic;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        .desc-example {
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            white-space: pre-wrap;
+        }
+         .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="nav-links">
+            <a href="5.2.3.html"><strong><< Previous</strong> (5.2.3)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.5.html"><strong>Next >></strong> (5.2.5)</a>
+        </div>
+        <h1>GIGW 3.0 Statement 5.2.4: Audio Description (WCAG 1.2.3)</h1>
+        
+        <h2>Clause: Pre-recorded Synchronised Media Visual Content</h2>
+        <p><strong>Requirement:</strong> Provide an audio description track **OR** a full text alternative (transcript + visual description) for pre-recorded synchronized media.</p>
+
+        <hr>
+
+        <section class="success">
+            <h3>✅ Success Example 1: Video with Audio Description (AD)</h3>
+            <p><strong>Media:</strong> A training video showing how to access a specific feature using a screen capture. The main audio only says, "Click the settings icon to proceed."</p>
+            
+            <video controls src="training-video.mp4" width="500" height="300">
+                <track kind="descriptions" src="training-ad.vtt" srclang="en" label="Audio Description">
+            </video>
+            
+            <h4>Simulated Audio Description Content (Example)</h4>
+            <div class="desc-example">
+                00:00:05.000 --&gt; 00:00:08.000
+                (AD: The cursor moves to the top right corner, highlighting a **gear-shaped icon**.)
+                
+                00:00:10.500 --&gt; 00:00:13.000
+                (AD: A dropdown menu appears, listing **'Profile,' 'Help,' and 'Logout.'**)
+            </div>
+            <p class="note">The AD track conveys the crucial visual details (the gear icon, the menu items) that a blind user would miss if only listening to the main audio.</p>
+        </section>
+
+        <hr>
+        
+        <section class="success">
+            <h3>✅ Success Example 2: Video with Full Text Media Alternative</h3>
+            <p><strong>Media:</strong> A video announcement featuring a static presenter with key statistics appearing on screen.</p>
+            
+            <video controls src="announcement-video.mp4" width="500" height="300"></video>
+            
+            <h4>Full Media Alternative (Transcript + Visual Description)</h4>
+            <div id="full-alternative" style="border: 1px dashed #28a745; padding: 15px; background-color: #e9ffed;">
+                <p><strong>[Visual]:</strong> The screen shows a **large headline: '10% Target Achieved'** in red text. </p>
+                <p><strong>[Speaker]:</strong> We are delighted to announce that thanks to the tireless work of our field teams, we have exceeded our initial goals. </p>
+                <p><strong>[Visual]:</strong> The scene changes to a **map highlighting three new project locations in the Southern region**.</p>
+                <p><strong>[Speaker]:</strong> This success allows us to immediately expand operations to three new areas, accelerating development.</p>
+            </div>
+            <p class="note">The full text alternative conveys **both** the auditory and the visual information, making the content fully accessible.</p>
+        </section>
+
+        <hr>
+
+        <section class="failure">
+            <h3 class="failure">❌ Failure Example: Video Missing Visual Context</h3>
+            <p><strong>Media:</strong> A policy briefing where the presenter often points to an unseen graphic or chart to make a point.</p>
+            
+            <video controls src="briefing-video-fail.mp4" width="500" height="300"></video>
+            
+            <p><strong>Main Audio Only:</strong> "...as you can see on the diagram, this area saw a drop-off starting last year, but we expect a full recovery by the third quarter."</p>
+            <p class="note">The presenter references the **visual content** (the diagram) but provides no verbal description of what the diagram actually shows (the drop-off, the recovery timeline). Without an AD track or a full media alternative, the visual information is completely inaccessible to blind users.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>GIGW Statement</th>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Required Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5.2.4 (Audio Description)</td>
+                    <td>SC 1.2.3</td>
+                    <td>A</td>
+                    <td>Provide a separate **Audio Description (AD) track** or a comprehensive **Media Alternative** that describes all visual information in the synchronized media.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

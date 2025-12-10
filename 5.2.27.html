@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.27: Bypass Blocks (WCAG 2.4.1)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #006400; /* Unique color for 2.4.1 */
+            border-bottom: 3px solid #006400;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table td, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* --- Demo Styles --- */
+        .repeated-header {
+            background-color: #eafaea;
+            border: 1px solid #006400;
+            padding: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .main-content {
+            border: 2px dashed #007bff;
+            padding: 20px;
+            min-height: 200px;
+        }
+        
+        /* Failure: Example of a large repeated block */
+        .large-nav-block {
+            border: 1px solid #dc3545;
+            padding: 10px;
+            background-color: #fcebeb;
+            margin-bottom: 15px;
+        }
+        
+        /* Success: Skip link styling (hidden until focus) */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #ffcc00;
+            padding: 8px;
+            z-index: 1000;
+            text-decoration: none;
+            color: #333;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.26.html"><strong><< Previous</strong> (5.2.26)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.28.html"><strong>Next >></strong> (5.2.28)</a>
+            <a href="#main-content" class="skip-link">Skip to main content</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.27: Bypass Blocks (WCAG 2.4.1)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 2.4.1 Bypass Blocks**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #006400; font-weight: bold;">Provide Skip Navigation Link</span></td></tr>
+            <tr><td>**Goal**</td><td>To allow keyboard-only users to skip directly to the unique content of a page without tabbing through repeated elements.</td></tr>
+            <tr><td>**Requirement**</td><td>A mechanism (like a hidden link that appears on focus) must be provided as one of the very first items in the page's source code, allowing the user to bypass large, repeated content blocks.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Visually Hidden "Skip to Main Content" Link</h3>
+            <p><strong>Scenario:</strong> A website includes a standard header, search bar, and main navigation that appear on every page.</p>
+            
+            <div class="repeated-header">
+                <p><strong>Header Block (Repeated Content):</strong> Logo | Search Bar | 10 Navigation Links</p>
+                <p>*(To test, press **Tab** once from the browser address bar. The "Skip to main content" link should appear and be focusable.)*</p>
+            </div>
+            
+            <p>The first item in the HTML source code is the link: <code>&lt;a href="#main-content" class="skip-link"&gt;Skip to main content&lt;/a&gt;</code></p>
+
+            <div id="main-content" class="main-content" tabindex="-1">
+                This is the **Main Content Area** (the target of the skip link).
+            </div>
+
+            <p class="note">**Compliance Justification:** The "Skip to main content" link is the **first focusable element** in the page source and leads directly to the primary content identified by <code>id="main-content"</code>. The use of <code>tabindex="-1"</code> on the target element ensures that focus is received cleanly after the link is activated, meeting SC 2.4.1.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: No Bypass Mechanism Provided</h3>
+            <p><strong>Scenario:</strong> A government website features a large, complex global navigation bar and a multi-level sidebar menu on every page.</p>
+            
+            <div class="large-nav-block">
+                **Global Navigation:** Home | Services | Documents | Help | Login (5 links)<br>
+                **Sidebar Navigation:** Section 1 (8 links) | Section 2 (6 links) | Section 3 (4 links)
+            </div>
+            
+            <p>The main content starts directly below this massive repeated block.</p>
+            
+            <div class="main-content">
+                This is the main content area. A keyboard user must press **Tab** 23 times to reach this area.
+            </div>
+
+            <p class="note">**Compliance Justification:** The page contains a large, repeated block of content (the navigation links). Since **no link, anchor, or programmatic method** is available to quickly jump over this block, a keyboard user or screen reader user must navigate through dozens of links on every single page they visit. This creates an enormous cognitive and physical burden, resulting in a failure of SC 2.4.1.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 2.4.1 Bypass Blocks</td>
+                    <td>A</td>
+                    <td>Implement a **"Skip to main content"** link as the **first focusable element** on every page. Ensure the link target is the start of the unique content and receives keyboard focus (e.g., by using the HTML `<main>` element or setting `tabindex="-1"` on the target element).</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.10: Orientation (WCAG 1.3.4)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #6A5ACD; /* Unique color for 1.3.4 */
+            border-bottom: 3px solid #6A5ACD;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table th, .analysis-table td, .summary-table th, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        
+        /* CSS for the Success Example */
+        .content-block {
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+        
+        /* Default (Landscape) Layout */
+        .responsive-layout {
+            display: flex;
+            gap: 15px;
+        }
+        .main-content {
+            flex: 2;
+        }
+        .side-nav {
+            flex: 1;
+        }
+        
+        /* Portrait Mode Adaptation (using a simplified media query) */
+        @media (max-width: 600px) {
+            .responsive-layout {
+                flex-direction: column; /* Stacks content vertically */
+            }
+        }
+        
+        /* CSS for the Failure Example */
+        .failure-box {
+            background-color: #fff0f0;
+            padding: 15px;
+            border: 2px dashed #dc3545;
+            text-align: center;
+        }
+         .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="nav-links">
+            <a href="5.2.9.html"><strong><< Previous</strong> (5.2.9)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.11.html"><strong>Next >></strong> (5.2.11)</a>
+        </div>
+        <h1>GIGW 3.0 Statement 5.2.10: Orientation (WCAG 1.3.4)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**GIGW Statement**</td><td>Content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific display orientation is essential.</td></tr>
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 1.3.4 Orientation**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level AA**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #6A5ACD; font-weight: bold;">Do Not Restrict Display Orientation</span></td></tr>
+            <tr><td>**Goal**</td><td>To allow users with dexterity impairments or low vision to view content in the orientation that works best for them.</td></tr>
+            <tr><td>**Requirement**</td><td>Content must display and operate correctly in **both portrait and landscape** modes, unless a specific orientation is **essential**.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Success Example ✅</h2>
+        <h3>Success Example 1: Adaptive Page Layout</h3>
+        <p><strong>Scenario:</strong> A dashboard page with a main content area and a secondary navigation panel.</p>
+        
+        <p><strong>Behavior:</strong> In **Landscape** (wider screens), the layout displays two columns. In **Portrait** (narrower screens, simulated below 600px), the layout stacks the secondary navigation below the main content.</p>
+
+        <div class="responsive-layout">
+            <div class="main-content content-block">
+                <strong>Main Content Area</strong>
+                <p>Application data and primary actions are displayed here. Text remains readable and functional in both orientations.</p>
+            </div>
+            <div class="side-nav content-block">
+                <strong>Secondary Navigation</strong>
+                <p>Quick links and status summary. This moves below the main content when the orientation shifts to portrait/narrow.</p>
+            </div>
+        </div>
+
+        <p class="note">**Compliance Justification:** The page uses **CSS Media Queries** to adapt the layout (from columns to stacked rows) based on the viewport dimensions. The content is fully visible and usable in both orientations, meeting the requirement.</p>
+        
+        <hr>
+
+        <h2>Failure Example ❌</h2>
+        <h3>Failure Example 1: Restricting to Portrait Mode</h3>
+        <p><strong>Scenario:</strong> A mobile form designed only for vertical scrolling, with orientation artificially locked via a meta tag.</p>
+        
+        <div class="failure-box">
+            <h4>Application Locked to Portrait View!</h4>
+            <p>If the user rotates their device to landscape, they receive an error message or the view cuts off completely. The underlying HTML/CSS prevents proper scaling.</p>
+            
+            <p><strong>Simulated Failure Code:</strong><br>
+            <code>&lt;meta name="screen-orientation" content="portrait"&gt;</code></p>
+        </div>
+
+        <p class="note">**Compliance Justification:** The content forces the user into a specific orientation, which prevents users with fixed mounts (e.g., wheelchair mounts) or users wishing to zoom in on text from using their preferred mode. This is a failure because the **single orientation is not essential** for a standard form.</p>
+
+        <h3>Essential Exception Example (Does NOT fail 1.3.4)</h3>
+        <p><strong>Scenario:</strong> An online geographical information system (GIS) map that requires landscape orientation to display the necessary full range of controls and coordinates for functional accuracy.</p>
+        <p class="note">**Justification:** If the function of the content (e.g., highly technical data visualization or complex interactive inputs) is **fundamentally broken** or yields inaccurate results in one orientation, restriction is permissible. For most standard government content, however, restriction is **never** essential.</p>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 1.3.4 Orientation</td>
+                    <td>AA</td>
+                    <td>Develop content using **responsive design** techniques to ensure it adapts and remains **fully usable and visible** in both **portrait and landscape** orientations. **Do not use meta tags or CSS to lock the orientation** unless the single mode is absolutely essential for the content's core function.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

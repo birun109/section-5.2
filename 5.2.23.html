@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.23: Character Key Shortcuts (WCAG 2.1.4)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #FF4500; /* Unique color for 2.1.4 */
+            border-bottom: 3px solid #FF4500;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table th, .analysis-table td, .summary-table th, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="nav-links">
+            <a href="5.2.22.html"><strong><< Previous</strong> (5.2.22)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.24.html"><strong>Next >></strong> (5.2.24)</a>
+        </div>
+
+        <h1>GIGW 3.0 Statement 5.2.23: Character Key Shortcuts (WCAG 2.1.4)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**GIGW Statement**</td><td>If a keyboard shortcut is implemented in content using only letter, punctuation, number, or symbol characters, then at least one of Turn off, Remap, or Active only on focus is true.</td></tr>
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 2.1.4 Character Key Shortcuts**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td><span style="color: #FF4500; font-weight: bold;">Single-Key Shortcuts Must Be Controllable</span></td></tr>
+            <tr><td>**Goal**</td><td>To prevent accidental execution of commands by users with fine motor control issues or users of speech input software (which generates single keystrokes).</td></tr>
+            <tr><td>**Requirement**</td><td>Global shortcuts using *only* single keys (e.g., 'S' for Save) must offer a way to **Turn Off** or **Remap** the shortcut to include a modifier (Ctrl, Alt).</td></tr>
+            <tr><td>**Exception**</td><td>No action is required if the shortcut is **Active only when the component has focus** (e.g., typing 'M' when inside a text box).</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Example for Success Criteria ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Remap Option Provided <a href="5.2.23_short_cut_remap_demo.html" target="_blank">Example Remap demo</a></h3>
+            <p><strong>Scenario:</strong> A complex online dashboard uses the global key 'C' to open the client history panel.</p>
+            
+            <p><strong>Global Shortcut:</strong> Press 'C' (single character key) to open Client History.</p>
+            <p><strong>User Setting Provided:</strong> Located in the user's settings panel, there is an option to change the shortcut from 'C' to **'Ctrl + C'** or **'Alt + C'**.</p>
+            
+            <p class="note">**Compliance Justification:** The system provides a mechanism to **Remap** the shortcut to include a non-printable key (`Ctrl` or `Alt`). This satisfies the criterion because it moves the shortcut away from the easy-to-trigger single character, preventing accidental activation by speech recognition or accidental key presses.</p>
+            
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Active Only On Focus</h3>
+            <p><strong>Scenario:</strong> A video player widget uses the key 'P' to Play/Pause, but only when the video player itself is focused.</p>
+            
+            <p>The video player only recognizes the 'P' key if the user has clicked or tabbed into the video player element itself.</p>
+
+            <div style="border: 2px solid #28a745; padding: 15px;">
+                <p style="margin: 0;"><strong>Video Player Widget:</strong> Focus here (Tab into the boundary) to enable the 'P' key shortcut.</p>
+                <button **tabindex="0"**>Focus target 1</button>
+            </div>
+            
+            <p class="note">**Compliance Justification:** This is the most common and ideal solution: the shortcut is **Active only on focus**. The 'P' key does nothing when the user is simply navigating the page or typing in a normal text field. It is only active when the dedicated component has focus, meaning it does not interfere with screen readers or normal typing, and therefore meets the exception.</p>
+        </section>
+
+        <hr>
+
+        <h2>Example for Failure Criteria ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Global Single-Key Shortcut with No Override</h3>
+            <p><strong>Scenario:</strong> A public-facing government data portal implements a keyboard listener on the `document` that detects the 'M' key globally to open the main menu, and no control options are given.</p>
+            
+            <p><strong>Global Shortcut:</strong> Press 'M' anywhere on the page to jump to the menu.</p>
+            <input type="text" placeholder="Type your name here..." tabindex="0">
+            
+            <p class="note">**Compliance Justification:** If a speech input user says the word "Ma'am" or "Many," the system may process the 'M' keypress, immediately triggering the menu and disrupting their input. Since the shortcut is a single character key and is **active globally** (not just on focus), and there is **no mechanism to turn it off or remap it**, this is a direct failure of SC 2.1.4. The user cannot type the letter 'M' into the text field above without triggering the menu.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 2.1.4 Character Key Shortcuts</td>
+                    <td>A</td>
+                    <td>**AVOID** creating global keyboard shortcuts that use only a single character key (letter, number, symbol). If such a shortcut is necessary, it must satisfy one of the following: **1) Turn Off** (provide a setting to disable it), **2) Remap** (allow the user to add a modifier like Ctrl/Alt), OR **3) Restrict Scope** (ensure the shortcut is **Active only when the associated component has focus**).</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

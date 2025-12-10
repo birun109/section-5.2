@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Statement 5.2.8: Meaningful Sequence (WCAG 1.3.2)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #9c27b0; /* Unique color for 1.3.2 */
+            border-bottom: 3px solid #9c27b0;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .analysis-table, .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .analysis-table th, .analysis-table td, .summary-table th, .summary-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .analysis-table th, .summary-table th {
+            background-color: #f2f2f2;
+        }
+        .analysis-table td:nth-child(1) {
+            font-weight: bold;
+            width: 25%;
+        }
+        /* CSS to intentionally visually reorder content for the Failure Example */
+        .reordered-steps-container .step-1 { order: 2; }
+        .reordered-steps-container .step-2 { order: 3; }
+        .reordered-steps-container .step-3 { order: 1; }
+        .reordered-steps-container {
+            display: flex;
+            flex-direction: column;
+        }
+         .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="nav-links">
+            <a href="5.2.7.html"><strong><< Previous</strong> (5.2.7)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.9.html"><strong>Next >></strong> (5.2.9)</a>
+        </div>
+        <h1>GIGW 3.0 Statement 5.2.8: Meaningful Sequence (WCAG 1.3.2)</h1>
+        
+        <h2>Analysis and Requirements</h2>
+
+        <table class="analysis-table">
+            <tr><td>**GIGW Statement**</td><td>When the sequence in which content is presented affects its meaning, a correct reading sequence can be programmatically determined.</td></tr>
+            <tr><td>**WCAG Reference**</td><td>**Success Criterion 1.3.2 Meaningful Sequence**</td></tr>
+            <tr><td>**WCAG Level**</td><td>**Level A**</td></tr>
+            <tr><td>**Clause in Short Form**</td><td>Correct Reading Order for Meaningful Sequence</td></tr>
+            <tr><td>**Goal**</td><td>To ensure that the **meaning** conveyed by the order of information in the visual design is preserved for users relying on non-visual presentation.</td></tr>
+            <tr><td>**Requirement**</td><td>When content is *sequential* (steps, dialogue, data paths), the programmatic order (in the HTML source code/DOM) must match the logical reading order.</td></tr>
+        </table>
+
+        <hr>
+
+        <h2>Success Examples ✅</h2>
+
+        <section class="success">
+            <h3>Success Example 1: Procedural Steps (Logical Order in Source)</h3>
+            <p><strong>Scenario:</strong> Instructions for a multi-step registration process.</p>
+            
+            <ol>
+                <li>Fill out the personal details form. (First step in source code)</li>
+                <li>Verify your email address via the link sent. (Second step in source code)</li>
+                <li>Submit payment to complete registration. (Third step in source code)</li>
+            </ol>
+            <p class="note">**Compliance Justification:** The use of the **Ordered List (`<ol>`)** element and the correct **source code order** ensures that assistive technology reads the steps in the necessary logical sequence (1, 2, 3), which affects the meaning of the procedure.</p>
+        </section>
+
+        <section class="success">
+            <h3>Success Example 2: Conversation/Dialogue</h3>
+            <p><strong>Scenario:</strong> A short FAQ section where a question is immediately followed by its answer.</p>
+            
+            <section>
+                <h4>Question: How do I track my application status?</h4>
+                <p>Answer: Use your tracking ID on the 'Track Status' page.</p>
+
+                <h4>Question: What documents are required?</h4>
+                <p>Answer: Aadhar card and PAN card are required.</p>
+            </section>
+            <p class="note">**Compliance Justification:** The **natural order** of the content in the HTML source places the answer directly after its corresponding question. This ensures that the screen reader user hears the context *before* the information, preserving the meaning.</p>
+        </section>
+
+        <hr>
+
+        <h2>Failure Examples ❌</h2>
+
+        <section class="failure">
+            <h3>Failure Example 1: Visual Reordering via CSS</h3>
+            <p><strong>Scenario:</strong> Three sequential steps (A, B, C) are visually displayed as C, A, B using CSS `flex-order`, but the source code is A, B, C.</p>
+            
+            <p>Visually, the steps appear as 3, 1, 2, but the source order is 1, 2, 3. (Screen reader will read 1, 2, 3).</p>
+            <div class="reordered-steps-container">
+                <div class="step-1">1. Submit final application.</div> 
+                <div class="step-2">2. Review confirmation email.</div>
+                <div class="step-3">3. Print temporary ID card.</div>
+            </div>
+
+            <p class="note">**Compliance Justification:** The programmatic order (1, 2, 3) does not match the logical reading order (which must be 3, 1, 2 to complete the task). Relying on CSS (like `flex-order`) to change the visual sequence without changing the source order is a **Level A failure**.</p>
+        </section>
+
+        <section class="failure">
+            <h3>Failure Example 2: Using Unordered List for Steps</h3>
+            <p><strong>Scenario:</strong> Using an unordered list (`<ul>`) for instructions that must be performed sequentially.</p>
+            
+            <ul>
+                <li>Place your thumb on the scanner. (Must be step 2)</li>
+                <li>Enter your PIN number. (Must be step 1)</li>
+            </ul>
+            <p class="note">**Compliance Justification:** Although the screen reader reads the items in the source order, the use of `<ul>` means it announces "List with two items, bullet" rather than "Ordered list, item 1 of 2." The **unordered semantic** incorrectly implies that the steps can be performed in any order, which affects the meaning of the procedure.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Key Action for Compliance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SC 1.3.2 Meaningful Sequence</td>
+                    <td>A</td>
+                    <td>Ensure the **order of content in the HTML source code (DOM)** exactly matches the necessary **logical sequence** for any procedural steps, conversations, or multi-part data. **Avoid using CSS or layout properties to change the visual reading order.**</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

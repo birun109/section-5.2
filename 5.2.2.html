@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGW 3.0 Media-Only Showcase (5.2.2)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #ff9800; /* Unique color for 1.2.1 */
+            border-bottom: 3px solid #ff9800;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 15px;
+        }
+        .failure h3 {
+            color: #dc3545;
+        }
+        .success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .failure {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        audio, video {
+            display: block;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+        }
+        .note {
+            font-style: italic;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        #transcript-box, #desc-box {
+            border: 1px dashed #28a745;
+            padding: 15px;
+            background-color: #e9ffed;
+            margin-top: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+         .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="nav-links">
+            <a href="5.2.1.html"><strong><< Previous</strong> (5.2.1)</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="5.2.3.html"><strong>Next >></strong> (5.2.3)</a>
+        </div>
+        <h1>GIGW 3.0 Statement 5.2.2: Audio-only and Video-only (WCAG 1.2.1)</h1>
+        
+        <h2>Clause: Alternatives for Pre-recorded Audio/Video-only Content</h2>
+
+        <hr>
+
+        <h2>1. Pre-recorded Audio-only Content</h2>
+        
+        <section class="success">
+            <h3>✅ Success Example: Audio-only with Full Transcript</h3>
+            <p><strong>Media:</strong> An audio file of a public service announcement (PSA).</p>
+            <audio controls src="audio-psa.mp3"></audio>
+            
+            <h4>Full Transcript (Equivalent Text Alternative)</h4>
+            <div id="transcript-box">
+                <p><strong>[Speaker 1]:</strong> This is a reminder regarding the deadline for property tax filing. **[SOUND: Clock ticking]**</p>
+                <p><strong>[Speaker 2]:</strong> The new extended deadline is October 31st. Visit our portal for details.</p>
+            </div>
+            <p class="note">**Compliance Justification:** The full text transcript provides the **equivalent information** from the audio, including dialogue and critical sound effects, making it accessible to deaf users.</p>
+        </section>
+
+        <section class="failure">
+            <h3 class="failure">❌ Failure Example: Audio-only with No Equivalent Alternative</h3>
+            <p><strong>Media:</strong> A recorded welcome message from the department head.</p>
+            <audio controls src="audio-welcome-fail.mp3"></audio>
+            <p class="note">**Compliance Justification:** The message is inaccessible to users who are deaf or cannot play audio, as no **text alternative (transcript)** is provided.</p>
+        </section>
+
+        <hr>
+
+        <h2>2. Pre-recorded Video-only Content</h2>
+        
+        <section class="success">
+            <h3>✅ Success Example: Video-only with Equivalent Text Alternative (Transcript)</h3>
+            <p><strong>Media:</strong> A silent instructional video demonstrating a security check (using only visual cues and text overlays).</p>
+            <video controls src="silent-instructional.mp4" width="400" height="200"></video>
+            
+            <h4>Full Visual Description (Equivalent Text Alternative)</h4>
+            <div id="desc-box">
+                <p><strong>[Visual]:</strong> Screen shows the login page. **Text overlay: Enter OTP.**</p>
+                <p><strong>[Visual]:</strong> The cursor moves to the top menu, then highlights the **'Security Logs' link** in green.</p>
+            </div>
+            <p class="note">**Compliance Justification:** The text alternative (visual description) provides **equivalent information** for the visuals, making the instructions accessible to users who are blind or cannot see the screen.</p>
+        </section>
+        
+        <section class="failure">
+            <h3 class="failure">❌ Failure Example: Video-only with No Alternative</h3>
+            <p><strong>Media:</strong> A silent time-lapse video showing the progress of a key infrastructure project over six months.</p>
+            <video controls src="timelapse-fail.mp4" width="400" height="200"></video>
+            <p class="note">**Compliance Justification:** The video contains critical information (visual progress over time, specific construction events) that is inaccessible to users who are blind, as neither an **audio track nor a text transcript/description** is provided.</p>
+        </section>
+
+        <hr>
+
+        <h2>Summary of Conformity</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>GIGW Statement</th>
+                    <th>WCAG Reference</th>
+                    <th>WCAG Level</th>
+                    <th>Required Action (Govt. & Dev.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5.2.2 (Audio/Video-only)</td>
+                    <td>SC 1.2.1</td>
+                    <td>A</td>
+                    <td>Provide a **transcript** for audio-only content. Provide either a **transcript/description** or an **audio track** for video-only content.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
